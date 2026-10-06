@@ -1,0 +1,6 @@
+[SPAM] P(spam)=0.997 | Gratis hadiah pulsa, klik link sekarang
+[ HAM] P(spam)=0.004 | Rapat besok pagi di kantor ya
+[SPAM] P(spam)=0.973 | Hubungi kami untuk pinjaman dana
+[ HAM] P(spam)=0.002 | Sudah sampai sekolah, nanti jemput jam 12
+Kata paling 'spam' : ['anda', 'hadiah', 'ini', 'klik', 'menang', 'hari']
+Kata paling 'ham'  : ['di', 'sudah', 'jam', 'besok', 'terima', 'siang']

@@ -1,0 +1,10 @@
+k =  1 -> akurasi 10-fold CV = 0.953
+k =  3 -> akurasi 10-fold CV = 0.953
+k =  5 -> akurasi 10-fold CV = 0.953
+k = 10 -> akurasi 10-fold CV = 0.960
+k = 15 -> akurasi 10-fold CV = 0.960
+k = 20 -> akurasi 10-fold CV = 0.953
+k = 30 -> akurasi 10-fold CV = 0.947
+k terbaik = 8 (akurasi 0.967)
+Bunga baru diprediksi: virginica
+Label tetangga terdekatnya: ['virginica', 'virginica', 'virginica', 'versicolor', 'versicolor', 'virginica', 'virginica', 'versicolor']

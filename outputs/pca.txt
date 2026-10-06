@@ -1,0 +1,7 @@
+ 2 komponen menjelaskan 28.5% varians
+ 5 komponen menjelaskan 54.5% varians
+10 komponen menjelaskan 73.8% varians
+20 komponen menjelaskan 89.4% varians
+30 komponen menjelaskan 95.9% varians
+Komponen yang dibutuhkan untuk 95% varians: 29 dari 64 (45% ukuran asli)
+Error rekonstruksi rata-rata (MSE piksel, skala 0-16): 0.849

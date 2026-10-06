@@ -1,0 +1,5 @@
+Versi XGBoost       : 3.4.1
+Iterasi terbaik     : 460 (early stopping dari maks 1000)
+Akurasi test        : 0.965
+ROC AUC test        : 0.9941
+Top 3 fitur (gain)  : [('worst perimeter', 19.0), ('mean concave points', 10.3), ('worst radius', 7.2)]

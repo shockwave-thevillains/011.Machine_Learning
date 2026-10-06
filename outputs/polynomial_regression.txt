@@ -1,0 +1,5 @@
+derajat  1 | R² train = 0.915 | R² test = 0.879
+derajat  2 | R² train = 0.979 | R² test = 0.966
+derajat  3 | R² train = 0.979 | R² test = 0.965
+derajat 15 | R² train = 0.994 | R² test = 0.621
+Prediksi penjualan saat 35°C (derajat 2): 235 gelas

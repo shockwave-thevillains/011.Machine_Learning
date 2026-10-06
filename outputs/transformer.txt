@@ -1,0 +1,8 @@
+Parameter: 102,218
+langkah    1 | loss = 2.4801 | akurasi per-digit = 0.107 | deret benar 100% = 0.000
+langkah  100 | loss = 0.4721 | akurasi per-digit = 0.883 | deret benar 100% = 0.325
+langkah  250 | loss = 0.1372 | akurasi per-digit = 0.845 | deret benar 100% = 0.222
+langkah  500 | loss = 0.0038 | akurasi per-digit = 1.000 | deret benar 100% = 0.999
+langkah 1500 | loss = 0.0010 | akurasi per-digit = 1.000 | deret benar 100% = 1.000
+Input : [7, 2, 9, 2, 0, 5, 1, 8]
+Output: [0, 1, 2, 2, 5, 7, 8, 9]

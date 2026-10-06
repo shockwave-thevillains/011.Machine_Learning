@@ -1,0 +1,6 @@
+Persamaan   : harga = 12.36 x luas + 167.26
+R² (test)   : 0.980
+MAE (test)  : Rp 71.4 juta
+Prediksi rumah  45 m² -> Rp 724 juta
+Prediksi rumah 120 m² -> Rp 1,651 juta
+Prediksi rumah 180 m² -> Rp 2,392 juta

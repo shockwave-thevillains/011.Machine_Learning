@@ -1,0 +1,5 @@
+Waktu t-SNE            : 4.1 detik untuk 1797 titik
+KL divergence akhir    : 0.754
+Trustworthiness t-SNE  : 0.993
+Trustworthiness PCA-2D : 0.830
+(trustworthiness 1.0 = tetangga terdekat di 2D sama persis dengan di 64D)

@@ -1,0 +1,22 @@
+16 itemset sering muncul (support ≥ 25%), contoh 2-item:
+  ['beras', 'minyak goreng']  support = 0.33
+  ['beras', 'telur']  support = 0.33
+  ['gula', 'kopi']  support = 0.33
+  ['kopi', 'roti']  support = 0.25
+  ['kopi', 'susu kental manis']  support = 0.25
+  ['mie instan', 'telur']  support = 0.33
+  ['minyak goreng', 'telur']  support = 0.25
+
+Aturan asosiasi (confidence ≥ 70%):
+  ['minyak goreng'] -> ['beras']  support=0.33 conf=1.00 lift=2.40
+  ['beras'] -> ['minyak goreng']  support=0.33 conf=0.80 lift=2.40
+  ['minyak goreng', 'telur'] -> ['beras']  support=0.25 conf=1.00 lift=2.40
+  ['beras', 'telur'] -> ['minyak goreng']  support=0.25 conf=0.75 lift=2.25
+  ['minyak goreng'] -> ['beras', 'telur']  support=0.25 conf=0.75 lift=2.25
+  ['roti'] -> ['kopi']  support=0.25 conf=1.00 lift=2.00
+  ['susu kental manis'] -> ['kopi']  support=0.25 conf=1.00 lift=2.00
+  ['mie instan'] -> ['telur']  support=0.33 conf=1.00 lift=1.71
+  ['gula'] -> ['kopi']  support=0.33 conf=0.80 lift=1.60
+  ['beras'] -> ['telur']  support=0.33 conf=0.80 lift=1.37
+  ['minyak goreng'] -> ['telur']  support=0.25 conf=0.75 lift=1.29
+  ['beras', 'minyak goreng'] -> ['telur']  support=0.25 conf=0.75 lift=1.29

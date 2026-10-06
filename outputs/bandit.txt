@@ -1,0 +1,4 @@
+eps-greedy | regret kumulatif =   69.5 klik hilang | porsi tampil desain A/B/C = [8.0, 9.8, 82.2] %
+UCB1       | regret kumulatif =  189.0 klik hilang | porsi tampil desain A/B/C = [20.7, 28.5, 50.8] %
+Thompson   | regret kumulatif =   34.9 klik hilang | porsi tampil desain A/B/C = [3.0, 6.6, 90.4] %
+(Uji A/B klasik 33/33/33 akan kehilangan ≈ 267 klik)

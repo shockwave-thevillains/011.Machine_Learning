@@ -1,0 +1,14 @@
+linkage=ward     ARI vs spesies asli = 0.615
+linkage=complete ARI vs spesies asli = 0.573
+linkage=average  ARI vs spesies asli = 0.562
+linkage=single   ARI vs spesies asli = 0.558
+
+5 penggabungan terakhir (cluster a, cluster b, jarak, ukuran):
+  283 + 289  jarak =   4.24  anggota = 30
+  280 + 292  jarak =   6.61  anggota = 49
+  290 + 293  jarak =   8.00  anggota = 71
+  294 + 296  jarak =  12.64  anggota = 101
+  295 + 297  jarak =  27.25  anggota = 150
+Potong dendrogram jadi 2 cluster -> ukuran: [101, 49]
+Potong dendrogram jadi 3 cluster -> ukuran: [71, 49, 30]
+Potong dendrogram jadi 4 cluster -> ukuran: [49, 45, 30, 26]

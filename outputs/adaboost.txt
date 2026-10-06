@@ -1,0 +1,8 @@
+Error 1 stump (weak learner) : 0.459
+Error pohon kedalaman 9      : 0.311
+Error AdaBoost   1 stump    : 0.459
+Error AdaBoost  10 stump    : 0.345
+Error AdaBoost  50 stump    : 0.225
+Error AdaBoost 100 stump    : 0.177
+Error AdaBoost 200 stump    : 0.140
+Error AdaBoost 400 stump    : 0.116

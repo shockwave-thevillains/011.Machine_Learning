@@ -1,0 +1,6 @@
+epoch  1 | MSE test (skala z) = 0.2864
+epoch 10 | MSE test (skala z) = 0.0324
+epoch 20 | MSE test (skala z) = 0.0295
+epoch 40 | MSE test (skala z) = 0.0231
+MAE LSTM            : 0.288 MW
+MAE baseline naif   : 0.578 MW

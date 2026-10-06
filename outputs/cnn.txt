@@ -1,0 +1,7 @@
+Jumlah parameter: 38,282
+epoch  1 | loss latih = 2.2550 | akurasi test = 0.542
+epoch  5 | loss latih = 0.0329 | akurasi test = 0.900
+epoch 10 | loss latih = 0.1966 | akurasi test = 0.956
+epoch 20 | loss latih = 0.0969 | akurasi test = 0.976
+epoch 30 | loss latih = 0.0104 | akurasi test = 0.982
+Bentuk feature map lapisan konvolusi pertama: (1, 16, 8, 8)

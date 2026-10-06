@@ -1,0 +1,6 @@
+OLS (tanpa regularisasi) R² test = 0.413 | norma koefisien = 7,913
+Ridge alpha=0.1    R² test = 0.429 | norma koefisien = 162
+Ridge alpha=1      R² test = 0.447 | norma koefisien = 97
+Ridge alpha=10     R² test = 0.469 | norma koefisien = 54
+Ridge alpha=100    R² test = 0.488 | norma koefisien = 35
+Ridge alpha=1000   R² test = 0.341 | norma koefisien = 15

@@ -1,0 +1,4 @@
+Fitur yang benar-benar berpengaruh : [3, 4, 10, 11, 12]
+Fitur yang dipilih Lasso           : [3, 4, 10, 11, 12]
+Koefisien bukan-nol  OLS = 20 | Lasso = 5
+R² test              OLS = 0.9907 | Lasso = 0.9866

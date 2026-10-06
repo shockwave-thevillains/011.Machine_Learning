@@ -1,0 +1,9 @@
+Linear Regression  R² = 0.727
+Gradient Boosting  R² = 0.938
+MSE test setelah   1 pohon = 23.393
+MSE test setelah  10 pohon = 15.064
+MSE test setelah  50 pohon = 5.332
+MSE test setelah 100 pohon = 2.917
+MSE test setelah 250 pohon = 1.687
+MSE test setelah 500 pohon = 1.552
+Fitur 5-9 adalah noise murni; importance-nya: [0.003, 0.003, 0.002, 0.002, 0.003]

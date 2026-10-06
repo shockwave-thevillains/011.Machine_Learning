@@ -1,0 +1,4 @@
+Akurasi 10-fold CV          : 0.977
+Dimensi sebelum -> sesudah  : 13 -> 2
+Rasio varians antar-kelas   : LD1 = 68.7%, LD2 = 31.3%
+Fitur paling berpengaruh di LD1: ['flavanoids', 'nonflavanoid_phenols', 'od280/od315_of_diluted_wines']

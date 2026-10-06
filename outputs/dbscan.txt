@@ -1,0 +1,5 @@
+K-Means  ARI (400 titik bulan) = 0.263
+DBSCAN   ARI (400 titik bulan) = 0.995
+Cluster ditemukan DBSCAN       = 2
+Titik ditandai noise (-1)      = 14 (20 di antaranya noise sungguhan: 13 tertangkap)
+Core points                    = 393

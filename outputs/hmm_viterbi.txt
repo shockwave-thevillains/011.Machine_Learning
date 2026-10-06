@@ -1,0 +1,3 @@
+Aktivitas teman      : ['jalan-jalan', 'belanja', 'bersih-bersih', 'bersih-bersih', 'jalan-jalan']
+P(urutan aktivitas)  : 0.003228  (algoritma Forward)
+Cuaca paling mungkin : ['Cerah', 'Hujan', 'Hujan', 'Hujan', 'Cerah']  (P jalur = 0.000847, algoritma Viterbi)

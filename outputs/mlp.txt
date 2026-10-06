@@ -1,0 +1,4 @@
+Arsitektur        : 64 -> 64 -> 32 -> 10 (6,570 parameter)
+Iterasi pelatihan : 110 | loss akhir = 0.0033
+Akurasi test      : 0.967
+Kesalahan terbanyak (jumlah, asli, prediksi): [(2, 8, 1), (2, 4, 7), (1, 9, 8)]

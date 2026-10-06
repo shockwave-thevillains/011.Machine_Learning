@@ -1,0 +1,4 @@
+epoch  1: 2 kesalahan
+epoch  2: 0 kesalahan
+Bobot akhir w = [0.228 0.066], bias b = 0.00
+Akurasi data latih = 100% (konvergen di epoch 2)

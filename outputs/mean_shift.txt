@@ -1,0 +1,11 @@
+quantile=0.1  bandwidth=0.581 -> 4 cluster
+quantile=0.2  bandwidth=0.933 -> 4 cluster
+quantile=0.3  bandwidth=1.768 -> 2 cluster
+quantile=0.5  bandwidth=2.345 -> 1 cluster
+
+Pusat yang ditemukan (tanpa memberi tahu jumlah cluster):
+  (+1.05, -1.00)  anggota = 200
+  (-1.06, -1.03)  anggota = 200
+  (+0.95, +0.99)  anggota = 200
+  (-1.50, +1.50)  anggota = 200
+Pusat asli: [(1, 1), (-1, -1), (1, -1), (-1.5, 1.5)]

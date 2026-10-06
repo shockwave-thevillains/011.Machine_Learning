@@ -1,0 +1,14 @@
+{
+ "python": "3.13.16",
+ "paket": {
+  "scikit-learn": "1.9.1",
+  "torch": "2.14.1",
+  "xgboost": "3.4.1",
+  "lightgbm": "4.7.0",
+  "catboost": "1.2.10",
+  "umap-learn": "0.5.12",
+  "mlxtend": "0.25.0",
+  "numpy": "2.5.3"
+ },
+ "tanggal": "2026-10-06"
+}

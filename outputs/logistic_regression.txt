@@ -1,0 +1,8 @@
+Akurasi : 0.986
+ROC AUC : 0.9977
+Confusion matrix [baris = asli, kolom = prediksi] (ganas, jinak):
+[[52  1]
+ [ 1 89]]
+Pasien #0: P(jinak) = 0.969 -> prediksi jinak, asli jinak
+Pasien #1: P(jinak) = 0.000 -> prediksi ganas, asli ganas
+Pasien #2: P(jinak) = 0.559 -> prediksi jinak, asli jinak

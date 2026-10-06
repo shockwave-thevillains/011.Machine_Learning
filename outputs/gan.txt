@@ -1,0 +1,6 @@
+langkah     1 | sampel generator: mean = 166.13 cm, std =  0.59 cm
+langkah   500 | sampel generator: mean = 164.00 cm, std =  9.13 cm
+langkah  2000 | sampel generator: mean = 164.03 cm, std =  7.60 cm
+langkah  6000 | sampel generator: mean = 164.02 cm, std =  6.19 cm
+Target distribusi asli            : mean = 165.00 cm, std =  7.00 cm
+Loss akhir D = 1.386 (≈ 2·ln2 = 1.386 berarti D tak bisa membedakan) | G = 0.690

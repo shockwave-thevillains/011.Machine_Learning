@@ -1,0 +1,9 @@
+1 Decision Tree   akurasi test = 0.923
+Random Forest     akurasi test = 0.958
+Out-of-bag score  (validasi gratis tanpa data test) = 0.962
+5 fitur terpenting:
+  worst perimeter        0.146
+  worst area             0.144
+  worst concave points   0.115
+  mean concave points    0.098
+  worst radius           0.072

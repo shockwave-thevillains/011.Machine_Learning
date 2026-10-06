@@ -1,0 +1,4 @@
+Decision Tree tunggal : akurasi 0.814 ± 0.048
+Bagging 200 pohon     : akurasi 0.854 ± 0.039
+OOB score bagging     : 0.854
+Rata-rata porsi data unik per sampel bootstrap: 55.1%

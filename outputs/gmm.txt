@@ -1,0 +1,11 @@
+Memilih jumlah komponen dengan BIC (lebih kecil lebih baik):
+  k=1  BIC =   3668.9
+  k=2  BIC =   3162.7
+  k=3  BIC =   2896.4
+  k=4  BIC =   2933.2
+  k=5  BIC =   2967.0
+  k=6  BIC =   2992.5
+
+EM konvergen setelah 19 iterasi | bobot komponen = [0.337, 0.333, 0.33]
+Titik [0.0, 0.0] -> probabilitas keanggotaan [0.0, 0.0, 1.0]
+Titik [1.54, -3.47] -> probabilitas keanggotaan [0.798, 0.0, 0.202]

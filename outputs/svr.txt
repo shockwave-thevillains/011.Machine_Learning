@@ -1,0 +1,4 @@
+kernel=linear R² test = 0.319 | support vectors = 88
+kernel=poly   R² test = 0.252 | support vectors = 91
+kernel=rbf    R² test = 0.896 | support vectors = 48
+Prediksi x=2.5 -> 1.303 (nilai sebenarnya tanpa noise = 1.348)

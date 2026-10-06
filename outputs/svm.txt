@@ -1,0 +1,7 @@
+kernel=linear akurasi test = 0.900 | support vectors = 75
+kernel=poly   akurasi test = 0.911 | support vectors = 82
+kernel=rbf    akurasi test = 0.967 | support vectors = 57
+RBF C=0.1   akurasi train = 0.895 | test = 0.911
+RBF C=1     akurasi train = 0.943 | test = 0.967
+RBF C=10    akurasi train = 0.957 | test = 0.978
+RBF C=100   akurasi train = 0.967 | test = 0.989

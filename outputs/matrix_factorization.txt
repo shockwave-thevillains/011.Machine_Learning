@@ -1,0 +1,15 @@
+RMSE pada rating yang diketahui: 0.188
+Prediksi rating untuk film yang BELUM ditonton:
+  Andi   x Pengabdi Setan   -> 4.1
+  Andi   x KKN Desa Penari  -> 4.1
+  Budi   x Dilan 1990       -> 4.8
+  Budi   x Habibie & Ainun  -> 3.7
+  Citra  x Habibie & Ainun  -> 2.0
+  Dewi   x Laskar Pelangi   -> 1.0
+  Eko    x Pengabdi Setan   -> 1.1
+  Eko    x The Raid         -> 2.2
+Rekomendasi untuk Andi  : Pengabdi Setan
+Rekomendasi untuk Budi  : Dilan 1990
+Rekomendasi untuk Citra : (tidak ada yang cocok, prediksi < 3.5)
+Rekomendasi untuk Dewi  : (tidak ada yang cocok, prediksi < 3.5)
+Rekomendasi untuk Eko   : (tidak ada yang cocok, prediksi < 3.5)

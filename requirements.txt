@@ -1,0 +1,12 @@
+numpy
+scipy
+pandas
+matplotlib
+scikit-learn
+xgboost
+lightgbm
+catboost
+umap-learn
+mlxtend
+torch
+pygments

@@ -1,0 +1,5 @@
+Koefisien grup A (4 fitur kembar, bobot asli total = 3):
+  Lasso      : [0.94 0.   1.1  0.9 ] -> total 2.93
+  ElasticNet : [0.74 0.73 0.74 0.74] -> total 2.95
+R² test  Lasso = 0.9831 | ElasticNet = 0.9836
+Lasso membuang 5 fitur kembar secara acak; ElasticNet membagi bobot merata.

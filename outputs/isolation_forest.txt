@@ -1,0 +1,12 @@
+              precision    recall  f1-score   support
+
+      normal      1.000     0.999     0.999      1000
+     anomali      0.938     1.000     0.968        15
+
+    accuracy                          0.999      1015
+   macro avg      0.969     1.000     0.984      1015
+weighted avg      0.999     0.999     0.999      1015
+
+Rata-rata skor anomali  normal = 0.439 | fraud = 0.772
+Transaksi Rp 4,2 jt jam 03.00 -> ANOMALI
+Transaksi Rp 250 rb jam 13.00 -> normal

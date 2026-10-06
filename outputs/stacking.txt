@@ -1,0 +1,5 @@
+rf        akurasi 10-fold = 0.9631 ± 0.0183
+svm       akurasi 10-fold = 0.9754 ± 0.0141
+knn       akurasi 10-fold = 0.9613 ± 0.0269
+STACKING  akurasi 10-fold = 0.9736 ± 0.0142
+Bobot meta-model (RF, SVM-skor, KNN): [1.29, 2.78, 1.5]

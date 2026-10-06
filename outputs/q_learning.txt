@@ -1,0 +1,11 @@
+episode    1-500 : tingkat sukses = 10.6% (ε akhir = 0.61)
+episode  501-1000: tingkat sukses = 36.4% (ε akhir = 0.37)
+episode 2001-2500: tingkat sukses = 75.8% (ε akhir = 0.08)
+episode 4501-5000: tingkat sukses = 84.8% (ε akhir = 0.05)
+
+Kebijakan yang dipelajari (aksi terbaik tiap petak):
+  ↓ ← ↓ ←
+  ↓ H ↓ H
+  → ↓ ↓ H
+  H → → G
+Uji 1000 episode dengan kebijakan greedy: sukses 88.4%
