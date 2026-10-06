@@ -41,3 +41,9 @@ python build.py --only knn svm      # jalankan ulang sebagian contoh
 ```
 
 Bagian di bawah penanda `# === VISUALISASI ===` pada tiap skrip hanya membuat grafik dan tidak ditampilkan di halaman. Angka bisa sedikit berbeda di mesin lain karena versi library, jumlah thread, dan perangkat keras.
+
+## GitHub Pages
+
+Workflow `.github/workflows/pages.yml` menerbitkan `index.html` dan grafik di `outputs/` ke GitHub Pages setiap kali ada push ke `main`. Alamatnya: https://shockwave-thevillains.github.io/011.Machine_Learning/
+
+Jika workflow gagal di langkah `configure-pages`, aktifkan Pages sekali secara manual: **Settings → Pages → Build and deployment → Source: GitHub Actions**, lalu jalankan ulang workflow dari tab Actions.
