@@ -1,0 +1,36 @@
+{
+ "kolom": [
+  "tinggi_cm"
+ ],
+ "baris": [
+  [
+   "120"
+  ],
+  [
+   "150"
+  ],
+  [
+   "165"
+  ],
+  [
+   "180"
+  ],
+  [
+   "210"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "total_baris": 5,
+ "total_kolom": 1,
+ "tersembunyi": null,
+ "keterangan": {
+  "tinggi_cm": "Nilai tinggi badan yang ingin dinilai Discriminator: wajar atau tidak."
+ },
+ "catatan": ""
+}

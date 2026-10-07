@@ -6,3 +6,9 @@ Error AdaBoost  50 stump    : 0.225
 Error AdaBoost 100 stump    : 0.177
 Error AdaBoost 200 stump    : 0.140
 Error AdaBoost 400 stump    : 0.116
+
+--- prediksi data baru ---
+sampel A: Σx² =  0.90 -> prediksi -1 (skor -0.154) | jawaban sebenarnya -1
+sampel B: Σx² = 22.50 -> prediksi +1 (skor +0.189) | jawaban sebenarnya +1
+sampel C: Σx² =  9.41 -> prediksi -1 (skor -0.055) | jawaban sebenarnya +1
+sampel D: Σx² = 10.24 -> prediksi -1 (skor -0.010) | jawaban sebenarnya +1

@@ -4,3 +4,9 @@ MAE (test)  : Rp 71.4 juta
 Prediksi rumah  45 m² -> Rp 724 juta
 Prediksi rumah 120 m² -> Rp 1,651 juta
 Prediksi rumah 180 m² -> Rp 2,392 juta
+
+--- prediksi data baru ---
+Rumah  36 m² -> perkiraan Rp 612 juta (kisaran wajar ± Rp 185 juta)
+Rumah  72 m² -> perkiraan Rp 1,057 juta (kisaran wajar ± Rp 185 juta)
+Rumah 150 m² -> perkiraan Rp 2,021 juta (kisaran wajar ± Rp 185 juta)
+Rumah 250 m² -> perkiraan Rp 3,258 juta (kisaran wajar ± Rp 185 juta)

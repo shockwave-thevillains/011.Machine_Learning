@@ -1,0 +1,78 @@
+{
+ "kolom": [
+  "anggur",
+  "alcohol",
+  "malic_acid",
+  "ash",
+  "alcalinity_of_ash",
+  "magnesium",
+  "total_phenols",
+  "flavanoids",
+  "nonflavanoid_phenols",
+  "proanthocyanins",
+  "color_intensity",
+  "proline"
+ ],
+ "baris": [
+  [
+   "anggur_1",
+   "13.750",
+   "1.770",
+   "2.440",
+   "16.800",
+   "104",
+   "2.800",
+   "2.980",
+   "0.290",
+   "1.870",
+   "5.400",
+   "1095"
+  ],
+  [
+   "anggur_2",
+   "13.165",
+   "3.265",
+   "2.380",
+   "21",
+   "97",
+   "1.635",
+   "0.685",
+   "0.470",
+   "1.105",
+   "7.550",
+   "627.5"
+  ],
+  [
+   "anggur_3",
+   "12.727",
+   "2.438",
+   "2.310",
+   "20.500",
+   "92.500",
+   "1.917",
+   "1.357",
+   "0.420",
+   "1.357",
+   "5.225",
+   "561.2"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2
+ ],
+ "total_baris": 3,
+ "total_kolom": 14,
+ "tersembunyi": [
+  "hue",
+  "od280/od315_of_diluted_wines",
+  2
+ ],
+ "keterangan": {
+  "anggur_1": "Hasil analisis kimia setara median kultivar 0.",
+  "anggur_2": "Setara median kultivar 2.",
+  "anggur_3": "Campuran: tepat di tengah median kultivar 1 dan 2 (kasus sulit)."
+ },
+ "catatan": ""
+}

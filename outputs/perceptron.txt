@@ -2,3 +2,9 @@ epoch  1: 2 kesalahan
 epoch  2: 0 kesalahan
 Bobot akhir w = [0.228 0.066], bias b = 0.00
 Akurasi data latih = 100% (konvergen di epoch 2)
+
+--- prediksi data baru ---
+titik (+2.0, +1.5) -> skor w·x + b = +0.555 -> kelas +1
+titik (-1.5, -2.0) -> skor w·x + b = -0.474 -> kelas -1
+titik (+0.5, -0.3) -> skor w·x + b = +0.094 -> kelas +1
+titik (-0.2, +0.4) -> skor w·x + b = -0.019 -> kelas -1

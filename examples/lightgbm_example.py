@@ -25,6 +25,18 @@ print(f"LightGBM (300 pohon, 80.000 baris)       : {t_lgb:5.1f} detik | AUC = {r
 print(f"sklearn GBM (100 pohon, hanya 20.000 baris): {t_gb:5.1f} detik | AUC = {roc_auc_score(y_te, gb.predict_proba(X_te)[:, 1]):.4f}")
 print(f"Jumlah daun per pohon LightGBM (maks)    : {lgbm.get_params()['num_leaves']}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame(X_te[:5], columns=[f"f{i:02d}" for i in range(40)])   # 5 baris yang tidak pernah dilihat saat latihan
+t = time.perf_counter()
+proba = lgbm.predict_proba(baru.to_numpy())[:, 1]
+for i, (p, asli) in enumerate(zip(proba, y_te[:5])):
+    print(f"baris {i}: P(kelas 1) = {p:.3f} -> prediksi {int(p >= 0.5)} | label asli {asli}")
+t = time.perf_counter()
+lgbm.predict(X_te)
+print(f"Waktu memprediksi {len(X_te):,} baris sekaligus: {time.perf_counter() - t:.2f} detik")
+
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 import pandas as pd
 from _sampel import simpan
@@ -32,3 +44,4 @@ simpan("lightgbm_example", pd.DataFrame(X, columns=[f"f{i:02d}" for i in range(4
     "f00 … f39": "40 fitur numerik sintetis: 15 informatif, 2 kombinasi linear dari fitur informatif, sisanya noise.",
     "kelas": "Target biner 0/1.",
 })
+simpan("lightgbm_example_baru", baru, {"f00 … f39": "Lima baris dari data uji, yang tidak dipakai saat melatih model."})

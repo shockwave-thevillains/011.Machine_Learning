@@ -23,6 +23,18 @@ print("  ElasticNet :", enet.coef_[:4], "-> total", round(enet.coef_[:4].sum(), 
 print(f"R² test  Lasso = {r2_score(y_te, lasso.predict(X_te)):.4f} | ElasticNet = {r2_score(y_te, enet.predict(X_te)):.4f}")
 print("Lasso membuang", np.sum(lasso.coef_[:12] == 0), "fitur kembar secara acak; ElasticNet membagi bobot merata.")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+kolom = [f"{g}{i}" for g in "ABC" for i in range(1, 5)] + [f"noise_{i:02d}" for i in range(1, 19)]
+normal = np.zeros(30)
+normal[:4] = 1.0                                  # faktor A = 1 terbaca di keempat sensor kembar
+rusak = normal.copy()
+rusak[2] = 0.0                                    # sensor A3 rusak dan terbaca 0
+baru = pd.DataFrame([normal, rusak], columns=kolom, index=["semua_sensor_normal", "sensor_A3_rusak"])
+for nama, p_l, p_e in zip(baru.index, lasso.predict(baru.to_numpy()), enet.predict(baru.to_numpy())):
+    print(f"{nama:<20}: Lasso = {p_l:.2f} | ElasticNet = {p_e:.2f} | nilai sebenarnya = 3.00")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
@@ -42,4 +54,8 @@ simpan("elastic_net", pd.DataFrame(X, columns=nama_kolom).assign(y=y), {
     "A1 … A4": "Empat fitur \"kembar\" yang hampir identik (berasal dari faktor dasar A). Begitu juga B1 … B4 dan C1 … C4.",
     "noise_01 … noise_18": "18 fitur acak yang sama sekali tidak berhubungan dengan y.",
     "y": "Target = 3·A − 2·B + 1,5·C + noise.",
+})
+simpan("elastic_net_baru", baru.reset_index(names="kondisi"), {
+    "semua_sensor_normal": "Faktor A bernilai 1 dan terbaca 1 di keempat fitur kembar A1–A4; faktor lain 0.",
+    "sensor_A3_rusak": "Sama, tetapi A3 terbaca 0 seolah sensornya rusak.",
 })

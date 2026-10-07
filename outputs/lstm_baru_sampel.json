@@ -1,0 +1,47 @@
+{
+ "kolom": [
+  "jam_ke",
+  "beban_mw"
+ ],
+ "baris": [
+  [
+   "1.152",
+   "8.515"
+  ],
+  [
+   "1.153",
+   "9.456"
+  ],
+  [
+   "1.154",
+   "10.543"
+  ],
+  [
+   "1.197",
+   "9.031"
+  ],
+  [
+   "1.198",
+   "9.680"
+  ],
+  [
+   "1.199",
+   "10.009"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  45,
+  46,
+  47
+ ],
+ "total_baris": 48,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "jam_ke, beban_mw": "48 jam terakhir yang sudah terjadi; dipakai untuk meramal 24 jam berikutnya (jam 1200–1223)."
+ },
+ "catatan": ""
+}

@@ -1,0 +1,37 @@
+{
+ "kolom": [
+  "x1",
+  "x2"
+ ],
+ "baris": [
+  [
+   "0",
+   "1"
+  ],
+  [
+   "1",
+   "-0.450"
+  ],
+  [
+   "0.500",
+   "0.250"
+  ],
+  [
+   "2.300",
+   "1.400"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Koordinat titik baru."
+ },
+ "catatan": ""
+}

@@ -1,0 +1,37 @@
+{
+ "kolom": [
+  "x1",
+  "x2"
+ ],
+ "baris": [
+  [
+   "2",
+   "1.500"
+  ],
+  [
+   "-1.500",
+   "-2"
+  ],
+  [
+   "0.500",
+   "-0.300"
+  ],
+  [
+   "-0.200",
+   "0.400"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Koordinat titik baru yang belum diketahui kelasnya."
+ },
+ "catatan": ""
+}

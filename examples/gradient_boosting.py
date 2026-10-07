@@ -20,6 +20,17 @@ for n in (1, 10, 50, 100, 250, 500):
     print(f"MSE test setelah {n:>3} pohon = {mse[n - 1]:.3f}")
 print("Fitur 5-9 adalah noise murni; importance-nya:", [round(float(v), 3) for v in gbr.feature_importances_[5:]])
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import numpy as np
+import pandas as pd
+rng_baru = np.random.default_rng(5)
+baru = pd.DataFrame(rng_baru.random((4, 10)).round(2), columns=[f"x{i:02d}" for i in range(1, 11)])
+xb = baru.to_numpy()
+benar = 10 * np.sin(np.pi * xb[:, 0] * xb[:, 1]) + 20 * (xb[:, 2] - 0.5) ** 2 + 10 * xb[:, 3] + 5 * xb[:, 4]
+for i, (p_gb, p_lin, t) in enumerate(zip(gbr.predict(xb), lin.predict(xb), benar)):
+    print(f"baris {i}: Gradient Boosting = {p_gb:6.2f} | Linear = {p_lin:6.2f} | nilai sebenarnya (tanpa noise) = {t:6.2f}")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
@@ -38,3 +49,4 @@ simpan("gradient_boosting", pd.DataFrame(X, columns=[f"x{i:02d}" for i in range(
     "x06 … x10": "Fitur noise, tidak berpengaruh ke target.",
     "y": "Target = 10·sin(π·x01·x02) + 20·(x03 − 0,5)² + 10·x04 + 5·x05 + noise.",
 })
+simpan("gradient_boosting_baru", baru, {"x01 … x10": "Empat baris input baru, nilai acak 0–1. Target belum diketahui."})

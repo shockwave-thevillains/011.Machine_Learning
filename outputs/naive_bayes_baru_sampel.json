@@ -1,0 +1,32 @@
+{
+ "kolom": [
+  "teks_sms"
+ ],
+ "baris": [
+  [
+   "Selamat anda dapat bonus saldo, klik link untuk klaim"
+  ],
+  [
+   "Terima kasih, hadiah ulang tahunnya sudah saya terima"
+  ],
+  [
+   "Kredit motor tanpa DP, hubungi kami hari ini"
+  ],
+  [
+   "Besok rapat diundur jam 10 ya"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 1,
+ "tersembunyi": null,
+ "keterangan": {
+  "teks_sms": "SMS baru yang masuk, belum diberi label."
+ },
+ "catatan": ""
+}

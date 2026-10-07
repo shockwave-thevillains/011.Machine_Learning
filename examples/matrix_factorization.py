@@ -33,6 +33,17 @@ for u in range(5):
     saran = film[terbaik] if pred[u, terbaik] >= 3.5 else "(tidak ada yang cocok, prediksi < 3.5)"
     print(f"Rekomendasi untuk {pengguna[u]:<6}: {saran}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"film": ["Laskar Pelangi", "The Raid", "Pengabdi Setan"], "rating_fajar": [5, 1, 2]})
+Qf = Q[[film.index(f) for f in baru.film]]        # vektor film yang sudah dipelajari tetap dipakai
+p_fajar = np.linalg.solve(Qf.T @ Qf + 0.1 * np.eye(k), Qf.T @ (baru.rating_fajar.to_numpy() - mu))
+prediksi_fajar = np.clip(mu + Q @ p_fajar, 1, 5)
+for f, r in zip(film, prediksi_fajar):
+    tanda = "(sudah dinilai)" if f in set(baru.film) else ""
+    print(f"Fajar x {f:<16} -> {r:.1f} {tanda}")
+
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 import pandas as pd
 from _sampel import simpan
@@ -42,3 +53,4 @@ simpan("matrix_factorization", tabel, {
     "pengguna": "Nama pengguna.",
     "Laskar Pelangi … Habibie & Ainun": "Rating pengguna untuk film itu (1–5). Tanda – berarti belum menonton; nilai inilah yang diprediksi.",
 }, catatan="Matriks berisi 22 rating diketahui dan 8 sel kosong.")
+simpan("matrix_factorization_baru", baru, {"film, rating_fajar": "Fajar adalah pengguna baru yang baru menilai 3 film."})

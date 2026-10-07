@@ -1,0 +1,36 @@
+{
+ "kolom": [
+  "x"
+ ],
+ "baris": [
+  [
+   "0.500"
+  ],
+  [
+   "3"
+  ],
+  [
+   "4"
+  ],
+  [
+   "5.500"
+  ],
+  [
+   "7"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "total_baris": 5,
+ "total_kolom": 1,
+ "tersembunyi": null,
+ "keterangan": {
+  "x": "Nilai input baru. Data latih hanya mencakup x = 0 sampai 6."
+ },
+ "catatan": ""
+}

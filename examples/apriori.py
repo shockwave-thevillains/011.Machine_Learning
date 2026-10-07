@@ -26,11 +26,23 @@ for _, r in itemset[itemset.itemsets.apply(len) == 2].iterrows():
     print(f"  {sorted(r.itemsets)}  support = {r.support:.2f}")
 
 rules = association_rules(itemset, metric="confidence", min_threshold=0.7)
-rules = rules.sort_values("lift", ascending=False)
+rules = rules.sort_values("lift", ascending=False, kind="stable")
 print("\nAturan asosiasi (confidence ≥ 70%):")
 for _, r in rules.iterrows():
     print(f"  {sorted(r.antecedents)} -> {sorted(r.consequents)}  "
           f"support={r.support:.2f} conf={r.confidence:.2f} lift={r.lift:.2f}")
+
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+keranjang_baru = [["minyak goreng"], ["kopi", "roti"], ["mie instan", "beras"], ["kecap"]]
+for k in keranjang_baru:
+    isi = set(k)
+    cocok = rules[rules.antecedents.apply(lambda a: a <= isi) & rules.consequents.apply(lambda c: not (c & isi))]
+    if cocok.empty:
+        print(f"keranjang {k} -> belum ada aturan yang cocok")
+        continue
+    r = cocok.sort_values(["lift", "confidence"], ascending=False).iloc[0]
+    print(f"keranjang {k} -> tawarkan {sorted(r.consequents)} (aturan {sorted(r.antecedents)} -> {sorted(r.consequents)}, conf {r.confidence:.2f}, lift {r.lift:.2f})")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
@@ -40,3 +52,6 @@ simpan("apriori", {"id_struk": range(1, len(transaksi) + 1), "barang": [", ".joi
     "barang": "Barang yang dibeli bersamaan dalam satu struk.",
     "jumlah_barang": "Banyaknya barang di struk itu.",
 }, catatan=f"Sebelum diolah, TransactionEncoder mengubah tiap struk menjadi satu baris True/False dengan {df.shape[1]} kolom (satu per jenis barang).")
+simpan("apriori_baru", {"pembeli": [f"pembeli_{i + 1}" for i in range(len(keranjang_baru))],
+                         "isi_keranjang": [", ".join(k) for k in keranjang_baru]},
+       {"isi_keranjang": "Barang yang sedang ada di keranjang pembeli baru (belum dibayar)."})

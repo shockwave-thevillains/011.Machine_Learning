@@ -1,3 +1,9 @@
-Apriori  :  497 itemset sering ditemukan dalam   0.35 detik
-FP-Growth:  497 itemset sering ditemukan dalam   0.16 detik
+Apriori  :  497 itemset sering ditemukan dalam   0.31 detik
+FP-Growth:  497 itemset sering ditemukan dalam   0.18 detik
 Itemset 3-produk teratas: [(['P10', 'P11', 'P12'], 0.153), (['P30', 'P31', 'P44'], 0.094), (['P10', 'P12', 'P44'], 0.094)]
+
+--- prediksi data baru ---
+keranjang ['P10'] -> tawarkan ['P12'] (conf 0.78, lift 3.82)
+keranjang ['P30'] -> tawarkan ['P31'] (conf 0.98, lift 6.29)
+keranjang ['P10', 'P11'] -> tawarkan ['P12'] (conf 0.99, lift 4.84)
+keranjang ['P05'] -> belum ada aturan yang cocok

@@ -9,3 +9,10 @@ Memilih jumlah komponen dengan BIC (lebih kecil lebih baik):
 EM konvergen setelah 19 iterasi | bobot komponen = [0.337, 0.333, 0.33]
 Titik [0.0, 0.0] -> probabilitas keanggotaan [0.0, 0.0, 1.0]
 Titik [1.54, -3.47] -> probabilitas keanggotaan [0.798, 0.0, 0.202]
+
+--- prediksi data baru ---
+titik [0.41, -1.78] -> P komponen = [0.988, 0.0, 0.012] | log-kepadatan   -0.3 -> wajar
+titik [0.81, -1.81] -> P komponen = [0.098, 0.0, 0.902] | log-kepadatan   -2.8 -> wajar
+titik [3.52, -6.3] -> P komponen = [0.0, 0.782, 0.218] | log-kepadatan   -7.5 -> TIDAK WAJAR (kepadatan sangat rendah)
+titik [11.02, 6.22] -> P komponen = [0.0, 0.0, 1.0] | log-kepadatan -1041.8 -> TIDAK WAJAR (kepadatan sangat rendah)
+(batas wajar: log-kepadatan ≥ -5.8)

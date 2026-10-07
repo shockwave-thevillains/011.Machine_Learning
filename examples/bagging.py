@@ -19,6 +19,13 @@ print(f"OOB score bagging     : {bag.oob_score_:.3f}")
 unik = np.mean([len(np.unique(i)) / len(X) for i in bag.estimators_samples_])
 print(f"Rata-rata porsi data unik per sampel bootstrap: {unik:.1%}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"x1": [0.0, 1.0, 0.5, 1.8], "x2": [0.9, -0.4, 0.2, 0.1]})
+for (x1, x2), p in zip(baru.to_numpy(), bag.predict_proba(baru.to_numpy())[:, 1]):
+    print(f"titik ({x1:+.1f}, {x2:+.1f}) -> kelas {int(p >= 0.5)} | {p:.0%} dari 200 pohon memilih kelas 1")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 xx, yy = np.meshgrid(np.linspace(-2, 3, 250), np.linspace(-1.5, 2, 250))
@@ -37,3 +44,4 @@ simpan("bagging", {"x1": X[:, 0], "x2": X[:, 1], "kelas": y}, {
     "x1, x2": "Koordinat titik.",
     "kelas": "Target 0/1 (dua bulan sabit dengan noise tinggi, sehingga sebagian titik tumpang tindih).",
 })
+simpan("bagging_baru", baru, {"x1, x2": "Koordinat titik baru yang belum diketahui kelasnya."})

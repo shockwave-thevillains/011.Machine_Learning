@@ -14,6 +14,14 @@ for C in (0.1, 1, 10, 100):
     m = SVC(kernel="rbf", C=C).fit(X_tr, y_tr)
     print(f"RBF C={C:<5} akurasi train = {m.score(X_tr, y_tr):.3f} | test = {m.score(X_te, y_te):.3f}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+svm_final = SVC(kernel="rbf", C=10).fit(X_tr, y_tr)
+baru = pd.DataFrame({"x1": [0.0, 1.0, 2.0, 0.5], "x2": [1.0, -0.5, 0.3, 0.25]})
+for (x1, x2), d in zip(baru.to_numpy(), svm_final.decision_function(baru.to_numpy())):
+    print(f"titik ({x1:+.2f}, {x2:+.2f}) -> kelas {int(d > 0)} | skor (jarak ke batas) = {d:+.2f}")
+
 # === VISUALISASI ===
 import numpy as np
 from _plot import BLUE, RED, fig, save
@@ -36,3 +44,4 @@ simpan("svm", {"x1": X[:, 0], "x2": X[:, 1], "kelas": y}, {
     "x1, x2": "Koordinat titik pada bidang 2D.",
     "kelas": "Target: 0 = bulan sabit atas, 1 = bulan sabit bawah. Kedua kelas saling mengait sehingga tidak bisa dipisah garis lurus.",
 })
+simpan("svm_baru", baru, {"x1, x2": "Koordinat titik baru yang belum diketahui kelasnya."})

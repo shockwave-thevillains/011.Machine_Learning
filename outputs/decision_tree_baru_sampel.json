@@ -1,0 +1,44 @@
+{
+ "kolom": [
+  "bunga",
+  "sepal_pjg_cm",
+  "sepal_lbr_cm",
+  "petal_pjg_cm",
+  "petal_lbr_cm"
+ ],
+ "baris": [
+  [
+   "bunga_1",
+   "5",
+   "3.500",
+   "1.400",
+   "0.200"
+  ],
+  [
+   "bunga_2",
+   "6",
+   "2.700",
+   "4.400",
+   "1.300"
+  ],
+  [
+   "bunga_3",
+   "6.900",
+   "3.100",
+   "5.600",
+   "2.200"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2
+ ],
+ "total_baris": 3,
+ "total_kolom": 5,
+ "tersembunyi": null,
+ "keterangan": {
+  "bunga_1 … bunga_3": "Tiga bunga baru yang diukur, spesiesnya belum diketahui."
+ },
+ "catatan": ""
+}

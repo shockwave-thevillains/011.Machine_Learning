@@ -1,0 +1,37 @@
+{
+ "kolom": [
+  "pembeli",
+  "isi_keranjang"
+ ],
+ "baris": [
+  [
+   "pembeli_1",
+   "P10"
+  ],
+  [
+   "pembeli_2",
+   "P30"
+  ],
+  [
+   "pembeli_3",
+   "P10, P11"
+  ],
+  [
+   "pembeli_4",
+   "P05"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "isi_keranjang": "Produk yang sedang ada di keranjang pembeli baru."
+ },
+ "catatan": ""
+}

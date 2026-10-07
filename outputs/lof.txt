@@ -4,3 +4,9 @@ Skor LOF (≈1 normal, >1.5 mencurigakan):
   outlier lokal [0.0, -1.6] -> LOF = 4.76
 Outlier lokal tertangkap  LOF = 3/3 | Isolation Forest = 1/3
 Titik cluster renggang yang dicap outlier  LOF = 2 | IsoForest = 8
+
+--- prediksi data baru ---
+titik (+0.1, -0.1) -> skor LOF  1.02 -> normal
+titik (+1.2, -1.1) -> skor LOF  4.24 -> OUTLIER
+titik (+5.5, +4.0) -> skor LOF  1.00 -> normal
+titik (+9.0, +9.0) -> skor LOF  2.93 -> OUTLIER

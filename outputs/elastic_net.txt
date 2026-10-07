@@ -3,3 +3,7 @@ Koefisien grup A (4 fitur kembar, bobot asli total = 3):
   ElasticNet : [0.74 0.73 0.74 0.74] -> total 2.95
 R² test  Lasso = 0.9831 | ElasticNet = 0.9836
 Lasso membuang 5 fitur kembar secara acak; ElasticNet membagi bobot merata.
+
+--- prediksi data baru ---
+semua_sensor_normal : Lasso = 2.96 | ElasticNet = 2.97 | nilai sebenarnya = 3.00
+sensor_A3_rusak     : Lasso = 1.86 | ElasticNet = 2.24 | nilai sebenarnya = 3.00

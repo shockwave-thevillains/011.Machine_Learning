@@ -2,3 +2,9 @@ eps-greedy | regret kumulatif =   69.5 klik hilang | porsi tampil desain A/B/C =
 UCB1       | regret kumulatif =  189.0 klik hilang | porsi tampil desain A/B/C = [20.7, 28.5, 50.8] %
 Thompson   | regret kumulatif =   34.9 klik hilang | porsi tampil desain A/B/C = [3.0, 6.6, 90.4] %
 (Uji A/B klasik 33/33/33 akan kehilangan ≈ 267 klik)
+
+--- prediksi data baru ---
+desain A: CTR perkiraan 3.86% (95%: 2.36%–5.65%) | P(terbaik) = 0.3%
+desain B: CTR perkiraan 5.16% (95%: 3.97%–6.53%) | P(terbaik) = 1.6%
+desain C: CTR perkiraan 6.70% (95%: 6.35%–7.06%) | P(terbaik) = 98.2%
+Desain untuk 10 pengunjung berikutnya: C C C C C C C C C C

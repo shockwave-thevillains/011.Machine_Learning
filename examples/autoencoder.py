@@ -32,6 +32,26 @@ with torch.no_grad():
     kode = encoder(X_te[:1])
 print("Kode laten 8 angka untuk 1 gambar:", [round(v, 2) for v in kode[0].tolist()])
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import numpy as np
+GAMBAR = {                                       # angka baru yang digambar tangan: # = 16, + = 8, spasi = 0
+    "nol":   ["  +##+  ", " +#++#+ ", " ##  ## ", " #+  +# ", " #+  +# ", " ##  ## ", " +#++#+ ", "  +##+  "],
+    "satu":  ["   +#+  ", "  +##+  ", " +###+  ", "   ##+  ", "   ##+  ", "   ##+  ", "   ##+  ", "   +#+  "],
+    "tujuh": ["  +#####", " ++++##+", "    +#+ ", "  +####+", "  ####+ ", "   +#+  ", "  +#+   ", "  +#    "],
+}
+GAMBAR["kotak-kotak"] = ["# # # # ", " # # # #"] * 4  # pola papan catur: BUKAN angka
+def ke_piksel(pola):
+    return np.array([[{"#": 16, "+": 8}.get(c, 0) for c in baris] for baris in pola], dtype=float).ravel()
+X_baru = np.array([ke_piksel(p) for p in GAMBAR.values()])
+with torch.no_grad():
+    x_b = torch.tensor(X_baru / 16.0, dtype=torch.float32)
+    error = ((ae(x_b) - x_b) ** 2).mean(1).numpy()
+    batas = np.percentile(((ae(X_te) - X_te) ** 2).mean(1).numpy(), 99)
+for nama, e in zip(GAMBAR, error):
+    print(f"gambar '{nama}': error rekonstruksi {e:.4f} -> {'mirip angka' if e <= batas else 'TIDAK mirip angka (anomali)'}")
+print(f"(batas: 99% gambar uji punya error ≤ {batas:.4f})")
+
 # === VISUALISASI ===
 from _plot import fig, save
 with torch.no_grad():
@@ -50,3 +70,7 @@ save("autoencoder")
 from _sampel import KET_DIGITS, digits_df, simpan
 simpan("autoencoder", digits_df(X.numpy(), y), KET_DIGITS,
        catatan="Nilai piksel sudah dibagi 16 (skala 0–1). Kolom digit TIDAK dipakai: autoencoder belajar tanpa label, targetnya adalah input itu sendiri.")
+import pandas as pd
+simpan("autoencoder_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
+       {"nol, satu, tujuh, kotak-kotak": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))

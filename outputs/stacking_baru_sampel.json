@@ -1,0 +1,78 @@
+{
+ "kolom": [
+  "pasien",
+  "mean radius",
+  "mean texture",
+  "mean perimeter",
+  "mean area",
+  "mean smoothness",
+  "mean compactness",
+  "mean concavity",
+  "mean concave points",
+  "mean symmetry",
+  "mean fractal dimension",
+  "worst fractal dimension"
+ ],
+ "baris": [
+  [
+   "pasien_A",
+   "12.200",
+   "17.390",
+   "78.180",
+   "458.4",
+   "0.091",
+   "0.075",
+   "0.037",
+   "0.023",
+   "0.171",
+   "0.062",
+   "0.077"
+  ],
+  [
+   "pasien_B",
+   "14.763",
+   "19.425",
+   "96.190",
+   "695.2",
+   "0.096",
+   "0.104",
+   "0.094",
+   "0.055",
+   "0.181",
+   "0.062",
+   "0.082"
+  ],
+  [
+   "pasien_C",
+   "17.325",
+   "21.460",
+   "114.2",
+   "932",
+   "0.102",
+   "0.132",
+   "0.151",
+   "0.086",
+   "0.190",
+   "0.062",
+   "0.088"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2
+ ],
+ "total_baris": 3,
+ "total_kolom": 31,
+ "tersembunyi": [
+  "radius error",
+  "worst symmetry",
+  19
+ ],
+ "keterangan": {
+  "pasien_A": "Ukuran sel setara median pasien jinak.",
+  "pasien_B": "Tepat di tengah antara profil jinak dan ganas (kasus sulit).",
+  "pasien_C": "Ukuran sel setara median pasien ganas."
+ },
+ "catatan": "Tiga pasien baru yang tidak ada di dataset. Kolomnya sama dengan data latih (30 ukuran sel)."
+}

@@ -2,3 +2,10 @@ kernel=linear R² test = 0.319 | support vectors = 88
 kernel=poly   R² test = 0.252 | support vectors = 91
 kernel=rbf    R² test = 0.896 | support vectors = 48
 Prediksi x=2.5 -> 1.303 (nilai sebenarnya tanpa noise = 1.348)
+
+--- prediksi data baru ---
+x = 0.5 -> prediksi  0.586 | nilai sebenarnya tanpa noise  0.629
+x = 3.0 -> prediksi  1.008 | nilai sebenarnya tanpa noise  1.041
+x = 4.0 -> prediksi  0.433 | nilai sebenarnya tanpa noise  0.443
+x = 5.5 -> prediksi  0.964 | nilai sebenarnya tanpa noise  0.944
+x = 7.0 -> prediksi  2.227 | nilai sebenarnya tanpa noise  2.757

@@ -6,3 +6,8 @@ Confusion matrix [baris = asli, kolom = prediksi] (ganas, jinak):
 Pasien #0: P(jinak) = 0.969 -> prediksi jinak, asli jinak
 Pasien #1: P(jinak) = 0.000 -> prediksi ganas, asli ganas
 Pasien #2: P(jinak) = 0.559 -> prediksi jinak, asli jinak
+
+--- prediksi data baru ---
+pasien_A: P(jinak) = 0.998 -> jinak
+pasien_B: P(jinak) = 0.252 -> GANAS
+pasien_C: P(jinak) = 0.000 -> GANAS

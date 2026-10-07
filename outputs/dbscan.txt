@@ -3,3 +3,9 @@ DBSCAN   ARI (400 titik bulan) = 0.995
 Cluster ditemukan DBSCAN       = 2
 Titik ditandai noise (-1)      = 14 (20 di antaranya noise sungguhan: 13 tertangkap)
 Core points                    = 393
+
+--- prediksi data baru ---
+titik (+0.00, +1.00) -> cluster 0 (jarak ke core point terdekat 0.023, eps = 0.15)
+titik (+1.00, -0.45) -> cluster 1 (jarak ke core point terdekat 0.049, eps = 0.15)
+titik (+0.50, +0.25) -> noise (jarak ke core point terdekat 0.300, eps = 0.15)
+titik (+2.30, +1.40) -> noise (jarak ke core point terdekat 0.930, eps = 0.15)

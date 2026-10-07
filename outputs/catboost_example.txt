@@ -8,3 +8,9 @@ Feature importance  :
   metode_bayar          14.1
   kota                   8.9
 Pelanggan baru (Basic, 3 bln, 4 keluhan): P(churn) = 0.96
+
+--- prediksi data baru ---
+pelanggan_1: P(churn) = 0.02 -> kemungkinan bertahan
+pelanggan_2: P(churn) = 0.59 -> BERISIKO churn
+pelanggan_3: P(churn) = 0.93 -> BERISIKO churn
+pelanggan_4: P(churn) = 0.41 -> kemungkinan bertahan

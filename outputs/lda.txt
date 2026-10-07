@@ -2,3 +2,8 @@ Akurasi 10-fold CV          : 0.977
 Dimensi sebelum -> sesudah  : 13 -> 2
 Rasio varians antar-kelas   : LD1 = 68.7%, LD2 = 31.3%
 Fitur paling berpengaruh di LD1: ['flavanoids', 'nonflavanoid_phenols', 'od280/od315_of_diluted_wines']
+
+--- prediksi data baru ---
+anggur_1: kultivar 0 | P = [1.0, 0.0, 0.0] | posisi LD1 = -3.56, LD2 = +1.54
+anggur_2: kultivar 2 | P = [0.0, 0.0, 1.0] | posisi LD1 = +4.50, LD2 = +1.59
+anggur_3: kultivar 1 | P = [0.0, 0.627, 0.373] | posisi LD1 = +2.17, LD2 = -0.52

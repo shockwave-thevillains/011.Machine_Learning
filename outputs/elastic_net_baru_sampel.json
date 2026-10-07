@@ -1,0 +1,62 @@
+{
+ "kolom": [
+  "kondisi",
+  "A1",
+  "A2",
+  "A3",
+  "A4",
+  "B1",
+  "B2",
+  "B3",
+  "B4",
+  "C1",
+  "C2",
+  "noise_18"
+ ],
+ "baris": [
+  [
+   "semua_sensor_normal",
+   "1",
+   "1",
+   "1",
+   "1",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0"
+  ],
+  [
+   "sensor_A3_rusak",
+   "1",
+   "1",
+   "0",
+   "1",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1
+ ],
+ "total_baris": 2,
+ "total_kolom": 31,
+ "tersembunyi": [
+  "C3",
+  "noise_17",
+  19
+ ],
+ "keterangan": {
+  "semua_sensor_normal": "Faktor A bernilai 1 dan terbaca 1 di keempat fitur kembar A1–A4; faktor lain 0.",
+  "sensor_A3_rusak": "Sama, tetapi A3 terbaca 0 seolah sensornya rusak."
+ },
+ "catatan": ""
+}

@@ -36,9 +36,21 @@ skor = nb.feature_log_prob_[1] - nb.feature_log_prob_[0]
 print("Kata paling 'spam' :", list(vocab[skor.argsort()[-6:][::-1]]))
 print("Kata paling 'ham'  :", list(vocab[skor.argsort()[:6]]))
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"teks_sms": [
+    "Selamat anda dapat bonus saldo, klik link untuk klaim",
+    "Terima kasih, hadiah ulang tahunnya sudah saya terima",
+    "Kredit motor tanpa DP, hubungi kami hari ini",
+    "Besok rapat diundur jam 10 ya"]})
+for t, p in zip(baru.teks_sms, model.predict_proba(baru.teks_sms)[:, 1]):
+    print(f"[{'SPAM' if p >= 0.5 else ' HAM'}] P(spam)={p:.3f} | {t}")
+
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
 simpan("naive_bayes", {"teks_sms": teks, "label": label}, {
     "teks_sms": "Isi pesan SMS. CountVectorizer mengubahnya menjadi hitungan kata (satu kolom per kata unik).",
     "label": "Target: spam atau ham (bukan spam).",
 }, idx=[0, 1, 2, 8, 9, 10], catatan="Total 16 SMS: 8 spam dan 8 bukan spam.")
+simpan("naive_bayes_baru", baru, {"teks_sms": "SMS baru yang masuk, belum diberi label."})

@@ -5,3 +5,10 @@ epoch 200 | MSE rekonstruksi test = 0.0184
 Pembanding PCA 8 komponen     = 0.0250
 Rasio kompresi: 64 -> 8 angka (12% ukuran asli)
 Kode laten 8 angka untuk 1 gambar: [-2.15, -1.45, 1.25, -2.45, -0.17, -3.66, -2.09, -6.9]
+
+--- prediksi data baru ---
+gambar 'nol': error rekonstruksi 0.0557 -> TIDAK mirip angka (anomali)
+gambar 'satu': error rekonstruksi 0.0190 -> mirip angka
+gambar 'tujuh': error rekonstruksi 0.0512 -> mirip angka
+gambar 'kotak-kotak': error rekonstruksi 0.4343 -> TIDAK mirip angka (anomali)
+(batas: 99% gambar uji punya error ≤ 0.0512)

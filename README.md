@@ -1,6 +1,6 @@
 # Atlas Algoritma Machine Learning
 
-Katalog 45 algoritma machine learning populer. Tiap algoritma punya sejarah singkat, fungsi dan cara kerja, rumus inti, kegunaan, kelebihan dan kekurangan, **contoh data yang diolah beserta nama dan arti kolomnya**, contoh kode Python yang bisa dijalankan, **output asli** dari eksekusi kode tersebut (plus grafik untuk sebagian besar algoritma), dan **panduan apa yang bisa dicek dari hasilnya**.
+Katalog 45 algoritma machine learning populer. Tiap algoritma punya sejarah singkat, fungsi dan cara kerja, rumus inti, kegunaan, kelebihan dan kekurangan, **contoh data yang diolah beserta nama dan arti kolomnya**, contoh kode Python yang bisa dijalankan, **output asli** dari eksekusi kode tersebut (plus grafik untuk sebagian besar algoritma), **panduan apa yang bisa dicek dari hasilnya**, lalu **prediksi data baru**: contoh data yang belum pernah dilihat model, kode untuk memprediksinya, hasilnya, dan cara membacanya.
 
 Buka `index.html` di browser untuk melihat halamannya (latar putih, teks hitam, aksen biru `#0000ff` dan merah `#ff0000`).
 
@@ -22,7 +22,7 @@ Buka `index.html` di browser untuk melihat halamannya (latar putih, teks hitam, 
 ## Struktur
 
 ```
-algorithms.py   # teks: sejarah, fungsi, rumus, kegunaan, kelebihan/kekurangan, panduan cek hasil (CEK)
+algorithms.py   # teks: sejarah, fungsi, rumus, kegunaan, kelebihan/kekurangan, panduan cek hasil (CEK), prediksi data baru (PREDIKSI)
 examples/       # 45 skrip Python yang bisa dijalankan sendiri-sendiri
 outputs/        # output asli (.txt), grafik (.png), sampel data (*_sampel.json), waktu eksekusi, versi library
 build.py        # menjalankan semua contoh lalu menulis index.html
@@ -40,7 +40,7 @@ python build.py --skip-run          # bangun ulang halaman dari output yang ada
 python build.py --only knn svm      # jalankan ulang sebagian contoh
 ```
 
-Bagian di bawah penanda `# === SAMPEL DATA ===` dan `# === VISUALISASI ===` pada tiap skrip hanya menyimpan potongan data dan membuat grafik; keduanya tidak ditampilkan di halaman. Karena sampel diambil dari variabel yang sama dengan yang diolah model, tabel "Data yang diolah" di halaman selalu sesuai dengan kodenya. Angka bisa sedikit berbeda di mesin lain karena versi library, jumlah thread, dan perangkat keras.
+Bagian `# === PREDIKSI DATA BARU ===` memakai model yang sudah dilatih untuk menilai data baru; kodenya ditampilkan terpisah di halaman. Bagian di bawah penanda `# === SAMPEL DATA ===` dan `# === VISUALISASI ===` pada tiap skrip hanya menyimpan potongan data dan membuat grafik; keduanya tidak ditampilkan di halaman. Karena sampel diambil dari variabel yang sama dengan yang diolah model, tabel "Data yang diolah" di halaman selalu sesuai dengan kodenya. Angka bisa sedikit berbeda di mesin lain karena versi library, jumlah thread, dan perangkat keras.
 
 ## GitHub Pages
 

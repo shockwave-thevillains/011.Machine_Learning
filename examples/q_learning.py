@@ -50,6 +50,28 @@ for _ in range(1000):
             break
 print(f"Uji 1000 episode dengan kebijakan greedy: sukses {sukses / 1000:.1%}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"start_baris": [0, 2, 1, 3], "start_kolom": [0, 0, 2, 1]})
+uji_baru = np.random.default_rng(2)
+for r0, c0 in baru.to_numpy():
+    sukses, jml_langkah = 0, []
+    for _ in range(1000):
+        s = r0 * n + c0
+        for t in range(1, 101):
+            s, rew, done = langkah(s, int(Q[s].argmax()), uji_baru)
+            if done:
+                break
+        sukses += rew
+        jml_langkah.append(t)
+    rute, s = [], r0 * n + c0                      # rute ideal jika es tidak licin
+    while peta[s // n][s % n] not in "GH" and len(rute) < 12:
+        a = int(Q[s].argmax())
+        rute.append(panah[a])
+        s = min(max(s // n + aksi[a][0], 0), n - 1) * n + min(max(s % n + aksi[a][1], 0), n - 1)
+    print(f"mulai di ({r0},{c0}) -> sukses {sukses / 10:.1f}%, rata-rata {np.mean(jml_langkah):.1f} langkah | rute ideal: {' '.join(rute)}")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
@@ -79,3 +101,4 @@ simpan("q_learning", dict(zip(["langkah", "posisi", "aksi", "reward", "posisi_be
     "selesai": "True jika agen jatuh ke lubang atau sampai tujuan.",
 }, total=len(contoh), catatan="Q-learning tidak memakai dataset tetap. Datanya adalah transisi seperti ini, yang dikumpulkan sendiri oleh agen. "
                               "Contoh di atas adalah satu episode dengan aksi acak, seperti yang dialami agen di awal pelatihan (ε = 1).")
+simpan("q_learning_baru", baru, {"start_baris, start_kolom": "Posisi awal baru. Saat latihan agen selalu mulai dari (0,0)."})

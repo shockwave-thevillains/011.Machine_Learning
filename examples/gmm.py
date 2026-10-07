@@ -17,6 +17,17 @@ titik = np.array([[0.0, 0.0], [X[:, 0].mean(), X[:, 1].mean()]])
 for t, p in zip(titik, gmm.predict_proba(titik)):
     print(f"Titik {np.round(t, 2).tolist()} -> probabilitas keanggotaan {np.round(p, 3).tolist()}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+m = gmm.means_
+baru = pd.DataFrame(np.vstack([m[0], (m[0] + m[2]) / 2, m[1] + 0.5, m.max(0) + 8]).round(2), columns=["x1", "x2"])
+batas = np.percentile(gmm.score_samples(X), 1)           # 1% titik latih dengan kepadatan terendah
+for xb, pr, ll in zip(baru.to_numpy(), gmm.predict_proba(baru.to_numpy()), gmm.score_samples(baru.to_numpy())):
+    status = "TIDAK WAJAR (kepadatan sangat rendah)" if ll < batas else "wajar"
+    print(f"titik {xb.tolist()} -> P komponen = {np.round(pr, 3).tolist()} | log-kepadatan {ll:6.1f} -> {status}")
+print(f"(batas wajar: log-kepadatan ≥ {batas:.1f})")
+
 # === VISUALISASI ===
 from matplotlib.patches import Ellipse
 from _plot import BLUE, RED, BLACK, fig, save
@@ -41,3 +52,4 @@ simpan("gmm", {"x1": X[:, 0], "x2": X[:, 1], "komponen_hasil": gmm.predict(X),
     "komponen_hasil": "HASIL: komponen Gaussian yang paling mungkin.",
     "p_keanggotaan_maks": "HASIL: seberapa yakin model (probabilitas komponen terpilih).",
 })
+simpan("gmm_baru", baru, {"x1, x2": "Titik baru: di pusat komponen 0, di antara komponen 0 dan 2, dekat komponen 1, dan jauh dari semuanya."})

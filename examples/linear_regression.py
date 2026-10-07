@@ -18,6 +18,14 @@ print(f"MAE (test)  : Rp {mean_absolute_error(y_test, pred):.1f} juta")
 for m2 in (45, 120, 180):
     print(f"Prediksi rumah {m2:>3} m² -> Rp {model.predict([[m2]])[0]:,.0f} juta")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"luas_m2": [36, 72, 150, 250]})
+sd = np.std(y_train - model.predict(X_train))          # sebaran error di data latih
+for luas_baru, p in zip(baru.luas_m2, model.predict(baru.to_numpy())):
+    print(f"Rumah {luas_baru:>3} m² -> perkiraan Rp {p:,.0f} juta (kisaran wajar ± Rp {2 * sd:,.0f} juta)")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
@@ -34,3 +42,4 @@ simpan("linear_regression", {"luas_m2": luas.ravel(), "harga_juta_rp": harga}, {
     "luas_m2": "Luas bangunan dalam m². Fitur input (X).",
     "harga_juta_rp": "Harga rumah dalam juta rupiah. Target (y) yang diprediksi.",
 }, catatan="75% baris dipakai untuk melatih model, 25% untuk menguji (train_test_split).")
+simpan("linear_regression_baru", baru, {"luas_m2": "Luas rumah yang ingin ditaksir harganya. Harga belum diketahui."})

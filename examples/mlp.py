@@ -20,6 +20,21 @@ cm = confusion_matrix(y_te, pred)
 salah = [(int(cm[i, j]), i, j) for i in range(10) for j in range(10) if i != j and cm[i, j]]
 print("Kesalahan terbanyak (jumlah, asli, prediksi):", sorted(salah, reverse=True)[:3])
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import numpy as np
+GAMBAR = {                                       # angka baru yang digambar tangan: # = 16, + = 8, spasi = 0
+    "nol":   ["  +##+  ", " +#++#+ ", " ##  ## ", " #+  +# ", " #+  +# ", " ##  ## ", " +#++#+ ", "  +##+  "],
+    "satu":  ["   +#+  ", "  +##+  ", " +###+  ", "   ##+  ", "   ##+  ", "   ##+  ", "   ##+  ", "   +#+  "],
+    "tujuh": ["  +#####", " ++++##+", "    +#+ ", "  +####+", "  ####+ ", "   +#+  ", "  +#+   ", "  +#    "],
+}
+def ke_piksel(pola):
+    return np.array([[{"#": 16, "+": 8}.get(c, 0) for c in baris] for baris in pola], dtype=float).ravel()
+X_baru = np.array([ke_piksel(p) for p in GAMBAR.values()])
+for nama, pr in zip(GAMBAR, mlp.predict_proba(sc.transform(X_baru))):
+    top = pr.argsort()[::-1][:2]
+    print(f"gambar '{nama}' -> prediksi {top[0]} ({pr[top[0]]:.1%}) | kemungkinan kedua: {top[1]} ({pr[top[1]]:.1%})")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
@@ -32,3 +47,7 @@ save("mlp")
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import KET_DIGITS, digits_df, simpan
 simpan("mlp", digits_df(X, y), KET_DIGITS, catatan="Sebelum masuk jaringan, tiap kolom piksel distandarkan (StandardScaler).")
+import pandas as pd
+simpan("mlp_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
+       {"nol, satu, tujuh": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))

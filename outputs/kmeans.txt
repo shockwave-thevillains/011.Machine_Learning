@@ -14,3 +14,9 @@ Pusat cluster (pendapatan, skor belanja) untuk k=5:
   segmen 3: ( 94.2,  80.6) -> 80 pelanggan
   segmen 4: ( 24.1,  20.0) -> 80 pelanggan
 Pelanggan baru (80 jt, skor 85) masuk segmen 3
+
+--- prediksi data baru ---
+pelanggan (30 jt, skor 85) -> segmen 1 (pusat 26 jt / skor 80) | jarak ke pusat 6.2
+pelanggan (62 jt, skor 45) -> segmen 0 (pusat 60 jt / skor 50) | jarak ke pusat 5.4
+pelanggan (100 jt, skor 15) -> segmen 2 (pusat 95 jt / skor 19) | jarak ke pusat 6.9
+pelanggan (45 jt, skor 50) -> segmen 0 (pusat 60 jt / skor 50) | jarak ke pusat 15.3

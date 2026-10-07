@@ -1,3 +1,10 @@
 Aktivitas teman      : ['jalan-jalan', 'belanja', 'bersih-bersih', 'bersih-bersih', 'jalan-jalan']
 P(urutan aktivitas)  : 0.003228  (algoritma Forward)
 Cuaca paling mungkin : ['Cerah', 'Hujan', 'Hujan', 'Hujan', 'Cerah']  (P jalur = 0.000847, algoritma Viterbi)
+
+--- prediksi data baru ---
+Aktivitas 7 hari  : ['bersih-bersih', 'bersih-bersih', 'belanja', 'jalan-jalan', 'jalan-jalan', 'jalan-jalan', 'bersih-bersih']
+Cuaca (Viterbi)   : ['Hujan', 'Hujan', 'Hujan', 'Cerah', 'Cerah', 'Cerah', 'Hujan']
+P(cuaca hari ke-7): Hujan 0.79, Cerah 0.21
+Ramalan cuaca besok: Hujan 0.64, Cerah 0.36
+Ramalan aktivitas besok: {'jalan-jalan': 0.28, 'belanja': 0.36, 'bersih-bersih': 0.36}

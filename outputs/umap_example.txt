@@ -1,3 +1,8 @@
-Waktu UMAP             : 11.7 detik (termasuk kompilasi JIT numba)
+Waktu UMAP             : 13.8 detik (termasuk kompilasi JIT numba)
 Trustworthiness UMAP   : 0.989
 Data baru bisa diproyeksikan: [[16.29, 11.6], [0.37, 5.49]] ...
+
+--- prediksi data baru ---
+gambar 'nol' -> posisi (17.13, 11.64) di kelompok digit 0 (10 dari 10 tetangga)
+gambar 'satu' -> posisi (0.45, 5.74) di kelompok digit 1 (10 dari 10 tetangga)
+gambar 'tujuh' -> posisi (-2.06, 15.69) di kelompok digit 7 (10 dari 10 tetangga)

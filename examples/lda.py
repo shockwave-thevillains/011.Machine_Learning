@@ -14,6 +14,17 @@ print(f"Rasio varians antar-kelas   : LD1 = {lda.explained_variance_ratio_[0]:.1
 fitur = sorted(zip(abs(lda.scalings_[:, 0]), wine.feature_names), reverse=True)[:3]
 print("Fitur paling berpengaruh di LD1:", [f for _, f in fitur])
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import numpy as np
+import pandas as pd
+median = [np.median(X[y == k], axis=0) for k in range(3)]
+baru = pd.DataFrame([median[0], median[2], (median[1] + median[2]) / 2], columns=wine.feature_names,
+                    index=["anggur_1", "anggur_2", "anggur_3"])
+proba, koord = lda.predict_proba(baru.to_numpy()), lda.transform(baru.to_numpy())
+for nama, pr, kd in zip(baru.index, proba, koord):
+    print(f"{nama}: kultivar {pr.argmax()} | P = {np.round(pr, 3).tolist()} | posisi LD1 = {kd[0]:+.2f}, LD2 = {kd[1]:+.2f}")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, BLACK, fig, save
 f, ax = fig(5.6, 3.6)
@@ -30,3 +41,8 @@ simpan("lda", pd.DataFrame(X, columns=wine.feature_names).assign(kultivar=y), {
     "alcohol … proline": "13 hasil analisis kimia anggur: kadar alkohol, asam malat, abu, magnesium, fenol, flavanoid, intensitas warna, prolin, dll.",
     "kultivar": "Target: jenis kultivar anggur (0, 1, atau 2) dari satu daerah di Italia.",
 }, idx=[0, 1, 59, 60, 130, 131], catatan="Baris contoh diambil dari ketiga kultivar.")
+simpan("lda_baru", baru.reset_index(names="anggur"), {
+    "anggur_1": "Hasil analisis kimia setara median kultivar 0.",
+    "anggur_2": "Setara median kultivar 2.",
+    "anggur_3": "Campuran: tepat di tengah median kultivar 1 dan 2 (kasus sulit).",
+})

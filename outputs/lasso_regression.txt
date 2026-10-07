@@ -2,3 +2,8 @@ Fitur yang benar-benar berpengaruh : [3, 4, 10, 11, 12]
 Fitur yang dipilih Lasso           : [3, 4, 10, 11, 12]
 Koefisien bukan-nol  OLS = 20 | Lasso = 5
 R² test              OLS = 0.9907 | Lasso = 0.9866
+
+--- prediksi data baru ---
+sampel A: OLS =   130.55 | Lasso =   130.51 | nilai sebenarnya (tanpa noise) =   137.96
+sampel B: OLS =   133.22 | Lasso =   130.51 | nilai sebenarnya (tanpa noise) =   137.96
+sampel C: OLS =   218.36 | Lasso =   216.72 | nilai sebenarnya (tanpa noise) =   227.64

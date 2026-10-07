@@ -18,6 +18,13 @@ print(f"Rata-rata skor anomali  normal = {skor[:1000].mean():.3f} | fraud = {sko
 print("Transaksi Rp 4,2 jt jam 03.00 ->", "ANOMALI" if iso.predict([[4200, 3]])[0] == -1 else "normal")
 print("Transaksi Rp 250 rb jam 13.00 ->", "ANOMALI" if iso.predict([[250, 13]])[0] == -1 else "normal")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"nominal_ribu_rp": [150, 450, 3500, 900, 2800], "jam_transaksi": [12, 19, 2, 23, 14]})
+for (nom, jam), lbl, s in zip(baru.to_numpy(), iso.predict(baru.to_numpy()), -iso.score_samples(baru.to_numpy())):
+    print(f"Rp {nom:>5,.0f} ribu pukul {jam:02.0f}.00 -> skor {s:.3f} -> {'ANOMALI' if lbl == -1 else 'normal'}")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
@@ -36,3 +43,4 @@ simpan("isolation_forest", {"nominal_ribu_rp": X[:, 0], "jam_transaksi": X[:, 1]
     "fraud_asli": "1 = transaksi fraud yang sengaja disisipkan. Hanya untuk evaluasi.",
     "terdeteksi_anomali": "HASIL Isolation Forest: 1 = dianggap anomali.",
 }, idx=[0, 1, 2, 1000, 1001, 1002], catatan="Tiga baris terakhir adalah transaksi fraud.")
+simpan("isolation_forest_baru", baru, {"nominal_ribu_rp, jam_transaksi": "Transaksi baru yang masuk hari ini."})

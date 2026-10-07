@@ -1,0 +1,36 @@
+{
+ "kolom": [
+  "input_deret"
+ ],
+ "baris": [
+  [
+   "9 8 7 6 5 4 3 2"
+  ],
+  [
+   "0 1 2 3 4 5 6 7"
+  ],
+  [
+   "5 5 5 5 5 5 5 5"
+  ],
+  [
+   "3 0 3 0 3 0 3 0"
+  ],
+  [
+   "9 0 9 0 1 1 8 8"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "total_baris": 5,
+ "total_kolom": 1,
+ "tersembunyi": null,
+ "keterangan": {
+  "input_deret": "Deret khusus: terurut terbalik, sudah terurut, semua sama, pola berulang, banyak kembar."
+ },
+ "catatan": ""
+}

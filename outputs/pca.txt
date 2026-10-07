@@ -5,3 +5,10 @@
 30 komponen menjelaskan 95.9% varians
 Komponen yang dibutuhkan untuk 95% varians: 29 dari 64 (45% ukuran asli)
 Error rekonstruksi rata-rata (MSE piksel, skala 0-16): 0.849
+
+--- prediksi data baru ---
+gambar 'nol': PC1 =   -6.6, PC2 =  -32.9 | error rekonstruksi  2.24 -> mirip angka
+gambar 'satu': PC1 =   +2.9, PC2 =  +19.9 | error rekonstruksi  1.07 -> mirip angka
+gambar 'tujuh': PC1 =   -3.9, PC2 =  +20.3 | error rekonstruksi  6.07 -> TIDAK mirip angka
+gambar 'kotak-kotak': PC1 =   +0.5, PC2 =   -3.0 | error rekonstruksi 79.03 -> TIDAK mirip angka
+(batas: 99% gambar di dataset punya error ≤ 2.52)

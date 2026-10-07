@@ -4,3 +4,11 @@ epoch 20 | MSE test (skala z) = 0.0295
 epoch 40 | MSE test (skala z) = 0.0231
 MAE LSTM            : 0.288 MW
 MAE baseline naif   : 0.578 MW
+
+--- prediksi data baru ---
+jam ke-1200: ramalan 10.90 MW | pola sebenarnya (tanpa noise) 11.17 MW
+jam ke-1205: ramalan 13.55 MW | pola sebenarnya (tanpa noise) 14.22 MW
+jam ke-1211: ramalan 11.80 MW | pola sebenarnya (tanpa noise) 12.23 MW
+jam ke-1217: ramalan  8.11 MW | pola sebenarnya (tanpa noise)  8.60 MW
+jam ke-1223: ramalan  9.53 MW | pola sebenarnya (tanpa noise) 10.70 MW
+MAE ramalan 24 jam ke depan: 0.572 MW

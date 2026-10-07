@@ -20,6 +20,14 @@ for i, p in enumerate(outlier):
 print(f"Outlier lokal tertangkap  LOF = {np.sum(pred_lof[400:] == -1)}/3 | Isolation Forest = {np.sum(pred_iso[400:] == -1)}/3")
 print(f"Titik cluster renggang yang dicap outlier  LOF = {np.sum(pred_lof[200:400] == -1)} | IsoForest = {np.sum(pred_iso[200:400] == -1)}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+lof_baru = LocalOutlierFactor(n_neighbors=20, novelty=True, contamination=0.02).fit(X)   # novelty=True agar bisa predict()
+baru = pd.DataFrame({"x1": [0.1, 1.2, 5.5, 9.0], "x2": [-0.1, -1.1, 4.0, 9.0]})
+for (x1, x2), lbl, s in zip(baru.to_numpy(), lof_baru.predict(baru.to_numpy()), -lof_baru.score_samples(baru.to_numpy())):
+    print(f"titik ({x1:+.1f}, {x2:+.1f}) -> skor LOF {s:5.2f} -> {'OUTLIER' if lbl == -1 else 'normal'}")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
@@ -41,3 +49,4 @@ simpan("lof", {"x1": X[:, 0], "x2": X[:, 1], "kelompok": kelompok,
     "skor_lof": "HASIL: skor LOF. Sekitar 1 = normal, makin besar makin janggal.",
     "outlier_lof": "HASIL: 1 = ditandai outlier.",
 }, idx=[0, 1, 200, 201, 400, 401, 402])
+simpan("lof_baru", baru, {"x1, x2": "Titik baru: di tengah cluster padat, di pinggir cluster padat, di dalam cluster renggang, dan jauh di luar."})

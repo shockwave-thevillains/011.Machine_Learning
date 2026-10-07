@@ -23,6 +23,15 @@ dist, idx = model[-1].kneighbors(model[0].transform(bunga_baru))
 print("Bunga baru diprediksi:", iris.target_names[model.predict(bunga_baru)[0]])
 print("Label tetangga terdekatnya:", [str(iris.target_names[y[i]]) for i in idx[0]])
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"sepal_pjg_cm": [5.0, 6.0, 6.9], "sepal_lbr_cm": [3.5, 2.7, 3.1],
+                     "petal_pjg_cm": [1.4, 4.4, 5.6], "petal_lbr_cm": [0.2, 1.3, 2.2]}, index=["bunga_1", "bunga_2", "bunga_3"])
+for nama, pred, proba in zip(baru.index, model.predict(baru.to_numpy()), model.predict_proba(baru.to_numpy())):
+    suara = ", ".join(f"{n} {p:.0%}" for n, p in zip(iris.target_names, proba))
+    print(f"{nama}: {iris.target_names[pred]:<10} (suara {k_best} tetangga: {suara})")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
@@ -37,3 +46,4 @@ save("knn")
 from _sampel import KET_IRIS, iris_df, simpan
 simpan("knn", iris_df(), KET_IRIS, idx=[0, 1, 50, 51, 100, 101],
        catatan="Dataset diurutkan per spesies (50 bunga per spesies), jadi baris contoh diambil dari ketiganya. Fitur distandarkan (StandardScaler) sebelum jarak dihitung.")
+simpan("knn_baru", baru.reset_index(names="bunga"), {"bunga_1 … bunga_3": "Tiga bunga baru yang diukur, spesiesnya belum diketahui."})

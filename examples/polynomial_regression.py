@@ -19,6 +19,15 @@ for derajat in (1, 2, 3, 15):
 terbaik = make_pipeline(StandardScaler(), PolynomialFeatures(2), LinearRegression()).fit(X_tr, y_tr)
 print(f"Prediksi penjualan saat 35°C (derajat 2): {terbaik.predict([[35]])[0]:.0f} gelas")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"suhu_c": [19.0, 27.5, 33.0, 37.5]})
+m2 = make_pipeline(StandardScaler(), PolynomialFeatures(2), LinearRegression()).fit(X_tr, y_tr)
+m15 = make_pipeline(StandardScaler(), PolynomialFeatures(15), LinearRegression()).fit(X_tr, y_tr)
+for s, a, b in zip(baru.suhu_c, m2.predict(baru.to_numpy()), m15.predict(baru.to_numpy())):
+    print(f"{s:4.1f}°C -> derajat 2: {a:5.0f} gelas | derajat 15: {b:8.0f} gelas")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, BLACK, fig, save
 f, ax = fig()
@@ -37,3 +46,4 @@ simpan("polynomial_regression", {"suhu_c": suhu.ravel(), "gelas_terjual": gelas}
     "suhu_c": "Suhu harian (°C). Fitur input; di dalam pipeline diperluas menjadi suhu, suhu², suhu³, … sesuai derajat.",
     "gelas_terjual": "Jumlah gelas es teh terjual hari itu. Target.",
 }, catatan="Baris sudah diurutkan berdasarkan suhu. 70% dipakai latih, 30% uji.")
+simpan("polynomial_regression_baru", baru, {"suhu_c": "Ramalan suhu hari-hari berikutnya; penjualan belum diketahui."})

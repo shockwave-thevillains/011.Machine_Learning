@@ -7,3 +7,9 @@ MSE test setelah 100 pohon = 2.917
 MSE test setelah 250 pohon = 1.687
 MSE test setelah 500 pohon = 1.552
 Fitur 5-9 adalah noise murni; importance-nya: [0.003, 0.003, 0.002, 0.002, 0.003]
+
+--- prediksi data baru ---
+baris 0: Gradient Boosting =  12.26 | Linear =  14.27 | nilai sebenarnya (tanpa noise) =  11.98
+baris 1: Gradient Boosting =  19.98 | Linear =  20.36 | nilai sebenarnya (tanpa noise) =  18.82
+baris 2: Gradient Boosting =  10.97 | Linear =   9.44 | nilai sebenarnya (tanpa noise) =  11.46
+baris 3: Gradient Boosting =   6.20 | Linear =  10.21 | nilai sebenarnya (tanpa noise) =   5.40

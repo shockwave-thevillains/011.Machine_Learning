@@ -4,3 +4,9 @@ Ridge alpha=1      R² test = 0.447 | norma koefisien = 97
 Ridge alpha=10     R² test = 0.469 | norma koefisien = 54
 Ridge alpha=100    R² test = 0.488 | norma koefisien = 35
 Ridge alpha=1000   R² test = 0.341 | norma koefisien = 15
+
+--- prediksi data baru ---
+pasien_1: progresi menurut Ridge =   91.9 | OLS =  1184.7
+pasien_2: progresi menurut Ridge =  135.7 | OLS = -1007.7
+pasien_3: progresi menurut Ridge =  303.6 | OLS =   450.4
+(target di data latih berkisar 25–346, rata-rata 152)

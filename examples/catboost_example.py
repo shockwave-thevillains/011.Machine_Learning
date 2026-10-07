@@ -36,6 +36,17 @@ baru = pd.DataFrame([{"kota": "Bandung", "paket": "Basic", "metode_bayar": "e-wa
                       "lama_langganan_bln": 3, "keluhan_3bln": 4}])
 print(f"Pelanggan baru (Basic, 3 bln, 4 keluhan): P(churn) = {model.predict_proba(baru)[0, 1]:.2f}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+baru = pd.DataFrame([
+    {"kota": "Jakarta", "paket": "Premium", "metode_bayar": "kartu kredit", "lama_langganan_bln": 40, "keluhan_3bln": 0},
+    {"kota": "Surabaya", "paket": "Standard", "metode_bayar": "transfer", "lama_langganan_bln": 12, "keluhan_3bln": 2},
+    {"kota": "Medan", "paket": "Basic", "metode_bayar": "e-wallet", "lama_langganan_bln": 2, "keluhan_3bln": 3},
+    {"kota": "Yogyakarta", "paket": "Basic", "metode_bayar": "transfer", "lama_langganan_bln": 6, "keluhan_3bln": 1},
+], index=["pelanggan_1", "pelanggan_2", "pelanggan_3", "pelanggan_4"])
+for nama, p in zip(baru.index, model.predict_proba(baru)[:, 1]):
+    print(f"{nama}: P(churn) = {p:.2f} -> {'BERISIKO churn' if p >= 0.5 else 'kemungkinan bertahan'}")
+
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
 simpan("catboost_example", df, {
@@ -46,3 +57,7 @@ simpan("catboost_example", df, {
     "keluhan_3bln": "Jumlah keluhan dalam 3 bulan terakhir.",
     "churn": "Target: 1 = berhenti berlangganan, 0 = tetap.",
 }, catatan="Tiga kolom teks diberikan apa adanya ke CatBoost lewat cat_features, tanpa one-hot encoding.")
+simpan("catboost_example_baru", baru.reset_index(names="pelanggan"), {
+    "pelanggan_1 … pelanggan_4": "Pelanggan aktif yang ingin dinilai risikonya. Kolom churn belum diketahui.",
+    "kota = Yogyakarta": "Kota ini tidak pernah muncul di data latih.",
+})

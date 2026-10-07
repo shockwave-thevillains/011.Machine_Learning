@@ -23,6 +23,17 @@ gain = model.get_booster().get_score(importance_type="gain")
 top = sorted(gain.items(), key=lambda kv: kv[1], reverse=True)[:3]
 print("Top 3 fitur (gain)  :", [(str(data.feature_names[int(k[1:])]), round(v, 1)) for k, v in top])
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import numpy as np
+import pandas as pd
+profil_ganas = np.median(data.data[data.target == 0], axis=0)
+profil_jinak = np.median(data.data[data.target == 1], axis=0)
+baru = pd.DataFrame([profil_jinak, (profil_jinak + profil_ganas) / 2, profil_ganas],
+                    columns=data.feature_names, index=["pasien_A", "pasien_B", "pasien_C"])
+for nama, p in zip(baru.index, model.predict_proba(baru.to_numpy())[:, 1]):
+    print(f"{nama}: P(jinak) = {p:.3f} -> {'jinak' if p >= 0.5 else 'GANAS'} (memakai {model.best_iteration + 1} pohon terbaik)")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 h = model.evals_result()["validation_0"]["logloss"]
@@ -38,3 +49,8 @@ import pandas as pd
 from _sampel import KET_BREAST_CANCER, simpan
 simpan("xgboost_example", pd.DataFrame(data.data, columns=data.feature_names).assign(diagnosis=data.target), KET_BREAST_CANCER,
        catatan="569 pasien: 212 ganas dan 357 jinak. Hanya 11 kolom pertama yang ditampilkan.")
+simpan("xgboost_example_baru", baru.reset_index(names="pasien"), {
+    "pasien_A": "Ukuran sel setara median pasien jinak.",
+    "pasien_B": "Tepat di tengah antara profil jinak dan ganas (kasus sulit).",
+    "pasien_C": "Ukuran sel setara median pasien ganas.",
+}, catatan="Tiga pasien baru yang tidak ada di dataset. Kolomnya sama dengan data latih (30 ukuran sel).")

@@ -21,6 +21,14 @@ akurasi = np.mean(np.sign(X @ w + b) == y)
 print(f"Bobot akhir w = {np.round(w, 3)}, bias b = {b:.2f}")
 print(f"Akurasi data latih = {akurasi:.0%} (konvergen di epoch {epoch})")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"x1": [2.0, -1.5, 0.5, -0.2], "x2": [1.5, -2.0, -0.3, 0.4]})
+for x1, x2 in baru.to_numpy():
+    skor = w @ [x1, x2] + b
+    print(f"titik ({x1:+.1f}, {x2:+.1f}) -> skor w·x + b = {skor:+.3f} -> kelas {'+1' if skor > 0 else '-1'}")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig(5.2, 3.6)
@@ -38,3 +46,4 @@ simpan("perceptron", {"x1": X[:, 0], "x2": X[:, 1], "label": y}, {
     "x1, x2": "Dua koordinat titik (fitur input).",
     "label": "Target: −1 atau +1 (format label perceptron).",
 })
+simpan("perceptron_baru", baru, {"x1, x2": "Koordinat titik baru yang belum diketahui kelasnya."})

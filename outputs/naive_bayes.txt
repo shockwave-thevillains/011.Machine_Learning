@@ -4,3 +4,9 @@
 [ HAM] P(spam)=0.002 | Sudah sampai sekolah, nanti jemput jam 12
 Kata paling 'spam' : ['anda', 'hadiah', 'ini', 'klik', 'menang', 'hari']
 Kata paling 'ham'  : ['di', 'sudah', 'jam', 'besok', 'terima', 'siang']
+
+--- prediksi data baru ---
+[SPAM] P(spam)=0.999 | Selamat anda dapat bonus saldo, klik link untuk klaim
+[ HAM] P(spam)=0.013 | Terima kasih, hadiah ulang tahunnya sudah saya terima
+[SPAM] P(spam)=0.997 | Kredit motor tanpa DP, hubungi kami hari ini
+[ HAM] P(spam)=0.021 | Besok rapat diundur jam 10 ya

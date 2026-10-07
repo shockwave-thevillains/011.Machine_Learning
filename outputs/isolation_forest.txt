@@ -10,3 +10,10 @@ weighted avg      0.999     0.999     0.999      1015
 Rata-rata skor anomali  normal = 0.439 | fraud = 0.772
 Transaksi Rp 4,2 jt jam 03.00 -> ANOMALI
 Transaksi Rp 250 rb jam 13.00 -> normal
+
+--- prediksi data baru ---
+Rp   150 ribu pukul 12.00 -> skor 0.430 -> normal
+Rp   450 ribu pukul 19.00 -> skor 0.527 -> normal
+Rp 3,500 ribu pukul 02.00 -> skor 0.782 -> ANOMALI
+Rp   900 ribu pukul 23.00 -> skor 0.725 -> ANOMALI
+Rp 2,800 ribu pukul 14.00 -> skor 0.684 -> ANOMALI

@@ -7,3 +7,8 @@ Out-of-bag score  (validasi gratis tanpa data test) = 0.962
   worst concave points   0.115
   mean concave points    0.098
   worst radius           0.072
+
+--- prediksi data baru ---
+pasien_A: P(jinak) = 1.000 | 100% dari 300 pohon memilih jinak -> jinak
+pasien_B: P(jinak) = 0.297 | 30% dari 300 pohon memilih jinak -> GANAS
+pasien_C: P(jinak) = 0.000 | 0% dari 300 pohon memilih jinak -> GANAS

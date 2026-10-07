@@ -18,16 +18,29 @@ def jalankan(strategi, rng):
         n[a] += 1
         s[a] += klik
         regret[t] = ctr_asli.max() - ctr_asli[a]
-    return np.cumsum(regret), n
+    return np.cumsum(regret), n, s
 
 hasil = {}
 for st in ("eps-greedy", "UCB1", "Thompson"):
     runs = [jalankan(st, np.random.default_rng(i)) for i in range(ulang)]
-    hasil[st] = np.mean([r for r, _ in runs], axis=0)
-    porsi = np.mean([n / T for _, n in runs], axis=0)
+    hasil[st] = np.mean([r for r, _, _ in runs], axis=0)
+    porsi = np.mean([n / T for _, n, _ in runs], axis=0)
     print(f"{st:<10} | regret kumulatif = {hasil[st][-1]:6.1f} klik hilang | "
           f"porsi tampil desain A/B/C = {np.round(porsi * 100, 1).tolist()} %")
 print(f"(Uji A/B klasik 33/33/33 akan kehilangan ≈ {T * (ctr_asli.max() - ctr_asli.mean()):.0f} klik)")
+
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+_, n_akhir, s_akhir = jalankan("Thompson", np.random.default_rng(100))    # satu kampanye 20.000 pengunjung
+baru = pd.DataFrame({"desain": list("ABC"), "tampil": n_akhir.astype(int), "klik": s_akhir.astype(int)})
+rng_p = np.random.default_rng(1)
+post = rng_p.beta(1 + s_akhir, 1 + n_akhir - s_akhir, size=(10_000, 3))   # keyakinan akhir tentang CTR
+for i, d in enumerate("ABC"):
+    lo, hi = np.percentile(post[:, i], [2.5, 97.5])
+    print(f"desain {d}: CTR perkiraan {post[:, i].mean():.2%} (95%: {lo:.2%}–{hi:.2%}) | P(terbaik) = {(post.argmax(1) == i).mean():.1%}")
+pilihan = ["ABC"[int(np.argmax(rng_p.beta(1 + s_akhir, 1 + n_akhir - s_akhir)))] for _ in range(10)]
+print("Desain untuk 10 pengunjung berikutnya:", " ".join(pilihan))
 
 # === VISUALISASI ===
 from _plot import BLUE, RED, BLACK, fig, save
@@ -52,3 +65,5 @@ simpan("bandit", dict(zip(["pengunjung_ke", "desain_ditampilkan", "klik"], zip(*
     "desain_ditampilkan": "Desain tombol yang dipilih algoritma (Thompson Sampling) untuk pengunjung itu.",
     "klik": "1 jika pengunjung mengklik tombol, 0 jika tidak. Ini satu-satunya umpan balik yang diterima algoritma.",
 }, total=T, catatan="Contoh 8 pengunjung pertama. Klik dibangkitkan dari CTR asli A = 4,0%, B = 5,0%, C = 6,5%, yang tidak diketahui algoritma.")
+simpan("bandit_baru", baru, {"tampil, klik": "Hasil satu kampanye: berapa kali tiap desain ditampilkan dan diklik.",
+                             "desain": "Data inilah yang dipakai untuk memutuskan desain bagi pengunjung berikutnya."})

@@ -27,6 +27,20 @@ hasil = fpgrowth(df, min_support=0.02, use_colnames=True)
 besar = hasil[hasil.itemsets.apply(len) >= 3].sort_values("support", ascending=False)
 print("Itemset 3-produk teratas:", [(sorted(s), round(v, 3)) for s, v in zip(besar.itemsets, besar.support)][:3])
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+from mlxtend.frequent_patterns import association_rules
+aturan = association_rules(hasil, metric="lift", min_threshold=1.5)
+keranjang_baru = [["P10"], ["P30"], ["P10", "P11"], ["P05"]]
+for k in keranjang_baru:
+    isi = set(k)
+    cocok = aturan[aturan.antecedents.apply(lambda a: a <= isi) & aturan.consequents.apply(lambda c: not (c & isi))]
+    if cocok.empty:
+        print(f"keranjang {k} -> belum ada aturan yang cocok")
+        continue
+    r = cocok.sort_values(["confidence", "lift"], ascending=False).iloc[0]
+    print(f"keranjang {k} -> tawarkan {sorted(r.consequents)} (conf {r.confidence:.2f}, lift {r.lift:.2f})")
+
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
 daftar = [", ".join(df.columns[df.iloc[i].to_numpy()]) for i in range(6)]
@@ -35,3 +49,6 @@ simpan("fp_growth", {"id_struk": range(1, 7), "produk": daftar, "jumlah_produk":
     "produk": "Kode produk yang dibeli bersamaan (P00–P59).",
     "jumlah_produk": "Banyaknya produk di struk itu.",
 }, total=len(df), catatan="Yang diolah algoritma adalah tabel True/False 20.000 baris × 60 kolom produk; di sini ditampilkan sebagai daftar agar mudah dibaca.")
+simpan("fp_growth_baru", {"pembeli": [f"pembeli_{i + 1}" for i in range(len(keranjang_baru))],
+                           "isi_keranjang": [", ".join(k) for k in keranjang_baru]},
+       {"isi_keranjang": "Produk yang sedang ada di keranjang pembeli baru."})

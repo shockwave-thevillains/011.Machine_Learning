@@ -41,6 +41,24 @@ with torch.no_grad():
     peta = model[0](X_te[:1]).relu()
 print(f"Bentuk feature map lapisan konvolusi pertama: {tuple(peta.shape)}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import numpy as np
+GAMBAR = {                                       # angka baru yang digambar tangan: # = 16, + = 8, spasi = 0
+    "nol":   ["  +##+  ", " +#++#+ ", " ##  ## ", " #+  +# ", " #+  +# ", " ##  ## ", " +#++#+ ", "  +##+  "],
+    "satu":  ["   +#+  ", "  +##+  ", " +###+  ", "   ##+  ", "   ##+  ", "   ##+  ", "   ##+  ", "   +#+  "],
+    "tujuh": ["  +#####", " ++++##+", "    +#+ ", "  +####+", "  ####+ ", "   +#+  ", "  +#+   ", "  +#    "],
+}
+def ke_piksel(pola):
+    return np.array([[{"#": 16, "+": 8}.get(c, 0) for c in baris] for baris in pola], dtype=float).ravel()
+X_baru = np.array([ke_piksel(p) for p in GAMBAR.values()])
+model.eval()
+with torch.no_grad():
+    proba = torch.softmax(model(torch.tensor(X_baru / 16.0, dtype=torch.float32).reshape(-1, 1, 8, 8)), dim=1)
+for nama, pr in zip(GAMBAR, proba):
+    top = pr.argsort(descending=True)[:2]
+    print(f"gambar '{nama}' -> prediksi {top[0].item()} ({pr[top[0]]:.1%}) | kemungkinan kedua: {top[1].item()} ({pr[top[1]]:.1%})")
+
 # === VISUALISASI ===
 from _plot import BLUE, fig, save
 f, axes = fig(7.4, 2.4, ncols=8)
@@ -57,3 +75,7 @@ save("cnn")
 from _sampel import KET_DIGITS, digits_df, simpan
 simpan("cnn", digits_df(X.reshape(len(X), 64).numpy(), y.numpy()), KET_DIGITS,
        catatan="Nilai piksel sudah dibagi 16 (skala 0–1). Untuk CNN, 64 kolom ini dibentuk ulang menjadi gambar 1 × 8 × 8.")
+import pandas as pd
+simpan("cnn_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
+       {"nol, satu, tujuh": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))

@@ -33,6 +33,21 @@ print(f"P(urutan aktivitas)  : {forward(amatan):.6f}  (algoritma Forward)")
 jalur, p = viterbi(amatan)
 print("Cuaca paling mungkin :", [state[s] for s in jalur], f" (P jalur = {p:.6f}, algoritma Viterbi)")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+amatan_baru = [2, 2, 1, 0, 0, 0, 2]              # 7 hari aktivitas yang baru diamati
+jalur_baru, _ = viterbi(amatan_baru)
+print("Aktivitas 7 hari  :", [obs_nama[o] for o in amatan_baru])
+print("Cuaca (Viterbi)   :", [state[s] for s in jalur_baru])
+alpha = pi * B[:, amatan_baru[0]]                 # filtering: peluang cuaca hari terakhir
+for o in amatan_baru[1:]:
+    alpha = (alpha @ A) * B[:, o]
+hari_ini = alpha / alpha.sum()
+besok = hari_ini @ A                              # ramalan 1 hari ke depan
+print(f"P(cuaca hari ke-7): Hujan {hari_ini[0]:.2f}, Cerah {hari_ini[1]:.2f}")
+print(f"Ramalan cuaca besok: Hujan {besok[0]:.2f}, Cerah {besok[1]:.2f}")
+print("Ramalan aktivitas besok:", {obs_nama[i]: round(float(p), 2) for i, p in enumerate(besok @ B)})
+
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
 simpan("hmm_viterbi", {"hari_ke": range(1, len(amatan) + 1), "aktivitas_teramati": [obs_nama[o] for o in amatan],
@@ -41,3 +56,5 @@ simpan("hmm_viterbi", {"hari_ke": range(1, len(amatan) + 1), "aktivitas_teramati
     "aktivitas_teramati": "Data input: aktivitas teman yang bisa kita lihat.",
     "cuaca_hasil_viterbi": "HASIL: cuaca tersembunyi yang paling mungkin menurut algoritma Viterbi.",
 }, catatan="Parameter model (peluang awal π, transisi A, emisi B) ditulis langsung di kode, bukan dipelajari dari data.")
+simpan("hmm_viterbi_baru", {"hari_ke": range(1, 8), "aktivitas_teramati": [obs_nama[o] for o in amatan_baru]},
+       {"aktivitas_teramati": "Aktivitas teman selama 7 hari terakhir. Cuacanya tidak diketahui."}, total=7, idx=range(7))

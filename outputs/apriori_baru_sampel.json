@@ -1,0 +1,37 @@
+{
+ "kolom": [
+  "pembeli",
+  "isi_keranjang"
+ ],
+ "baris": [
+  [
+   "pembeli_1",
+   "minyak goreng"
+  ],
+  [
+   "pembeli_2",
+   "kopi, roti"
+  ],
+  [
+   "pembeli_3",
+   "mie instan, beras"
+  ],
+  [
+   "pembeli_4",
+   "kecap"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "isi_keranjang": "Barang yang sedang ada di keranjang pembeli baru (belum dibayar)."
+ },
+ "catatan": ""
+}

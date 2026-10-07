@@ -1,0 +1,52 @@
+{
+ "kolom": [
+  "hari_ke",
+  "aktivitas_teramati"
+ ],
+ "baris": [
+  [
+   "1",
+   "bersih-bersih"
+  ],
+  [
+   "2",
+   "bersih-bersih"
+  ],
+  [
+   "3",
+   "belanja"
+  ],
+  [
+   "4",
+   "jalan-jalan"
+  ],
+  [
+   "5",
+   "jalan-jalan"
+  ],
+  [
+   "6",
+   "jalan-jalan"
+  ],
+  [
+   "7",
+   "bersih-bersih"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6
+ ],
+ "total_baris": 7,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "aktivitas_teramati": "Aktivitas teman selama 7 hari terakhir. Cuacanya tidak diketahui."
+ },
+ "catatan": ""
+}

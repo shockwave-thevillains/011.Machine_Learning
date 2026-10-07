@@ -9,3 +9,9 @@ Kebijakan yang dipelajari (aksi terbaik tiap petak):
   → ↓ ↓ H
   H → → G
 Uji 1000 episode dengan kebijakan greedy: sukses 88.4%
+
+--- prediksi data baru ---
+mulai di (0,0) -> sukses 89.1%, rata-rata 6.3 langkah | rute ideal: ↓ ↓ → ↓ → →
+mulai di (2,0) -> sukses 92.1%, rata-rata 4.2 langkah | rute ideal: → ↓ → →
+mulai di (1,2) -> sukses 90.5%, rata-rata 3.1 langkah | rute ideal: ↓ ↓ →
+mulai di (3,1) -> sukses 96.8%, rata-rata 2.2 langkah | rute ideal: → →

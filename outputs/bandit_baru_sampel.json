@@ -1,0 +1,37 @@
+{
+ "kolom": [
+  "desain",
+  "tampil",
+  "klik"
+ ],
+ "baris": [
+  [
+   "A",
+   "513",
+   "19"
+  ],
+  [
+   "B",
+   "1.178",
+   "60"
+  ],
+  [
+   "C",
+   "18.309",
+   "1.226"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2
+ ],
+ "total_baris": 3,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "tampil, klik": "Hasil satu kampanye: berapa kali tiap desain ditampilkan dan diklik.",
+  "desain": "Data inilah yang dipakai untuk memutuskan desain bagi pengunjung berikutnya."
+ },
+ "catatan": ""
+}

@@ -22,7 +22,7 @@ from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import PythonLexer
 
-from algorithms import ALGORITMA, CEK, KATEGORI
+from algorithms import ALGORITMA, CEK, KATEGORI, PREDIKSI
 
 ROOT = Path(__file__).resolve().parent
 EX, OUT = ROOT / "examples", ROOT / "outputs"
@@ -64,12 +64,27 @@ def kode_tampil(slug):
     return src.split(MARKER)[0].rstrip() + "\n", punya_plot
 
 
+PRED_MARKER, PRED_CETAK = "# === PREDIKSI DATA BARU ===\n", "--- prediksi data baru ---"
+
+
+def kode_prediksi(slug):
+    src = (EX / f"{slug}.py").read_text()
+    bagian = src.split(PRED_MARKER, 1)[1].split(MARKER)[0]
+    baris = [b for b in bagian.splitlines() if PRED_CETAK not in b]
+    return "\n".join(baris).strip() + "\n"
+
+
+def pisah_output(teks):
+    utama, _, pred = teks.partition(PRED_CETAK)
+    return utama.rstrip(), pred.strip("\n")
+
+
 def ribuan(n):
     return f"{n:,}".replace(",", ".")
 
 
-def tabel_sampel(slug):
-    p = OUT / f"{slug}_sampel.json"
+def tabel_sampel(slug, akhiran="_sampel", judul="Data yang diolah", kelas="data"):
+    p = OUT / f"{slug}{akhiran}.json"
     if not p.exists():
         return ""
     d = json.loads(p.read_text())
@@ -83,7 +98,9 @@ def tabel_sampel(slug):
         meta += f" · {n} kolom ({esc(a)} … {esc(b)}) disembunyikan agar muat"
     ket = "".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in d["keterangan"].items())
     cat = f'<p class="data-note">{esc(d["catatan"])}</p>' if d["catatan"] else ""
-    return (f'<section class="data"><h3>Data yang diolah</h3><p class="data-meta">{meta}</p>'
+    if akhiran == "_baru_sampel":
+        meta = f"{len(d['baris'])} baris ditampilkan" + (f" dari {ribuan(d['total_baris'])}" if d["total_baris"] > len(d["baris"]) else "")
+    return (f'<section class="{kelas}"><h3>{judul}</h3><p class="data-meta">{meta}</p>'
             f'<div class="sample-wrap"><table class="sample"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></div>'
             f'<dl class="kolom">{ket}</dl>{cat}</section>')
 
@@ -125,7 +142,7 @@ def render(fragment_only=False):
     toc, artikel, baris, eras = {}, [], [], {}
     for a in ALGORITMA:
         slug = a["slug"]
-        teks = (OUT / f"{slug}.txt").read_text().rstrip()
+        teks, teks_pred = pisah_output((OUT / f"{slug}.txt").read_text())
         kode, punya_plot = kode_tampil(slug)
         label, nilai = ambil_kpi(a, teks)
         w = warna(a["paradigma"])
@@ -184,6 +201,23 @@ def render(fragment_only=False):
     </div>
     {fig}
     {cek_html}
+  </section>
+  <section class="pred">
+    <p class="pred-eyebrow">Langkah berikutnya</p>
+    <h3>Prediksi data baru</h3>
+    <p class="pred-intro">{esc(PREDIKSI[slug][0])}</p>
+    {tabel_sampel(slug, "_baru_sampel", "Data baru", "data data-baru")}
+    <div class="run-head">
+      <h4>Kode prediksi</h4>
+      <span class="file">lanjutan examples/{slug}.py, memakai model yang sudah dilatih di atas</span>
+      <button class="copy" type="button" data-target="pred-{slug}">Salin kode</button>
+    </div>
+    <pre class="code" id="pred-{slug}"><code>{highlight(kode_prediksi(slug), lexer, fmt)}</code></pre>
+    <div class="out">
+      <p class="out-head"><span class="out-label">Hasil prediksi</span></p>
+      <pre><samp>{esc(teks_pred)}</samp></pre>
+    </div>
+    <p class="baca"><b>Cara membaca:</b> {esc(PREDIKSI[slug][1])}</p>
   </section>
 </article>""")
 
@@ -380,6 +414,16 @@ table.sample{min-width:0;width:auto;font-family:var(--f-mono);font-size:.8rem;fo
 .cek ul{list-style:none;margin:0;padding:0;font-size:.94rem}
 .cek li{position:relative;padding-left:1.4rem;margin-bottom:.45rem}
 .cek li::before{content:"→";position:absolute;left:0;color:var(--red);font-weight:700}
+.pred{margin-top:2.4rem;padding-top:1.4rem;border-top:2px dashed var(--blue)}
+.pred-eyebrow{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin:0 0 .25rem}
+.pred h3{font-family:var(--f-display);font-stretch:85%;font-weight:700;font-size:var(--s2);margin:0 0 .5rem;color:var(--blue)}
+.pred h4{font-family:var(--f-display);font-stretch:85%;font-weight:700;font-size:var(--s1);margin:0}
+.pred-intro{margin:0;max-width:75ch}
+.pred .data{margin-top:1.2rem}
+.pred .data h3{color:var(--ink);font-size:var(--s1)}
+.pred .run-head{margin-top:1.4rem}
+.baca{margin:1rem 0 0;padding:.8rem 1rem;background:var(--wash);font-size:.94rem;max-width:90ch}
+.baca b{color:var(--blue)}
 
 .howto ol{padding-left:1.2rem;max-width:72ch}
 .howto li{margin-bottom:.6rem}
@@ -398,7 +442,7 @@ TEMPLATE = """<title>Atlas Algoritma Machine Learning</title>
   <div class="wrap">
     <p class="kicker">Katalog · sejarah · fungsi · data · kode · hasil asli</p>
     <h1>Atlas Algoritma <em>Machine Learning</em><span class="dot">.</span></h1>
-    <p class="lede">{n} algoritma machine learning populer, dari kuadrat terkecil Legendre (1805) sampai Transformer (2017). Setiap lembar berisi sejarah singkat, cara kerja, kegunaan, contoh data yang diolah beserta arti kolomnya, kode Python, output yang benar-benar keluar saat kode itu dijalankan, dan panduan apa yang bisa Anda cek dari hasilnya.</p>
+    <p class="lede">{n} algoritma machine learning populer, dari kuadrat terkecil Legendre (1805) sampai Transformer (2017). Setiap lembar berisi sejarah singkat, cara kerja, kegunaan, contoh data yang diolah beserta arti kolomnya, kode Python, output yang benar-benar keluar saat kode itu dijalankan, panduan apa yang bisa Anda cek dari hasilnya, lalu contoh memakai model itu untuk memprediksi data baru.</p>
     <ul class="stats">
       <li><b class="num">{n}</b><span>algoritma</span></li>
       <li><b class="num">{nkat}</b><span>kategori</span></li>

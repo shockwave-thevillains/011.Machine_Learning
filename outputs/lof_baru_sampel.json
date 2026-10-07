@@ -1,0 +1,37 @@
+{
+ "kolom": [
+  "x1",
+  "x2"
+ ],
+ "baris": [
+  [
+   "0.100",
+   "-0.100"
+  ],
+  [
+   "1.200",
+   "-1.100"
+  ],
+  [
+   "5.500",
+   "4"
+  ],
+  [
+   "9",
+   "9"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Titik baru: di tengah cluster padat, di pinggir cluster padat, di dalam cluster renggang, dan jauh di luar."
+ },
+ "catatan": ""
+}

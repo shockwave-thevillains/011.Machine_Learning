@@ -2,3 +2,9 @@ K-Means              ARI = -0.002
 Spectral Clustering  ARI = 1.000
 5 eigenvalue terkecil Laplacian: [-0.0, 0.0, 0.0035, 0.0036, 0.0046]
 -> ada 2 eigenvalue ≈ 0, artinya graf punya 2 komponen terhubung = 2 cluster
+
+--- prediksi data baru ---
+titik (+0.00, +0.10) jarak ke pusat 0.10 -> cluster 1 (100% dari 10 tetangga)
+titik (+0.95, +0.00) jarak ke pusat 0.95 -> cluster 0 (100% dari 10 tetangga)
+titik (+0.00, -0.45) jarak ke pusat 0.45 -> cluster 1 (100% dari 10 tetangga)
+titik (+0.70, +0.00) jarak ke pusat 0.70 -> cluster 1 (90% dari 10 tetangga)

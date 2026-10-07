@@ -19,6 +19,18 @@ print(f"Cluster ditemukan DBSCAN       = {len(set(lab)) - (-1 in lab)}")
 print(f"Titik ditandai noise (-1)      = {np.sum(lab == -1)} (20 di antaranya noise sungguhan: {np.sum(lab[400:] == -1)} tertangkap)")
 print(f"Core points                    = {len(db.core_sample_indices_)}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+from sklearn.neighbors import NearestNeighbors
+core = X[db.core_sample_indices_]
+nn = NearestNeighbors(n_neighbors=1).fit(core)            # DBSCAN tidak punya predict(): pakai core point terdekat
+baru = pd.DataFrame({"x1": [0.0, 1.0, 0.5, 2.3], "x2": [1.0, -0.45, 0.25, 1.4]})
+jarak, idx = nn.kneighbors(baru.to_numpy())
+for (x1, x2), d, i in zip(baru.to_numpy(), jarak.ravel(), idx.ravel()):
+    hasil = f"cluster {lab[db.core_sample_indices_[i]]}" if d <= db.eps else "noise"
+    print(f"titik ({x1:+.2f}, {x2:+.2f}) -> {hasil} (jarak ke core point terdekat {d:.3f}, eps = {db.eps})")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, BLACK, fig, save
 f, axes = fig(7.2, 3, ncols=2)
@@ -37,3 +49,4 @@ simpan("dbscan", {"x1": X[:, 0], "x2": X[:, 1], "label_asli": y, "cluster_dbscan
     "label_asli": "Bulan sabit asal (0/1) atau −1 untuk 20 titik noise yang ditambahkan. Hanya untuk evaluasi.",
     "cluster_dbscan": "HASIL DBSCAN: nomor cluster, atau −1 jika dianggap noise.",
 }, idx=[0, 1, 2, 400, 401, 402], catatan="Tiga baris terakhir adalah titik noise yang sengaja ditambahkan.")
+simpan("dbscan_baru", baru, {"x1, x2": "Koordinat titik baru."})

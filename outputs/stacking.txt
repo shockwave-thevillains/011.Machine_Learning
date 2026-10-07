@@ -3,3 +3,8 @@ svm       akurasi 10-fold = 0.9754 ± 0.0141
 knn       akurasi 10-fold = 0.9613 ± 0.0269
 STACKING  akurasi 10-fold = 0.9736 ± 0.0142
 Bobot meta-model (RF, SVM-skor, KNN): [1.29, 2.78, 1.5]
+
+--- prediksi data baru ---
+pasien_A: RF P(jinak)=1.00 | SVM skor=+2.37 | KNN P(jinak)=1.00 -> STACKING P(jinak)=1.000
+pasien_B: RF P(jinak)=0.23 | SVM skor=-0.12 | KNN P(jinak)=0.86 -> STACKING P(jinak)=0.371
+pasien_C: RF P(jinak)=0.00 | SVM skor=-2.73 | KNN P(jinak)=0.00 -> STACKING P(jinak)=0.000

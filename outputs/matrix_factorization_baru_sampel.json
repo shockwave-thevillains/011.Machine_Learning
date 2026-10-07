@@ -1,0 +1,32 @@
+{
+ "kolom": [
+  "film",
+  "rating_fajar"
+ ],
+ "baris": [
+  [
+   "Laskar Pelangi",
+   "5"
+  ],
+  [
+   "The Raid",
+   "1"
+  ],
+  [
+   "Pengabdi Setan",
+   "2"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2
+ ],
+ "total_baris": 3,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "film, rating_fajar": "Fajar adalah pengguna baru yang baru menilai 3 film."
+ },
+ "catatan": ""
+}

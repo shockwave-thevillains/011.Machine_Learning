@@ -1,0 +1,78 @@
+{
+ "kolom": [
+  "sampel",
+  "fitur_00",
+  "fitur_01",
+  "fitur_02",
+  "fitur_03",
+  "fitur_04",
+  "fitur_05",
+  "fitur_06",
+  "fitur_07",
+  "fitur_08",
+  "fitur_09",
+  "fitur_19"
+ ],
+ "baris": [
+  [
+   "A",
+   "0.082",
+   "-0.464",
+   "0.051",
+   "0.686",
+   "-1.757",
+   "1.684",
+   "-0.458",
+   "-0.596",
+   "-1.047",
+   "0.932",
+   "-0.453"
+  ],
+  [
+   "B",
+   "3.082",
+   "-0.464",
+   "0.051",
+   "0.686",
+   "-1.757",
+   "1.684",
+   "-0.458",
+   "-0.596",
+   "-1.047",
+   "0.932",
+   "-0.453"
+  ],
+  [
+   "C",
+   "0.082",
+   "-0.464",
+   "0.051",
+   "1.686",
+   "-1.757",
+   "1.684",
+   "-0.458",
+   "-0.596",
+   "-1.047",
+   "0.932",
+   "-0.453"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2
+ ],
+ "total_baris": 3,
+ "total_kolom": 21,
+ "tersembunyi": [
+  "fitur_10",
+  "fitur_18",
+  9
+ ],
+ "keterangan": {
+  "sampel A": "Sampel baru acak.",
+  "sampel B": "Sama dengan A, tetapi fitur_00 (fitur yang dibuang Lasso) dinaikkan 3.",
+  "sampel C": "Sama dengan A, tetapi fitur_03 (fitur yang dipilih Lasso) dinaikkan 1."
+ },
+ "catatan": ""
+}

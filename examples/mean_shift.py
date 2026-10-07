@@ -18,6 +18,14 @@ for c in ms.cluster_centers_:
     print(f"  ({c[0]:+.2f}, {c[1]:+.2f})  anggota = {np.sum(ms.labels_ == ms.predict([c])[0])}")
 print("Pusat asli:", pusat_asli)
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"x1": [1.1, -1.4, 0.0, 3.0], "x2": [-0.9, 1.6, 0.0, 3.0]})
+for xb, k in zip(baru.to_numpy(), ms.predict(baru.to_numpy())):
+    c = ms.cluster_centers_[k]
+    print(f"titik ({xb[0]:+.1f}, {xb[1]:+.1f}) -> cluster {k} (puncak di ({c[0]:+.2f}, {c[1]:+.2f}), jarak {np.linalg.norm(xb - c):.2f})")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, BLACK, fig, save
 cols = [BLUE, RED, BLACK, "#7f7fff", "#ff8080"]
@@ -34,3 +42,4 @@ simpan("mean_shift", {"x1": X[:, 0], "x2": X[:, 1], "cluster_hasil": ms.labels_}
     "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
     "cluster_hasil": "HASIL Mean Shift: puncak kepadatan tempat titik berakhir.",
 })
+simpan("mean_shift_baru", baru, {"x1, x2": "Koordinat titik baru."})

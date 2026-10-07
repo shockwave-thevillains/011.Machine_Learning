@@ -3,3 +3,8 @@ Iterasi terbaik     : 460 (early stopping dari maks 1000)
 Akurasi test        : 0.965
 ROC AUC test        : 0.9941
 Top 3 fitur (gain)  : [('worst perimeter', 19.0), ('mean concave points', 10.3), ('worst radius', 7.2)]
+
+--- prediksi data baru ---
+pasien_A: P(jinak) = 1.000 -> jinak (memakai 461 pohon terbaik)
+pasien_B: P(jinak) = 0.033 -> GANAS (memakai 461 pohon terbaik)
+pasien_C: P(jinak) = 0.000 -> GANAS (memakai 461 pohon terbaik)

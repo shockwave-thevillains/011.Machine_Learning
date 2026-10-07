@@ -31,6 +31,18 @@ for langkah in range(1, 6001):
 print("Target distribusi asli            : mean = 165.00 cm, std =  7.00 cm")
 print(f"Loss akhir D = {loss_D.item():.3f} (≈ 2·ln2 = 1.386 berarti D tak bisa membedakan) | G = {loss_G.item():.3f}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+with torch.no_grad():
+    sampel_baru = (G(torch.randn(8, 4)) * 10 + 165).ravel()
+print("8 tinggi badan baru dari generator (cm):", [round(v, 1) for v in sampel_baru.tolist()])
+baru = pd.DataFrame({"tinggi_cm": [120.0, 150.0, 165.0, 180.0, 210.0]})
+with torch.no_grad():
+    p_asli = torch.sigmoid(D(torch.tensor((baru.tinggi_cm.to_numpy() - 165) / 10, dtype=torch.float32).reshape(-1, 1))).ravel()
+for tinggi, p in zip(baru.tinggi_cm, p_asli.tolist()):
+    print(f"Discriminator menilai {tinggi:.0f} cm: P(asli) = {p:.2f}")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 with torch.no_grad():
@@ -48,3 +60,4 @@ from _sampel import simpan
 simpan("gan", {"tinggi_cm": (data_asli(6) * 10 + 165).numpy().ravel()}, {
     "tinggi_cm": "Tinggi badan dari distribusi asli N(165 cm, 7 cm). Discriminator melihat data ini (dinormalisasi) sebagai contoh \"asli\".",
 }, total=6 * 256 * 1000, catatan="Data asli tidak disimpan sebagai tabel; tiap langkah pelatihan mengambil 256 sampel baru, sehingga 6.000 langkah memakai ±1,5 juta sampel.")
+simpan("gan_baru", baru, {"tinggi_cm": "Nilai tinggi badan yang ingin dinilai Discriminator: wajar atau tidak."})

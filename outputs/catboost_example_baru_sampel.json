@@ -1,0 +1,58 @@
+{
+ "kolom": [
+  "pelanggan",
+  "kota",
+  "paket",
+  "metode_bayar",
+  "lama_langganan_bln",
+  "keluhan_3bln"
+ ],
+ "baris": [
+  [
+   "pelanggan_1",
+   "Jakarta",
+   "Premium",
+   "kartu kredit",
+   "40",
+   "0"
+  ],
+  [
+   "pelanggan_2",
+   "Surabaya",
+   "Standard",
+   "transfer",
+   "12",
+   "2"
+  ],
+  [
+   "pelanggan_3",
+   "Medan",
+   "Basic",
+   "e-wallet",
+   "2",
+   "3"
+  ],
+  [
+   "pelanggan_4",
+   "Yogyakarta",
+   "Basic",
+   "transfer",
+   "6",
+   "1"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 6,
+ "tersembunyi": null,
+ "keterangan": {
+  "pelanggan_1 … pelanggan_4": "Pelanggan aktif yang ingin dinilai risikonya. Kolom churn belum diketahui.",
+  "kota = Yogyakarta": "Kota ini tidak pernah muncul di data latih."
+ },
+ "catatan": ""
+}

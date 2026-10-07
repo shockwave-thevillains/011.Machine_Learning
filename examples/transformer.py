@@ -40,6 +40,17 @@ with torch.no_grad():
     print("Input :", contoh[0].tolist())
     print("Output:", model(contoh).argmax(-1)[0].tolist())
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+deret_baru = [[9, 8, 7, 6, 5, 4, 3, 2], [0, 1, 2, 3, 4, 5, 6, 7], [5, 5, 5, 5, 5, 5, 5, 5],
+              [3, 0, 3, 0, 3, 0, 3, 0], [9, 0, 9, 0, 1, 1, 8, 8]]
+baru = pd.DataFrame({"input_deret": [" ".join(map(str, d)) for d in deret_baru]})
+with torch.no_grad():
+    keluaran = model(torch.tensor(deret_baru)).argmax(-1).tolist()
+for d, o in zip(deret_baru, keluaran):
+    print(f"{d} -> {o} {'benar' if o == sorted(d) else 'SALAH, seharusnya ' + str(sorted(d))}")
+
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
 xs, ys = batch(6)
@@ -48,3 +59,4 @@ simpan("transformer", {"input_deret": [" ".join(map(str, r)) for r in xs.tolist(
     "input_deret": "8 digit acak (token 0–9). Input model.",
     "target_terurut": "Digit yang sama setelah diurutkan. Model memprediksi digit di setiap posisi.",
 }, total=1500 * 128, catatan="Data dibangkitkan baru di setiap langkah: 1.500 langkah × 128 deret = 192.000 deret latih.")
+simpan("transformer_baru", baru, {"input_deret": "Deret khusus: terurut terbalik, sudah terurut, semua sama, pola berulang, banyak kembar."})

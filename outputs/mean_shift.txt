@@ -9,3 +9,9 @@ Pusat yang ditemukan (tanpa memberi tahu jumlah cluster):
   (+0.95, +0.99)  anggota = 200
   (-1.50, +1.50)  anggota = 200
 Pusat asli: [(1, 1), (-1, -1), (1, -1), (-1.5, 1.5)]
+
+--- prediksi data baru ---
+titik (+1.1, -0.9) -> cluster 0 (puncak di (+1.05, -1.00), jarak 0.11)
+titik (-1.4, +1.6) -> cluster 3 (puncak di (-1.50, +1.50), jarak 0.14)
+titik (+0.0, +0.0) -> cluster 2 (puncak di (+0.95, +0.99), jarak 1.38)
+titik (+3.0, +3.0) -> cluster 2 (puncak di (+0.95, +0.99), jarak 2.87)

@@ -44,6 +44,24 @@ naif = seri[900 + W - 1:-1]                      # baseline: "sama seperti jam s
 print(f"MAE LSTM            : {np.abs(pred - asli).mean():.3f} MW")
 print(f"MAE baseline naif   : {np.abs(naif - asli).mean():.3f} MW")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"jam_ke": t[-W:], "beban_mw": seri[-W:]})   # 48 jam terakhir menjadi input
+jendela = list(z[-W:])
+ramalan = []
+with torch.no_grad():
+    for _ in range(24):                           # ramal 24 jam ke depan, satu jam per langkah
+        nxt = model(torch.tensor(jendela[-W:], dtype=torch.float32).reshape(1, W, 1)).item()
+        ramalan.append(nxt)
+        jendela.append(nxt)
+ramalan = np.array(ramalan) * sd + mu
+jam_depan = np.arange(1200, 1224)
+pola = 10 + 3 * np.sin(2 * np.pi * jam_depan / 24) + 1.5 * np.sin(2 * np.pi * jam_depan / 168)
+for j in (0, 5, 11, 17, 23):
+    print(f"jam ke-{jam_depan[j]}: ramalan {ramalan[j]:5.2f} MW | pola sebenarnya (tanpa noise) {pola[j]:5.2f} MW")
+print(f"MAE ramalan 24 jam ke depan: {np.abs(ramalan - pola).mean():.3f} MW")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
@@ -59,3 +77,5 @@ simpan("lstm", {"jam_ke": t, "beban_mw": seri}, {
     "jam_ke": "Urutan jam sejak awal data.",
     "beban_mw": "Beban listrik pada jam tersebut (MW).",
 }, catatan="Model membaca 48 jam berturut-turut (jendela) untuk menebak jam ke-49. Jam 0–947 untuk latih, sisanya untuk uji.")
+simpan("lstm_baru", baru, {"jam_ke, beban_mw": "48 jam terakhir yang sudah terjadi; dipakai untuk meramal 24 jam berikutnya (jam 1200–1223)."},
+       idx=[0, 1, 2, 45, 46, 47])

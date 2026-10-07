@@ -12,3 +12,8 @@ linkage=single   ARI vs spesies asli = 0.558
 Potong dendrogram jadi 2 cluster -> ukuran: [101, 49]
 Potong dendrogram jadi 3 cluster -> ukuran: [71, 49, 30]
 Potong dendrogram jadi 4 cluster -> ukuran: [49, 45, 30, 26]
+
+--- prediksi data baru ---
+bunga_1 -> cluster 1 (jarak ke pusat 0.13; anggota cluster ini mayoritas setosa)
+bunga_2 -> cluster 2 (jarak ke pusat 0.71; anggota cluster ini mayoritas versicolor)
+bunga_3 -> cluster 0 (jarak ke pusat 0.70; anggota cluster ini mayoritas virginica)

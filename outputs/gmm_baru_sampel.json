@@ -1,0 +1,37 @@
+{
+ "kolom": [
+  "x1",
+  "x2"
+ ],
+ "baris": [
+  [
+   "0.410",
+   "-1.780"
+  ],
+  [
+   "0.810",
+   "-1.810"
+  ],
+  [
+   "3.520",
+   "-6.300"
+  ],
+  [
+   "11.020",
+   "6.220"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Titik baru: di pusat komponen 0, di antara komponen 0 dan 2, dekat komponen 1, dan jauh dari semuanya."
+ },
+ "catatan": ""
+}

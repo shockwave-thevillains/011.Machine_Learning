@@ -1,0 +1,37 @@
+{
+ "kolom": [
+  "pendapatan_juta_thn",
+  "skor_belanja"
+ ],
+ "baris": [
+  [
+   "30",
+   "85"
+  ],
+  [
+   "62",
+   "45"
+  ],
+  [
+   "100",
+   "15"
+  ],
+  [
+   "45",
+   "50"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "pendapatan_juta_thn, skor_belanja": "Pelanggan baru yang belum punya segmen."
+ },
+ "catatan": ""
+}

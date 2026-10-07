@@ -2,3 +2,9 @@ Decision Tree tunggal : akurasi 0.814 ± 0.048
 Bagging 200 pohon     : akurasi 0.854 ± 0.039
 OOB score bagging     : 0.854
 Rata-rata porsi data unik per sampel bootstrap: 55.1%
+
+--- prediksi data baru ---
+titik (+0.0, +0.9) -> kelas 0 | 0% dari 200 pohon memilih kelas 1
+titik (+1.0, -0.4) -> kelas 1 | 100% dari 200 pohon memilih kelas 1
+titik (+0.5, +0.2) -> kelas 1 | 88% dari 200 pohon memilih kelas 1
+titik (+1.8, +0.1) -> kelas 1 | 92% dari 200 pohon memilih kelas 1

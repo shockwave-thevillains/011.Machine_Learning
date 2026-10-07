@@ -13,3 +13,11 @@ Rekomendasi untuk Budi  : Dilan 1990
 Rekomendasi untuk Citra : (tidak ada yang cocok, prediksi < 3.5)
 Rekomendasi untuk Dewi  : (tidak ada yang cocok, prediksi < 3.5)
 Rekomendasi untuk Eko   : (tidak ada yang cocok, prediksi < 3.5)
+
+--- prediksi data baru ---
+Fajar x Laskar Pelangi   -> 5.0 (sudah dinilai)
+Fajar x Dilan 1990       -> 5.0 
+Fajar x Pengabdi Setan   -> 2.1 (sudah dinilai)
+Fajar x The Raid         -> 1.5 (sudah dinilai)
+Fajar x KKN Desa Penari  -> 2.1 
+Fajar x Habibie & Ainun  -> 4.8

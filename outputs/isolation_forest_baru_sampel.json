@@ -1,0 +1,42 @@
+{
+ "kolom": [
+  "nominal_ribu_rp",
+  "jam_transaksi"
+ ],
+ "baris": [
+  [
+   "150",
+   "12"
+  ],
+  [
+   "450",
+   "19"
+  ],
+  [
+   "3.500",
+   "2"
+  ],
+  [
+   "900",
+   "23"
+  ],
+  [
+   "2.800",
+   "14"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "total_baris": 5,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "nominal_ribu_rp, jam_transaksi": "Transaksi baru yang masuk hari ini."
+ },
+ "catatan": ""
+}

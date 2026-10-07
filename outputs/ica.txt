@@ -1,3 +1,8 @@
 Korelasi |r| sumber asli vs hasil pemisahan (1.0 = sempurna):
   FastICA  sinus=0.998  kotak=1.000  gergaji=0.999
   PCA      sinus=0.678  kotak=0.812  gergaji=0.722
+
+--- prediksi data baru ---
+rekaman baru, sumber sinus   : |r| = 0.998
+rekaman baru, sumber kotak   : |r| = 1.000
+rekaman baru, sumber gergaji : |r| = 0.999

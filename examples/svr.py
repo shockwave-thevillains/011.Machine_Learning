@@ -16,6 +16,13 @@ for kernel in ("linear", "poly", "rbf"):
 svr = SVR(kernel="rbf", C=10, epsilon=0.1).fit(X_tr, y_tr)
 print(f"Prediksi x=2.5 -> {svr.predict([[2.5]])[0]:.3f} (nilai sebenarnya tanpa noise = {np.sin(2.5) + .75:.3f})")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+baru = pd.DataFrame({"x": [0.5, 3.0, 4.0, 5.5, 7.0]})
+for xb, p in zip(baru.x, svr.predict(baru.to_numpy())):
+    print(f"x = {xb:3.1f} -> prediksi {p:6.3f} | nilai sebenarnya tanpa noise {np.sin(xb) + 0.3 * xb:6.3f}")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, BLACK, fig, save
 f, ax = fig()
@@ -35,3 +42,4 @@ simpan("svr", {"x": X.ravel(), "y": y}, {
     "x": "Fitur input, 0 sampai 6.",
     "y": "Target = sin(x) + 0,3·x + noise. Hubungannya melengkung sehingga butuh kernel non-linear.",
 })
+simpan("svr_baru", baru, {"x": "Nilai input baru. Data latih hanya mencakup x = 0 sampai 6."})

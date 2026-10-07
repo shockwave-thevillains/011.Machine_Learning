@@ -1,0 +1,62 @@
+{
+ "kolom": [
+  "waktu",
+  "mik_1",
+  "mik_2",
+  "mik_3"
+ ],
+ "baris": [
+  [
+   "8",
+   "-1.488",
+   "-2.344",
+   "-1.832"
+  ],
+  [
+   "8.004",
+   "-1.485",
+   "-2.337",
+   "-1.823"
+  ],
+  [
+   "8.008",
+   "-1.482",
+   "-2.331",
+   "-1.813"
+  ],
+  [
+   "9.002",
+   "0.657",
+   "2.031",
+   "0.688"
+  ],
+  [
+   "9.006",
+   "0.673",
+   "2.044",
+   "0.717"
+  ],
+  [
+   "10",
+   "-1.087",
+   "-2.544",
+   "-1.631"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  250,
+  251,
+  499
+ ],
+ "total_baris": 500,
+ "total_kolom": 4,
+ "tersembunyi": null,
+ "keterangan": {
+  "waktu": "Detik ke-8 sampai ke-10, setelah rekaman latih berakhir.",
+  "mik_1, mik_2, mik_3": "Rekaman baru dari tiga mikrofon yang sama."
+ },
+ "catatan": ""
+}

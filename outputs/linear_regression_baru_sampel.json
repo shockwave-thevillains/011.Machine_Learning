@@ -1,0 +1,32 @@
+{
+ "kolom": [
+  "luas_m2"
+ ],
+ "baris": [
+  [
+   "36"
+  ],
+  [
+   "72"
+  ],
+  [
+   "150"
+  ],
+  [
+   "250"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 1,
+ "tersembunyi": null,
+ "keterangan": {
+  "luas_m2": "Luas rumah yang ingin ditaksir harganya. Harga belum diketahui."
+ },
+ "catatan": ""
+}

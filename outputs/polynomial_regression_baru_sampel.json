@@ -1,0 +1,32 @@
+{
+ "kolom": [
+  "suhu_c"
+ ],
+ "baris": [
+  [
+   "19"
+  ],
+  [
+   "27.500"
+  ],
+  [
+   "33"
+  ],
+  [
+   "37.500"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 1,
+ "tersembunyi": null,
+ "keterangan": {
+  "suhu_c": "Ramalan suhu hari-hari berikutnya; penjualan belum diketahui."
+ },
+ "catatan": ""
+}

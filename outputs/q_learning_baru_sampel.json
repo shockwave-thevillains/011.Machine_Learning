@@ -1,0 +1,37 @@
+{
+ "kolom": [
+  "start_baris",
+  "start_kolom"
+ ],
+ "baris": [
+  [
+   "0",
+   "0"
+  ],
+  [
+   "2",
+   "0"
+  ],
+  [
+   "1",
+   "2"
+  ],
+  [
+   "3",
+   "1"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "total_baris": 4,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "start_baris, start_kolom": "Posisi awal baru. Saat latihan agen selalu mulai dari (0,0)."
+ },
+ "catatan": ""
+}

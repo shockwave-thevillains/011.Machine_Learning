@@ -8,3 +8,8 @@ k = 30 -> akurasi 10-fold CV = 0.947
 k terbaik = 8 (akurasi 0.967)
 Bunga baru diprediksi: virginica
 Label tetangga terdekatnya: ['virginica', 'virginica', 'virginica', 'versicolor', 'versicolor', 'virginica', 'virginica', 'versicolor']
+
+--- prediksi data baru ---
+bunga_1: setosa     (suara 8 tetangga: setosa 100%, versicolor 0%, virginica 0%)
+bunga_2: versicolor (suara 8 tetangga: setosa 0%, versicolor 100%, virginica 0%)
+bunga_3: virginica  (suara 8 tetangga: setosa 0%, versicolor 0%, virginica 100%)

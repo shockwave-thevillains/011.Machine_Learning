@@ -5,3 +5,9 @@ RBF C=0.1   akurasi train = 0.895 | test = 0.911
 RBF C=1     akurasi train = 0.943 | test = 0.967
 RBF C=10    akurasi train = 0.957 | test = 0.978
 RBF C=100   akurasi train = 0.967 | test = 0.989
+
+--- prediksi data baru ---
+titik (+0.00, +1.00) -> kelas 0 | skor (jarak ke batas) = -1.45
+titik (+1.00, -0.50) -> kelas 1 | skor (jarak ke batas) = +1.88
+titik (+2.00, +0.30) -> kelas 1 | skor (jarak ke batas) = +3.28
+titik (+0.50, +0.25) -> kelas 0 | skor (jarak ke batas) = -0.34

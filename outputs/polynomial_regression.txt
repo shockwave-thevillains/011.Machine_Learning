@@ -3,3 +3,9 @@ derajat  2 | R² train = 0.979 | R² test = 0.966
 derajat  3 | R² train = 0.979 | R² test = 0.965
 derajat 15 | R² train = 0.994 | R² test = 0.621
 Prediksi penjualan saat 35°C (derajat 2): 235 gelas
+
+--- prediksi data baru ---
+19.0°C -> derajat 2:    30 gelas | derajat 15:      780 gelas
+27.5°C -> derajat 2:    83 gelas | derajat 15:       76 gelas
+33.0°C -> derajat 2:   185 gelas | derajat 15:      261 gelas
+37.5°C -> derajat 2:   308 gelas | derajat 15:      313 gelas

@@ -1,0 +1,70 @@
+{
+ "kolom": [
+  "pasien",
+  "age",
+  "sex",
+  "bmi",
+  "bp",
+  "s1",
+  "s2",
+  "s3",
+  "s4",
+  "s5",
+  "s6"
+ ],
+ "baris": [
+  [
+   "pasien_1",
+   "30",
+   "1",
+   "21",
+   "78",
+   "160",
+   "90",
+   "65",
+   "2.500",
+   "4",
+   "80"
+  ],
+  [
+   "pasien_2",
+   "50",
+   "2",
+   "27.500",
+   "95",
+   "190",
+   "115",
+   "48",
+   "4",
+   "4.600",
+   "92"
+  ],
+  [
+   "pasien_3",
+   "65",
+   "1",
+   "35",
+   "115",
+   "240",
+   "160",
+   "32",
+   "7",
+   "5.500",
+   "115"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2
+ ],
+ "total_baris": 3,
+ "total_kolom": 11,
+ "tersembunyi": null,
+ "keterangan": {
+  "age, sex": "Usia (tahun) dan jenis kelamin (kode 1/2 dari dataset asli).",
+  "bmi, bp": "Indeks massa tubuh dan tekanan darah rata-rata (mmHg).",
+  "s1 … s6": "Kolesterol total, LDL, HDL (mg/dL), rasio kolesterol/HDL, log trigliserida, gula darah (mg/dL)."
+ },
+ "catatan": "Pasien baru ditulis dalam satuan klinis asli, lalu di kode diskalakan dengan cara yang sama seperti data latih."
+}

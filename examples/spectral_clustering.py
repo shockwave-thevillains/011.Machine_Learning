@@ -21,6 +21,15 @@ eigval = np.linalg.eigvalsh(laplacian(A.toarray(), normed=True))
 print("5 eigenvalue terkecil Laplacian:", np.round(eigval[:5], 4).tolist())
 print("-> ada 2 eigenvalue ≈ 0, artinya graf punya 2 komponen terhubung = 2 cluster")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import pandas as pd
+from sklearn.neighbors import KNeighborsClassifier
+penanda = KNeighborsClassifier(n_neighbors=10).fit(X, sc)   # spectral clustering tidak punya predict()
+baru = pd.DataFrame({"x1": [0.0, 0.95, 0.0, 0.7], "x2": [0.1, 0.0, -0.45, 0.0]})
+for (x1, x2), k, pr in zip(baru.to_numpy(), penanda.predict(baru.to_numpy()), penanda.predict_proba(baru.to_numpy())):
+    print(f"titik ({x1:+.2f}, {x2:+.2f}) jarak ke pusat {np.hypot(x1, x2):.2f} -> cluster {k} ({pr.max():.0%} dari 10 tetangga)")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, axes = fig(7.2, 3.2, ncols=2)
@@ -37,3 +46,4 @@ simpan("spectral_clustering", {"x1": X[:, 0], "x2": X[:, 1], "lingkaran_asli": y
     "lingkaran_asli": "0 = lingkaran luar, 1 = lingkaran dalam. Hanya untuk evaluasi ARI.",
     "cluster_spectral": "HASIL Spectral Clustering. Nomor cluster boleh tertukar (0↔1); yang penting pengelompokannya sama.",
 })
+simpan("spectral_clustering_baru", baru, {"x1, x2": "Titik baru. Cincin dalam berjari-jari ±0,45, cincin luar ±1."})

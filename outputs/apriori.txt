@@ -20,3 +20,9 @@ Aturan asosiasi (confidence ≥ 70%):
   ['beras'] -> ['telur']  support=0.33 conf=0.80 lift=1.37
   ['minyak goreng'] -> ['telur']  support=0.25 conf=0.75 lift=1.29
   ['beras', 'minyak goreng'] -> ['telur']  support=0.25 conf=0.75 lift=1.29
+
+--- prediksi data baru ---
+keranjang ['minyak goreng'] -> tawarkan ['beras'] (aturan ['minyak goreng'] -> ['beras'], conf 1.00, lift 2.40)
+keranjang ['kopi', 'roti'] -> belum ada aturan yang cocok
+keranjang ['mie instan', 'beras'] -> tawarkan ['minyak goreng'] (aturan ['beras'] -> ['minyak goreng'], conf 0.80, lift 2.40)
+keranjang ['kecap'] -> belum ada aturan yang cocok

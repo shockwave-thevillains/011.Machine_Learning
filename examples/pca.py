@@ -16,6 +16,25 @@ p = PCA(n_components=k95).fit(X)
 X_rek = p.inverse_transform(p.transform(X))
 print(f"Error rekonstruksi rata-rata (MSE piksel, skala 0-16): {np.mean((X - X_rek) ** 2):.3f}")
 
+# === PREDIKSI DATA BARU ===
+print("\n--- prediksi data baru ---")
+import numpy as np
+GAMBAR = {                                       # angka baru yang digambar tangan: # = 16, + = 8, spasi = 0
+    "nol":   ["  +##+  ", " +#++#+ ", " ##  ## ", " #+  +# ", " #+  +# ", " ##  ## ", " +#++#+ ", "  +##+  "],
+    "satu":  ["   +#+  ", "  +##+  ", " +###+  ", "   ##+  ", "   ##+  ", "   ##+  ", "   ##+  ", "   +#+  "],
+    "tujuh": ["  +#####", " ++++##+", "    +#+ ", "  +####+", "  ####+ ", "   +#+  ", "  +#+   ", "  +#    "],
+}
+GAMBAR["kotak-kotak"] = ["# # # # ", " # # # #"] * 4  # pola papan catur: BUKAN angka
+def ke_piksel(pola):
+    return np.array([[{"#": 16, "+": 8}.get(c, 0) for c in baris] for baris in pola], dtype=float).ravel()
+X_baru = np.array([ke_piksel(p) for p in GAMBAR.values()])
+Z_baru = p.transform(X_baru)
+error = ((X_baru - p.inverse_transform(Z_baru)) ** 2).mean(1)
+batas = np.percentile(((X - X_rek) ** 2).mean(1), 99)
+for nama, e, z in zip(GAMBAR, error, Z_baru):
+    print(f"gambar '{nama}': PC1 = {z[0]:+6.1f}, PC2 = {z[1]:+6.1f} | error rekonstruksi {e:5.2f} -> {'mirip angka' if e <= batas else 'TIDAK mirip angka'}")
+print(f"(batas: 99% gambar di dataset punya error ≤ {batas:.2f})")
+
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 Z = PCA(2).fit_transform(X)
@@ -31,3 +50,7 @@ save("pca")
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import KET_DIGITS, digits_df, simpan
 simpan("pca", digits_df(X, y), KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel.")
+import pandas as pd
+simpan("pca_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
+       {"nol, satu, tujuh, kotak-kotak": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))
