@@ -7,7 +7,8 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 import numpy as np
 
-X, y = load_diabetes(return_X_y=True)           # 442 pasien, 10 fitur medis
+df = load_diabetes(as_frame=True).frame.rename(columns={"target": "progresi_penyakit"})   # 442 pasien
+X, y = df.drop(columns="progresi_penyakit").to_numpy(), df["progresi_penyakit"].to_numpy()
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.3, random_state=42)
 
 def buat(model):  # 10 fitur -> 65 fitur (interaksi & kuadrat)
@@ -48,9 +49,8 @@ ax.set(xlabel="alpha (kekuatan regularisasi)", ylabel="nilai koefisien", title="
 save("ridge_regression")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import pandas as pd
 from _sampel import simpan
-simpan("ridge_regression", pd.DataFrame(X, columns=load_diabetes().feature_names).assign(progresi_penyakit=y), {
+simpan("ridge_regression", df, {
     "age, sex": "Usia dan jenis kelamin pasien.",
     "bmi, bp": "Indeks massa tubuh dan tekanan darah rata-rata.",
     "s1 … s6": "Enam hasil tes darah: kolesterol total, LDL, HDL, rasio kolesterol/HDL, log trigliserida, gula darah.",

@@ -1,14 +1,16 @@
 # Linear Regression: memprediksi harga rumah dari luas bangunan
 import numpy as np
+import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 
 rng = np.random.default_rng(42)
-luas = rng.uniform(30, 200, 120).reshape(-1, 1)            # m²
-harga = 12.5 * luas.ravel() + 150 + rng.normal(0, 90, 120)  # juta rupiah
+df = pd.DataFrame({"luas_m2": rng.uniform(30, 200, 120)})                       # tabel data: 1 baris = 1 rumah
+df["harga_juta_rp"] = 12.5 * df["luas_m2"] + 150 + rng.normal(0, 90, 120)
+X, y = df[["luas_m2"]].to_numpy(), df["harga_juta_rp"].to_numpy()               # fitur (X) dan target (y)
 
-X_train, X_test, y_train, y_test = train_test_split(luas, harga, test_size=0.25, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 model = LinearRegression().fit(X_train, y_train)
 pred = model.predict(X_test)
 
@@ -29,7 +31,7 @@ for luas_baru, p in zip(baru.luas_m2, model.predict(baru.to_numpy())):
 # === VISUALISASI ===
 from _plot import BLUE, RED, fig, save
 f, ax = fig()
-ax.scatter(luas, harga, s=12, color=BLUE, alpha=.6, label="data")
+ax.scatter(df["luas_m2"], df["harga_juta_rp"], s=12, color=BLUE, alpha=.6, label="data")
 xs = np.linspace(30, 200, 2).reshape(-1, 1)
 ax.plot(xs, model.predict(xs), color=RED, lw=2, label="garis regresi")
 ax.set(xlabel="Luas bangunan (m²)", ylabel="Harga (juta Rp)", title="Linear Regression")
@@ -38,7 +40,7 @@ save("linear_regression")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("linear_regression", {"luas_m2": luas.ravel(), "harga_juta_rp": harga}, {
+simpan("linear_regression", df, {
     "luas_m2": "Luas bangunan dalam m². Fitur input (X).",
     "harga_juta_rp": "Harga rumah dalam juta rupiah. Target (y) yang diprediksi.",
 }, catatan="75% baris dipakai untuk melatih model, 25% untuk menguji (train_test_split).")

@@ -1,5 +1,6 @@
 # DBSCAN: clustering berbasis kepadatan, bisa menemukan bentuk sembarang & noise
 import numpy as np
+import pandas as pd
 from sklearn.cluster import DBSCAN, KMeans
 from sklearn.datasets import make_moons
 from sklearn.metrics import adjusted_rand_score
@@ -8,6 +9,8 @@ X, y = make_moons(n_samples=400, noise=0.07, random_state=0)
 rng = np.random.default_rng(0)
 X = np.vstack([X, rng.uniform([-1.5, -1], [2.5, 1.5], (20, 2))])   # + 20 titik noise
 y = np.concatenate([y, -np.ones(20, int)])
+df = pd.DataFrame({"x1": X[:, 0], "x2": X[:, 1], "label_asli": y})   # label_asli hanya untuk evaluasi
+X = df[["x1", "x2"]].to_numpy()
 
 km = KMeans(n_clusters=2, n_init=10, random_state=0).fit_predict(X)
 db = DBSCAN(eps=0.15, min_samples=5).fit(X)
@@ -44,7 +47,7 @@ save("dbscan")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("dbscan", {"x1": X[:, 0], "x2": X[:, 1], "label_asli": y, "cluster_dbscan": lab}, {
+simpan("dbscan", df.assign(cluster_dbscan=lab), {
     "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
     "label_asli": "Bulan sabit asal (0/1) atau −1 untuk 20 titik noise yang ditambahkan. Hanya untuk evaluasi.",
     "cluster_dbscan": "HASIL DBSCAN: nomor cluster, atau −1 jika dianggap noise.",

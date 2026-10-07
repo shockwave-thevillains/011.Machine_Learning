@@ -2,6 +2,7 @@
 import time
 
 import lightgbm as lgb
+import pandas as pd
 from sklearn.datasets import make_classification
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import roc_auc_score
@@ -9,6 +10,8 @@ from sklearn.model_selection import train_test_split
 
 X, y = make_classification(n_samples=100_000, n_features=40, n_informative=15,
                            random_state=0)
+df = pd.DataFrame(X, columns=[f"f{i:02d}" for i in range(40)]).assign(kelas=y)   # 100.000 baris x 41 kolom
+X, y = df.drop(columns="kelas").to_numpy(), df["kelas"].to_numpy()
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.2, random_state=0)
 
 t = time.perf_counter()
@@ -38,9 +41,8 @@ lgbm.predict(X_te)
 print(f"Waktu memprediksi {len(X_te):,} baris sekaligus: {time.perf_counter() - t:.2f} detik")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import pandas as pd
 from _sampel import simpan
-simpan("lightgbm_example", pd.DataFrame(X, columns=[f"f{i:02d}" for i in range(40)]).assign(kelas=y), {
+simpan("lightgbm_example", df, {
     "f00 … f39": "40 fitur numerik sintetis: 15 informatif, 2 kombinasi linear dari fitur informatif, sisanya noise.",
     "kelas": "Target biner 0/1.",
 })

@@ -1,39 +1,88 @@
 {
  "kolom": [
-  "id_struk",
-  "barang",
-  "jumlah_barang"
+  "beras",
+  "gula",
+  "kecap",
+  "kopi",
+  "mie instan",
+  "minyak goreng",
+  "roti",
+  "saus sambal",
+  "susu kental manis",
+  "telur"
  ],
  "baris": [
   [
-   "1",
-   "beras, telur, minyak goreng",
-   "3"
+   "True",
+   "False",
+   "False",
+   "False",
+   "False",
+   "True",
+   "False",
+   "False",
+   "False",
+   "True"
   ],
   [
-   "2",
-   "kopi, gula, susu kental manis",
-   "3"
+   "False",
+   "True",
+   "False",
+   "True",
+   "False",
+   "False",
+   "False",
+   "False",
+   "True",
+   "False"
   ],
   [
-   "3",
-   "mie instan, telur, kopi",
-   "3"
+   "False",
+   "False",
+   "False",
+   "True",
+   "True",
+   "False",
+   "False",
+   "False",
+   "False",
+   "True"
   ],
   [
-   "4",
-   "beras, telur, minyak goreng, kecap",
-   "4"
+   "True",
+   "False",
+   "True",
+   "False",
+   "False",
+   "True",
+   "False",
+   "False",
+   "False",
+   "True"
   ],
   [
-   "5",
-   "kopi, gula, roti",
-   "3"
+   "False",
+   "True",
+   "False",
+   "True",
+   "False",
+   "False",
+   "True",
+   "False",
+   "False",
+   "False"
   ],
   [
-   "6",
-   "mie instan, telur, saus sambal",
-   "3"
+   "False",
+   "False",
+   "False",
+   "False",
+   "True",
+   "False",
+   "False",
+   "True",
+   "False",
+   "True"
   ]
  ],
  "nomor_baris": [
@@ -45,12 +94,10 @@
   5
  ],
  "total_baris": 12,
- "total_kolom": 3,
+ "total_kolom": 10,
  "tersembunyi": null,
  "keterangan": {
-  "id_struk": "Nomor struk belanja.",
-  "barang": "Barang yang dibeli bersamaan dalam satu struk.",
-  "jumlah_barang": "Banyaknya barang di struk itu."
+  "beras … telur": "Satu kolom per jenis barang (10 barang). True = barang itu ada di struk tersebut."
  },
- "catatan": "Sebelum diolah, TransactionEncoder mengubah tiap struk menjadi satu baris True/False dengan 10 kolom (satu per jenis barang)."
+ "catatan": "Tabel ini dibuat TransactionEncoder dari daftar transaksi di kode; 1 baris = 1 struk belanja. Inilah yang diolah apriori()."
 }

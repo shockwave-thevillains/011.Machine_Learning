@@ -1,4 +1,4 @@
-Waktu UMAP             : 13.8 detik (termasuk kompilasi JIT numba)
+Waktu UMAP             : 15.3 detik (termasuk kompilasi JIT numba)
 Trustworthiness UMAP   : 0.989
 Data baru bisa diproyeksikan: [[16.29, 11.6], [0.37, 5.49]] ...
 

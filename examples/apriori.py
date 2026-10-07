@@ -46,12 +46,9 @@ for k in keranjang_baru:
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("apriori", {"id_struk": range(1, len(transaksi) + 1), "barang": [", ".join(t) for t in transaksi],
-                   "jumlah_barang": [len(t) for t in transaksi]}, {
-    "id_struk": "Nomor struk belanja.",
-    "barang": "Barang yang dibeli bersamaan dalam satu struk.",
-    "jumlah_barang": "Banyaknya barang di struk itu.",
-}, catatan=f"Sebelum diolah, TransactionEncoder mengubah tiap struk menjadi satu baris True/False dengan {df.shape[1]} kolom (satu per jenis barang).")
+simpan("apriori", df, {
+    "beras … telur": f"Satu kolom per jenis barang ({df.shape[1]} barang). True = barang itu ada di struk tersebut.",
+}, catatan="Tabel ini dibuat TransactionEncoder dari daftar transaksi di kode; 1 baris = 1 struk belanja. Inilah yang diolah apriori().")
 simpan("apriori_baru", {"pembeli": [f"pembeli_{i + 1}" for i in range(len(keranjang_baru))],
                          "isi_keranjang": [", ".join(k) for k in keranjang_baru]},
        {"isi_keranjang": "Barang yang sedang ada di keranjang pembeli baru (belum dibayar)."})

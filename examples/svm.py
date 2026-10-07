@@ -1,9 +1,12 @@
 # Support Vector Machine: margin maksimum + kernel trick untuk data berbentuk bulan sabit
+import pandas as pd
 from sklearn.datasets import make_moons
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 
 X, y = make_moons(n_samples=300, noise=0.2, random_state=42)
+df = pd.DataFrame({"x1": X[:, 0], "x2": X[:, 1], "kelas": y})   # 1 baris = 1 titik
+X, y = df[["x1", "x2"]].to_numpy(), df["kelas"].to_numpy()
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.3, random_state=42)
 
 for kernel in ("linear", "poly", "rbf"):
@@ -40,7 +43,7 @@ save("svm")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("svm", {"x1": X[:, 0], "x2": X[:, 1], "kelas": y}, {
+simpan("svm", df, {
     "x1, x2": "Koordinat titik pada bidang 2D.",
     "kelas": "Target: 0 = bulan sabit atas, 1 = bulan sabit bawah. Kedua kelas saling mengait sehingga tidak bisa dipisah garis lurus.",
 })

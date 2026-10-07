@@ -6,8 +6,12 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-X, y = load_iris(return_X_y=True)
-iris = load_iris()
+iris = load_iris(as_frame=True)
+df = iris.frame.rename(columns={"sepal length (cm)": "sepal_pjg_cm", "sepal width (cm)": "sepal_lbr_cm",
+                                "petal length (cm)": "petal_pjg_cm", "petal width (cm)": "petal_lbr_cm",
+                                "target": "spesies"})    # 150 bunga; spesies 0 = setosa, 1 = versicolor, 2 = virginica
+kolom_fitur = ["sepal_pjg_cm", "sepal_lbr_cm", "petal_pjg_cm", "petal_lbr_cm"]
+X, y = df[kolom_fitur].to_numpy(), df["spesies"].to_numpy()
 hasil = {}
 for k in range(1, 31):
     model = make_pipeline(StandardScaler(), KNeighborsClassifier(n_neighbors=k))
@@ -43,7 +47,7 @@ ax.legend()
 save("knn")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-from _sampel import KET_IRIS, iris_df, simpan
-simpan("knn", iris_df(), KET_IRIS, idx=[0, 1, 50, 51, 100, 101],
+from _sampel import KET_IRIS, simpan
+simpan("knn", df, KET_IRIS, idx=[0, 1, 50, 51, 100, 101],
        catatan="Dataset diurutkan per spesies (50 bunga per spesies), jadi baris contoh diambil dari ketiganya. Fitur distandarkan (StandardScaler) sebelum jarak dihitung.")
 simpan("knn_baru", baru.reset_index(names="bunga"), {"bunga_1 … bunga_3": "Tiga bunga baru yang diukur, spesiesnya belum diketahui."})

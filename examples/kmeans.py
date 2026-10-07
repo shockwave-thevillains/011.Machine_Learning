@@ -1,11 +1,14 @@
 # K-Means: segmentasi pelanggan berdasarkan pendapatan & skor belanja
 import numpy as np
+import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
 from sklearn.metrics import silhouette_score
 
 X, _ = make_blobs(n_samples=400, centers=[(25, 20), (25, 80), (60, 50), (95, 20), (95, 80)],
-                  cluster_std=7, random_state=42)    # [pendapatan juta/thn, skor belanja 1-100]
+                  cluster_std=7, random_state=42)
+df = pd.DataFrame(X, columns=["pendapatan_juta_thn", "skor_belanja"])   # 400 pelanggan, tanpa label
+X = df.to_numpy()
 
 print(" k | inertia (SSE) | silhouette")
 for k in range(2, 9):
@@ -39,7 +42,7 @@ save("kmeans")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("kmeans", {"pendapatan_juta_thn": X[:, 0], "skor_belanja": X[:, 1], "segmen_hasil": km.labels_}, {
+simpan("kmeans", df.assign(segmen_hasil=km.labels_), {
     "pendapatan_juta_thn": "Pendapatan pelanggan per tahun (juta Rp).",
     "skor_belanja": "Skor perilaku belanja 1–100.",
     "segmen_hasil": "HASIL K-Means (k=5): nomor segmen tiap pelanggan. Tidak ada di data awal.",

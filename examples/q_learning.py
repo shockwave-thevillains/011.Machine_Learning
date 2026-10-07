@@ -1,5 +1,6 @@
 # Q-Learning: agen belajar keluar dari labirin es (gridworld 4x4) lewat trial & error
 import numpy as np
+import pandas as pd
 
 peta = ["SFFF",
         "FHFH",
@@ -20,11 +21,14 @@ rng = np.random.default_rng(0)
 Q = np.zeros((16, 4))
 alpha, gamma, eps = 0.1, 0.95, 1.0
 riwayat = []
+transisi = []                                       # catatan pengalaman agen: inilah "data" Q-learning
 for ep in range(5000):
     s, selesai, total = 0, False, 0
     for _ in range(100):
         a = rng.integers(4) if rng.random() < eps else int(Q[s].argmax())
         s2, r, selesai = langkah(s, a, rng)
+        if ep < 3:                                  # simpan 3 episode pertama sebagai contoh
+            transisi.append((ep + 1, f"({s // n},{s % n})", "kiri bawah kanan atas".split()[a], r, f"({s2 // n},{s2 % n})", selesai))
         Q[s, a] += alpha * (r + gamma * Q[s2].max() * (not selesai) - Q[s, a])   # update Bellman
         s, total = s2, total + r
         if selesai:
@@ -32,6 +36,7 @@ for ep in range(5000):
     eps = max(0.05, eps * 0.999)
     riwayat.append(total)
 
+df = pd.DataFrame(transisi, columns=["episode", "posisi", "aksi", "reward", "posisi_berikut", "selesai"])
 for i in (500, 1000, 2500, 5000):
     print(f"episode {i - 499:>4}-{i:<4}: tingkat sukses = {np.mean(riwayat[i - 500:i]):.1%} (ε akhir = {max(0.05, 0.999 ** i):.2f})")
 
@@ -52,7 +57,6 @@ print(f"Uji 1000 episode dengan kebijakan greedy: sukses {sukses / 1000:.1%}")
 
 # === PREDIKSI DATA BARU ===
 print("\n--- prediksi data baru ---")
-import pandas as pd
 baru = pd.DataFrame({"start_baris": [0, 2, 1, 3], "start_kolom": [0, 0, 2, 1]})
 uji_baru = np.random.default_rng(2)
 for r0, c0 in baru.to_numpy():
@@ -84,21 +88,12 @@ save("q_learning")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-nama_aksi = ["kiri", "bawah", "kanan", "atas"]
-contoh, rng_c, s = [], np.random.default_rng(7), 0
-for i in range(8):
-    a = int(rng_c.integers(4))
-    s2, r, selesai = langkah(s, a, rng_c)
-    contoh.append((i + 1, f"({s // n},{s % n})", nama_aksi[a], r, f"({s2 // n},{s2 % n})", selesai))
-    s = s2
-    if selesai:
-        break
-simpan("q_learning", dict(zip(["langkah", "posisi", "aksi", "reward", "posisi_berikut", "selesai"], zip(*contoh))), {
-    "langkah": "Urutan langkah dalam satu episode.",
+simpan("q_learning", df, {
+    "episode": "Episode latihan ke berapa (contoh: 3 episode pertama).",
     "posisi, posisi_berikut": "Petak (baris, kolom) sebelum dan sesudah bergerak. (0,0) = start, (3,3) = tujuan.",
     "aksi": "Aksi yang dipilih agen. Karena es licin, 10% gerakan berubah acak.",
     "reward": "1 jika mencapai tujuan, selain itu 0.",
     "selesai": "True jika agen jatuh ke lubang atau sampai tujuan.",
-}, total=len(contoh), catatan="Q-learning tidak memakai dataset tetap. Datanya adalah transisi seperti ini, yang dikumpulkan sendiri oleh agen. "
-                              "Contoh di atas adalah satu episode dengan aksi acak, seperti yang dialami agen di awal pelatihan (ε = 1).")
+}, catatan="Q-learning tidak memakai dataset tetap. Datanya adalah transisi seperti ini, yang dikumpulkan sendiri oleh agen selama latihan. "
+           "Di awal latihan ε = 1, jadi aksinya masih acak.")
 simpan("q_learning_baru", baru, {"start_baris, start_kolom": "Posisi awal baru. Saat latihan agen selalu mulai dari (0,0)."})

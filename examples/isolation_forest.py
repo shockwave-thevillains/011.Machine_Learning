@@ -1,13 +1,15 @@
 # Isolation Forest: deteksi transaksi anomali (fraud) dengan "mengisolasi" titik
 import numpy as np
+import pandas as pd
 from sklearn.ensemble import IsolationForest
 from sklearn.metrics import classification_report
 
 rng = np.random.default_rng(42)
 normal = rng.normal([300, 14], [120, 3], (1000, 2))          # [nominal ribu Rp, jam transaksi]
 fraud = np.c_[rng.uniform(2000, 5000, 15), rng.uniform(0, 5, 15)]   # nominal besar, dini hari
-X = np.vstack([normal, fraud])
-y = np.r_[np.zeros(1000), np.ones(15)]
+df = pd.DataFrame(np.vstack([normal, fraud]), columns=["nominal_ribu_rp", "jam_transaksi"])
+df["fraud_asli"] = np.r_[np.zeros(1000), np.ones(15)].astype(int)   # hanya untuk evaluasi
+X, y = df[["nominal_ribu_rp", "jam_transaksi"]].to_numpy(), df["fraud_asli"].to_numpy()
 
 iso = IsolationForest(n_estimators=200, contamination=0.015, random_state=0).fit(X)
 pred = (iso.predict(X) == -1).astype(int)       # -1 = anomali
@@ -36,8 +38,7 @@ save("isolation_forest")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("isolation_forest", {"nominal_ribu_rp": X[:, 0], "jam_transaksi": X[:, 1],
-                            "fraud_asli": y.astype(int), "terdeteksi_anomali": pred}, {
+simpan("isolation_forest", df.assign(terdeteksi_anomali=pred), {
     "nominal_ribu_rp": "Nilai transaksi dalam ribu rupiah.",
     "jam_transaksi": "Jam terjadinya transaksi (0–24).",
     "fraud_asli": "1 = transaksi fraud yang sengaja disisipkan. Hanya untuk evaluasi.",

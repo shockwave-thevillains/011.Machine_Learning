@@ -3,8 +3,9 @@ from sklearn.datasets import load_wine
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.model_selection import cross_val_score
 
-wine = load_wine()                               # 178 sampel, 13 fitur kimia, 3 kultivar
-X, y = wine.data, wine.target
+wine = load_wine(as_frame=True)
+df = wine.frame.rename(columns={"target": "kultivar"})   # 178 anggur: 13 kolom kimia + kultivar
+X, y = df.drop(columns="kultivar").to_numpy(), df["kultivar"].to_numpy()
 lda = LinearDiscriminantAnalysis()
 print(f"Akurasi 10-fold CV          : {cross_val_score(lda, X, y, cv=10).mean():.3f}")
 
@@ -35,9 +36,8 @@ ax.legend()
 save("lda")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import pandas as pd
 from _sampel import simpan
-simpan("lda", pd.DataFrame(X, columns=wine.feature_names).assign(kultivar=y), {
+simpan("lda", df, {
     "alcohol … proline": "13 hasil analisis kimia anggur: kadar alkohol, asam malat, abu, magnesium, fenol, flavanoid, intensitas warna, prolin, dll.",
     "kultivar": "Target: jenis kultivar anggur (0, 1, atau 2) dari satu daerah di Italia.",
 }, idx=[0, 1, 59, 60, 130, 131], catatan="Baris contoh diambil dari ketiga kultivar.")

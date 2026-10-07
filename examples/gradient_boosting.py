@@ -1,4 +1,5 @@
 # Gradient Boosting: tiap pohon baru memperbaiki residual (gradien) pohon sebelumnya
+import pandas as pd
 from sklearn.datasets import make_friedman1
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.linear_model import LinearRegression
@@ -7,6 +8,8 @@ from sklearn.model_selection import train_test_split
 
 # benchmark Friedman #1 — dari paper Jerome Friedman sendiri
 X, y = make_friedman1(n_samples=2000, noise=1.0, random_state=0)
+df = pd.DataFrame(X, columns=[f"x{i:02d}" for i in range(1, 11)]).assign(y=y)   # 2.000 baris
+X, y = df.drop(columns="y").to_numpy(), df["y"].to_numpy()
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.3, random_state=0)
 
 lin = LinearRegression().fit(X_tr, y_tr)
@@ -42,9 +45,8 @@ ax.legend()
 save("gradient_boosting")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import pandas as pd
 from _sampel import simpan
-simpan("gradient_boosting", pd.DataFrame(X, columns=[f"x{i:02d}" for i in range(1, 11)]).assign(y=y), {
+simpan("gradient_boosting", df, {
     "x01 … x05": "Fitur yang dipakai rumus target, nilainya 0–1.",
     "x06 … x10": "Fitur noise, tidak berpengaruh ke target.",
     "y": "Target = 10·sin(π·x01·x02) + 20·(x03 − 0,5)² + 10·x04 + 5·x05 + noise.",

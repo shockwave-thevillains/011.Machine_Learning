@@ -1,6 +1,6 @@
 Data latih: 80,000 baris x 40 fitur
-LightGBM (300 pohon, 80.000 baris)       :   3.5 detik | AUC = 0.9942
-sklearn GBM (100 pohon, hanya 20.000 baris):  27.0 detik | AUC = 0.9611
+LightGBM (300 pohon, 80.000 baris)       :   3.0 detik | AUC = 0.9942
+sklearn GBM (100 pohon, hanya 20.000 baris):  25.1 detik | AUC = 0.9611
 Jumlah daun per pohon LightGBM (maks)    : 63
 
 --- prediksi data baru ---
@@ -9,4 +9,4 @@ baris 1: P(kelas 1) = 0.000 -> prediksi 0 | label asli 0
 baris 2: P(kelas 1) = 0.004 -> prediksi 0 | label asli 0
 baris 3: P(kelas 1) = 0.996 -> prediksi 1 | label asli 1
 baris 4: P(kelas 1) = 0.047 -> prediksi 0 | label asli 0
-Waktu memprediksi 20,000 baris sekaligus: 0.15 detik
+Waktu memprediksi 20,000 baris sekaligus: 0.14 detik

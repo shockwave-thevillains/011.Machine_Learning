@@ -1,5 +1,6 @@
 # Elastic Net: gabungan L1 + L2, stabil saat fitur saling berkorelasi
 import numpy as np
+import pandas as pd
 from sklearn.linear_model import ElasticNet, Lasso
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
@@ -9,8 +10,10 @@ n = 300
 dasar = rng.normal(size=(n, 3))
 # tiap faktor dasar punya 4 "kembaran" yang hampir identik -> 12 fitur berkorelasi + 18 fitur noise
 grup = np.hstack([dasar[:, [i]] + rng.normal(0, .01, (n, 4)) for i in range(3)])
-X = np.hstack([grup, rng.normal(size=(n, 18))])
-y = 3 * dasar[:, 0] - 2 * dasar[:, 1] + 1.5 * dasar[:, 2] + rng.normal(0, .5, n)
+kolom = [f"{g}{i}" for g in "ABC" for i in range(1, 5)] + [f"noise_{i:02d}" for i in range(1, 19)]
+df = pd.DataFrame(np.hstack([grup, rng.normal(size=(n, 18))]), columns=kolom)     # 300 baris x 30 fitur
+df["y"] = 3 * dasar[:, 0] - 2 * dasar[:, 1] + 1.5 * dasar[:, 2] + rng.normal(0, .5, n)
+X, y = df[kolom].to_numpy(), df["y"].to_numpy()
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.3, random_state=3)
 
 lasso = Lasso(alpha=0.1, max_iter=50_000).fit(X_tr, y_tr)
@@ -26,7 +29,6 @@ print("Lasso membuang", np.sum(lasso.coef_[:12] == 0), "fitur kembar secara acak
 # === PREDIKSI DATA BARU ===
 print("\n--- prediksi data baru ---")
 import pandas as pd
-kolom = [f"{g}{i}" for g in "ABC" for i in range(1, 5)] + [f"noise_{i:02d}" for i in range(1, 19)]
 normal = np.zeros(30)
 normal[:4] = 1.0                                  # faktor A = 1 terbaca di keempat sensor kembar
 rusak = normal.copy()
@@ -47,10 +49,8 @@ ax.legend()
 save("elastic_net")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import pandas as pd
 from _sampel import simpan
-nama_kolom = [f"{g}{i}" for g in "ABC" for i in range(1, 5)] + [f"noise_{i:02d}" for i in range(1, 19)]
-simpan("elastic_net", pd.DataFrame(X, columns=nama_kolom).assign(y=y), {
+simpan("elastic_net", df, {
     "A1 … A4": "Empat fitur \"kembar\" yang hampir identik (berasal dari faktor dasar A). Begitu juga B1 … B4 dan C1 … C4.",
     "noise_01 … noise_18": "18 fitur acak yang sama sekali tidak berhubungan dengan y.",
     "y": "Target = 3·A − 2·B + 1,5·C + noise.",

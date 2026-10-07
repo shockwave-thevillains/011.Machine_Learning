@@ -1,10 +1,13 @@
 # Gaussian Mixture Model + algoritma EM: clustering probabilistik (soft clustering)
 import numpy as np
+import pandas as pd
 from sklearn.datasets import make_blobs
 from sklearn.mixture import GaussianMixture
 
 X, y = make_blobs(n_samples=600, centers=3, cluster_std=[1.0, 1.5, 0.6], random_state=2)
 X = X @ np.array([[0.6, -0.6], [-0.4, 0.8]])   # buat cluster lonjong (anisotropik)
+df = pd.DataFrame(X, columns=["x1", "x2"])          # 600 titik, tanpa label
+X = df.to_numpy()
 
 print("Memilih jumlah komponen dengan BIC (lebih kecil lebih baik):")
 for k in range(1, 7):
@@ -46,8 +49,7 @@ save("gmm")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("gmm", {"x1": X[:, 0], "x2": X[:, 1], "komponen_hasil": gmm.predict(X),
-               "p_keanggotaan_maks": gmm.predict_proba(X).max(1)}, {
+simpan("gmm", df.assign(komponen_hasil=gmm.predict(X), p_keanggotaan_maks=gmm.predict_proba(X).max(1)), {
     "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
     "komponen_hasil": "HASIL: komponen Gaussian yang paling mungkin.",
     "p_keanggotaan_maks": "HASIL: seberapa yakin model (probabilitas komponen terpilih).",

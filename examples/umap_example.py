@@ -7,7 +7,8 @@ from sklearn.datasets import load_digits
 from sklearn.manifold import trustworthiness
 
 warnings.filterwarnings("ignore")
-X, y = load_digits(return_X_y=True)
+df = load_digits(as_frame=True).frame.rename(columns={"target": "digit"})   # 1797 gambar: 64 kolom piksel + digit
+X, y = df.drop(columns="digit").to_numpy(), df["digit"].to_numpy()
 
 t = time.perf_counter()
 reducer = umap.UMAP(n_neighbors=15, min_dist=0.1, n_components=2, random_state=42)
@@ -47,9 +48,9 @@ ax.set(title="UMAP: digit tulisan tangan", xticks=[], yticks=[])
 save("umap_example")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-from _sampel import KET_DIGITS, digits_df, simpan
-simpan("umap_example", digits_df(X, y), KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel. UMAP tidak memakai kolom digit; kolom ini hanya untuk mewarnai grafik.")
+from _sampel import KET_DIGITS, simpan
+simpan("umap_example", df, KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel. UMAP tidak memakai kolom digit; kolom ini hanya untuk mewarnai grafik.")
 import pandas as pd
 simpan("umap_example_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
        {"nol, satu, tujuh": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
-       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti pixel_0_0 … pixel_7_7.", idx=range(8))

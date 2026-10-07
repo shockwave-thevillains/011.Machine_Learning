@@ -8,8 +8,8 @@
   ['minyak goreng', 'telur']  support = 0.25
 
 Aturan asosiasi (confidence ≥ 70%):
-  ['minyak goreng'] -> ['beras']  support=0.33 conf=1.00 lift=2.40
   ['beras'] -> ['minyak goreng']  support=0.33 conf=0.80 lift=2.40
+  ['minyak goreng'] -> ['beras']  support=0.33 conf=1.00 lift=2.40
   ['minyak goreng', 'telur'] -> ['beras']  support=0.25 conf=1.00 lift=2.40
   ['beras', 'telur'] -> ['minyak goreng']  support=0.25 conf=0.75 lift=2.25
   ['minyak goreng'] -> ['beras', 'telur']  support=0.25 conf=0.75 lift=2.25

@@ -1,5 +1,6 @@
 # Hidden Markov Model: menebak cuaca (tersembunyi) dari aktivitas teman (terlihat)
 import numpy as np
+import pandas as pd
 
 state = ["Hujan", "Cerah"]
 obs_nama = ["jalan-jalan", "belanja", "bersih-bersih"]
@@ -27,7 +28,9 @@ def viterbi(obs):                                # urutan state paling mungkin
         jalur.insert(0, int(j[jalur[0]]))
     return jalur, np.exp(delta.max())
 
-amatan = [0, 1, 2, 2, 0]                          # 5 hari aktivitas teman
+df = pd.DataFrame({"hari_ke": [1, 2, 3, 4, 5],
+                   "aktivitas": ["jalan-jalan", "belanja", "bersih-bersih", "bersih-bersih", "jalan-jalan"]})
+amatan = [obs_nama.index(a) for a in df["aktivitas"]]   # ubah teks aktivitas menjadi nomor 0/1/2
 print("Aktivitas teman      :", [obs_nama[o] for o in amatan])
 print(f"P(urutan aktivitas)  : {forward(amatan):.6f}  (algoritma Forward)")
 jalur, p = viterbi(amatan)
@@ -50,10 +53,9 @@ print("Ramalan aktivitas besok:", {obs_nama[i]: round(float(p), 2) for i, p in e
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("hmm_viterbi", {"hari_ke": range(1, len(amatan) + 1), "aktivitas_teramati": [obs_nama[o] for o in amatan],
-                       "cuaca_hasil_viterbi": [state[s] for s in jalur]}, {
+simpan("hmm_viterbi", df.assign(cuaca_hasil_viterbi=[state[s] for s in jalur]), {
     "hari_ke": "Urutan hari.",
-    "aktivitas_teramati": "Data input: aktivitas teman yang bisa kita lihat.",
+    "aktivitas": "Data input: aktivitas teman yang bisa kita lihat.",
     "cuaca_hasil_viterbi": "HASIL: cuaca tersembunyi yang paling mungkin menurut algoritma Viterbi.",
 }, catatan="Parameter model (peluang awal π, transisi A, emisi B) ditulis langsung di kode, bukan dipelajari dari data.")
 simpan("hmm_viterbi_baru", {"hari_ke": range(1, 8), "aktivitas_teramati": [obs_nama[o] for o in amatan_baru]},

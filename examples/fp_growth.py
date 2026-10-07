@@ -43,12 +43,9 @@ for k in keranjang_baru:
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-daftar = [", ".join(df.columns[df.iloc[i].to_numpy()]) for i in range(6)]
-simpan("fp_growth", {"id_struk": range(1, 7), "produk": daftar, "jumlah_produk": df.head(6).sum(1).to_numpy()}, {
-    "id_struk": "Nomor struk belanja.",
-    "produk": "Kode produk yang dibeli bersamaan (P00–P59).",
-    "jumlah_produk": "Banyaknya produk di struk itu.",
-}, total=len(df), catatan="Yang diolah algoritma adalah tabel True/False 20.000 baris × 60 kolom produk; di sini ditampilkan sebagai daftar agar mudah dibaca.")
+simpan("fp_growth", df, {
+    "P00 … P59": "Satu kolom per produk. True = produk itu dibeli di struk tersebut.",
+}, catatan="1 baris = 1 struk belanja. P01–P02, P10–P11–P12, dan P30–P31 adalah bundel yang sengaja ditanam.")
 simpan("fp_growth_baru", {"pembeli": [f"pembeli_{i + 1}" for i in range(len(keranjang_baru))],
                            "isi_keranjang": [", ".join(k) for k in keranjang_baru]},
        {"isi_keranjang": "Produk yang sedang ada di keranjang pembeli baru."})

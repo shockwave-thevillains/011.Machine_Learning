@@ -5,7 +5,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler
 
-X, y = load_digits(return_X_y=True)             # 1797 gambar, 64 piksel
+df = load_digits(as_frame=True).frame.rename(columns={"target": "digit"})   # 1797 gambar: 64 kolom piksel + digit
+X, y = df.drop(columns="digit").to_numpy(), df["digit"].to_numpy()
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.25, stratify=y, random_state=42)
 sc = StandardScaler().fit(X_tr)
 
@@ -45,9 +46,9 @@ ax.set(xlabel="iterasi (epoch)", ylabel="cross-entropy loss (log)", title="MLP: 
 save("mlp")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-from _sampel import KET_DIGITS, digits_df, simpan
-simpan("mlp", digits_df(X, y), KET_DIGITS, catatan="Sebelum masuk jaringan, tiap kolom piksel distandarkan (StandardScaler).")
+from _sampel import KET_DIGITS, simpan
+simpan("mlp", df, KET_DIGITS, catatan="Sebelum masuk jaringan, tiap kolom piksel distandarkan (StandardScaler).")
 import pandas as pd
 simpan("mlp_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
        {"nol, satu, tujuh": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
-       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti pixel_0_0 … pixel_7_7.", idx=range(8))

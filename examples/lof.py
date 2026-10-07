@@ -1,5 +1,6 @@
 # Local Outlier Factor: outlier relatif terhadap kepadatan tetangganya
 import numpy as np
+import pandas as pd
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
 
@@ -7,7 +8,9 @@ rng = np.random.default_rng(1)
 padat = rng.normal([0, 0], 0.3, (200, 2))       # cluster sangat padat
 jarang = rng.normal([5, 5], 1.5, (200, 2))      # cluster renggang
 outlier = np.array([[1.4, 1.4], [-1.2, 1.3], [0, -1.6]])   # dekat cluster padat, tapi "aneh" secara lokal
-X = np.vstack([padat, jarang, outlier])
+df = pd.DataFrame(np.vstack([padat, jarang, outlier]), columns=["x1", "x2"])
+df["kelompok"] = ["padat"] * 200 + ["renggang"] * 200 + ["outlier lokal"] * 3   # hanya untuk evaluasi
+X = df[["x1", "x2"]].to_numpy()
 
 lof = LocalOutlierFactor(n_neighbors=20, contamination=0.02)
 pred_lof = lof.fit_predict(X)
@@ -39,11 +42,8 @@ ax.legend()
 save("lof")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import numpy as np
 from _sampel import simpan
-kelompok = np.array(["padat"] * 200 + ["renggang"] * 200 + ["outlier lokal"] * 3)
-simpan("lof", {"x1": X[:, 0], "x2": X[:, 1], "kelompok": kelompok,
-               "skor_lof": -lof.negative_outlier_factor_, "outlier_lof": (pred_lof == -1).astype(int)}, {
+simpan("lof", df.assign(skor_lof=-lof.negative_outlier_factor_, outlier_lof=(pred_lof == -1).astype(int)), {
     "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
     "kelompok": "Asal titik: cluster padat, cluster renggang, atau outlier lokal. Hanya untuk evaluasi.",
     "skor_lof": "HASIL: skor LOF. Sekitar 1 = normal, makin besar makin janggal.",

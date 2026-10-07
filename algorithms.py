@@ -828,8 +828,8 @@ CEK = {
     ],
     "decision_tree": [
         "Akurasi test 0,978: 44 dari 45 bunga uji diklasifikasikan benar.",
-        "Baca aturan dari atas: jika petal_pjg ≤ 2,45 cm, bunga pasti setosa. Aturan seperti ini bisa dipakai langsung tanpa komputer.",
-        "Importance: hanya petal length (0,551) dan petal width (0,449) yang dipakai. Kedua ciri sepal bernilai 0, artinya tidak membantu di pohon ini.",
+        "Baca aturan dari atas: jika petal_pjg_cm ≤ 2,45, bunga pasti setosa. Aturan seperti ini bisa dipakai langsung tanpa komputer.",
+        "Importance: hanya petal_pjg_cm (0,551) dan petal_lbr_cm (0,449) yang dipakai. Kedua kolom sepal bernilai 0, artinya tidak membantu di pohon ini.",
         "Grafik: setiap kotak berisi aturan pemecahan, jumlah sampel, dan sebaran kelas di simpul itu.",
     ],
     "svm": [
@@ -1094,7 +1094,7 @@ CARA_BACA = {
     "logistic_regression": "Pasien A jelas jinak (0,998) dan pasien C jelas ganas (0,000). Pasien B, yang berada tepat di tengah, diprediksi ganas dengan P(jinak) 0,252. Bandingkan pasien B di Random Forest (0,297), XGBoost (0,033), dan Stacking (0,371): semua model sepakat soal arah, tetapi tingkat keyakinannya berbeda-beda.",
     "perceptron": "Tanda skor menentukan kelas, dan besar skor menunjukkan jarak dari garis pemisah. Titik (0,5; −0,3) dan (−0,2; 0,4) punya skor sangat kecil (+0,094 dan −0,019), artinya keduanya hampir menempel di garis. Perceptron tidak memberi probabilitas, jadi keraguan seperti ini hanya terlihat dari besar skornya.",
     "knn": "Ketiga bunga mendapat suara bulat (100%) dari 8 tetangganya, jadi prediksinya sangat yakin. Suara yang terbelah, misalnya 5 lawan 3, menandakan bunga yang berada di perbatasan dua spesies.",
-    "decision_tree": "Jalur setiap bunga bisa dibaca seperti alasan keputusan. Bunga_1 langsung dikenali sebagai setosa karena petal_pjg 1,4 ≤ 2,45. Bunga_2 dan bunga_3 butuh tiga pertanyaan. Penjelasan seperti ini yang membuat decision tree disukai di bidang yang wajib transparan.",
+    "decision_tree": "Jalur setiap bunga bisa dibaca seperti alasan keputusan. Bunga_1 langsung dikenali sebagai setosa karena petal_pjg_cm 1,4 ≤ 2,45. Bunga_2 dan bunga_3 butuh tiga pertanyaan. Penjelasan seperti ini yang membuat decision tree disukai di bidang yang wajib transparan.",
     "naive_bayes": "Dua SMS penipuan baru dikenali sebagai spam (0,999 dan 0,997). SMS jebakan \"hadiah ulang tahun\" tetap dinilai bukan spam (0,013), karena kata lain seperti \"terima kasih\", \"sudah\", dan \"terima\" lebih kuat menunjuk ke pesan biasa.",
     "lda": "Anggur_1 dan anggur_2 dikenali dengan yakin (P = 1,0). Anggur_3, campuran kultivar 1 dan 2, diprediksi kultivar 1 dengan P = 0,627 vs 0,373: LDA ikut menunjukkan keraguannya. Posisi LD1 +2,17 juga berada di antara kedua kelompok.",
     "svm": "Skor negatif berarti kelas 0, positif kelas 1, dan makin jauh dari 0 makin yakin. Titik (0,5; 0,25) di daerah perbatasan punya skor paling kecil (−0,34), jadi prediksinya paling rawan salah.",
@@ -1128,7 +1128,7 @@ CARA_BACA = {
     "cnn": "Ketiga angka buatan tangan dikenali benar dengan keyakinan ≥ 99,8%, sama baiknya dengan MLP untuk gambar ini. Perbedaan CNN dan MLP lebih terlihat pada gambar yang bergeser atau lebih besar.",
     "lstm": "Ramalan 24 jam mengikuti pola naik-turun harian, tetapi error-nya (MAE 0,57 MW terhadap pola tanpa noise) sekitar dua kali error ramalan 1 jam ke depan (0,29 MW). Setiap ramalan dipakai sebagai input ramalan berikutnya, sehingga kesalahan kecil menumpuk. Makin jauh ke depan, makin besar ketidakpastiannya.",
     "autoencoder": "Pola papan catur terdeteksi jelas sebagai anomali (error 0,434, delapan kali lebih besar dari batas). Angka satu dianggap wajar. Angka nol buatan tangan juga ditandai anomali dan angka tujuh tepat di batas, karena gambar tangan memakai garis tegas tanpa gradasi abu-abu seperti di dataset. Detektor anomali menilai kemiripan dengan data latih, bukan benar atau salahnya isi gambar.",
-    "gan": "Sampel baru dari generator berada di kisaran tinggi badan yang wajar. Namun Discriminator menilai semua nilai, bahkan 120 cm dan 210 cm, dengan P(asli) ≈ 0,5. Setelah keseimbangan tercapai, discriminator tidak lagi berguna sebagai penilai; yang dipakai setelah pelatihan hanya generator.",
+    "gan": "Sampel baru dari generator berada di kisaran tinggi badan yang wajar. Namun Discriminator menilai semua nilai, bahkan 120 cm dan 210 cm, dengan P(asli) sekitar 0,5 (selisihnya hanya beberapa persen). Setelah keseimbangan tercapai, discriminator tidak lagi berguna sebagai penilai; yang dipakai setelah pelatihan hanya generator.",
     "transformer": "Kelima deret sulit diurutkan dengan benar, termasuk pola yang tidak pernah dilihat secara khusus saat latihan. Model benar-benar mempelajari aturan mengurutkan, bukan menghafal contoh. Batasannya: model hanya bisa menerima deret 8 digit, sesuai panjang data latih.",
 }
 PREDIKSI = {k: (v, CARA_BACA.get(k, "")) for k, v in PENGANTAR.items()}

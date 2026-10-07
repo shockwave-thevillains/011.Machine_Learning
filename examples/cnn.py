@@ -6,9 +6,9 @@ from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 
 torch.manual_seed(0)
-X, y = load_digits(return_X_y=True)
-X = torch.tensor(X / 16.0, dtype=torch.float32).reshape(-1, 1, 8, 8)   # (N, channel, H, W)
-y = torch.tensor(y)
+df = load_digits(as_frame=True).frame.rename(columns={"target": "digit"})   # 1797 gambar: 64 kolom piksel + digit
+X = torch.tensor(df.drop(columns="digit").to_numpy() / 16.0, dtype=torch.float32).reshape(-1, 1, 8, 8)   # (N, channel, H, W)
+y = torch.tensor(df["digit"].to_numpy())
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.25, stratify=y, random_state=0)
 
 model = nn.Sequential(
@@ -72,10 +72,9 @@ for ax in axes:
 save("cnn")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-from _sampel import KET_DIGITS, digits_df, simpan
-simpan("cnn", digits_df(X.reshape(len(X), 64).numpy(), y.numpy()), KET_DIGITS,
-       catatan="Nilai piksel sudah dibagi 16 (skala 0–1). Untuk CNN, 64 kolom ini dibentuk ulang menjadi gambar 1 × 8 × 8.")
+from _sampel import KET_DIGITS, simpan
+simpan("cnn", df, KET_DIGITS, catatan="Di kode, nilai piksel dibagi 16 (skala 0–1) lalu 64 kolom ini dibentuk ulang menjadi gambar 1 × 8 × 8.")
 import pandas as pd
 simpan("cnn_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
        {"nol, satu, tujuh": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
-       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti pixel_0_0 … pixel_7_7.", idx=range(8))

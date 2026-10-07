@@ -1,12 +1,15 @@
 # LSTM: memprediksi deret waktu (beban listrik harian sintetis) satu langkah ke depan
 import numpy as np
+import pandas as pd
 import torch
 import torch.nn as nn
 
 torch.manual_seed(0)
 rng = np.random.default_rng(0)
 t = np.arange(1200)
-seri = 10 + 3 * np.sin(2 * np.pi * t / 24) + 1.5 * np.sin(2 * np.pi * t / 168) + rng.normal(0, .3, 1200)
+df = pd.DataFrame({"jam_ke": t})               # 1 baris = 1 jam
+df["beban_mw"] = 10 + 3 * np.sin(2 * np.pi * t / 24) + 1.5 * np.sin(2 * np.pi * t / 168) + rng.normal(0, .3, 1200)
+seri = df["beban_mw"].to_numpy()
 mu, sd = seri.mean(), seri.std()
 z = (seri - mu) / sd
 
@@ -46,7 +49,6 @@ print(f"MAE baseline naif   : {np.abs(naif - asli).mean():.3f} MW")
 
 # === PREDIKSI DATA BARU ===
 print("\n--- prediksi data baru ---")
-import pandas as pd
 baru = pd.DataFrame({"jam_ke": t[-W:], "beban_mw": seri[-W:]})   # 48 jam terakhir menjadi input
 jendela = list(z[-W:])
 ramalan = []
@@ -73,7 +75,7 @@ save("lstm")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("lstm", {"jam_ke": t, "beban_mw": seri}, {
+simpan("lstm", df, {
     "jam_ke": "Urutan jam sejak awal data.",
     "beban_mw": "Beban listrik pada jam tersebut (MW).",
 }, catatan="Model membaca 48 jam berturut-turut (jendela) untuk menebak jam ke-49. Jam 0–947 untuk latih, sisanya untuk uji.")

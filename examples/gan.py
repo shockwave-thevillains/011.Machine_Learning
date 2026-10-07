@@ -3,8 +3,9 @@ import torch
 import torch.nn as nn
 
 torch.manual_seed(0)
-def data_asli(n):                                 # tinggi badan ~ N(165 cm, 7 cm), dinormalisasi (x-165)/10
-    return torch.randn(n, 1) * 0.7
+def data_asli(n):                                 # data asli: kolom tinggi_cm ~ N(165 cm, 7 cm)
+    tinggi_cm = torch.randn(n, 1) * 7 + 165
+    return (tinggi_cm - 165) / 10                  # dinormalisasi agar mudah dipelajari
 
 G = nn.Sequential(nn.Linear(4, 32), nn.ReLU(), nn.Linear(32, 32), nn.ReLU(), nn.Linear(32, 1))
 D = nn.Sequential(nn.Linear(1, 32), nn.LeakyReLU(0.2), nn.Linear(32, 32), nn.LeakyReLU(0.2), nn.Linear(32, 1))
@@ -56,8 +57,10 @@ ax.legend()
 save("gan")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
 from _sampel import simpan
-simpan("gan", {"tinggi_cm": (data_asli(6) * 10 + 165).numpy().ravel()}, {
+torch.manual_seed(1)
+simpan("gan", pd.DataFrame({"tinggi_cm": (data_asli(6) * 10 + 165).numpy().ravel()}), {
     "tinggi_cm": "Tinggi badan dari distribusi asli N(165 cm, 7 cm). Discriminator melihat data ini (dinormalisasi) sebagai contoh \"asli\".",
-}, total=6 * 256 * 1000, catatan="Data asli tidak disimpan sebagai tabel; tiap langkah pelatihan mengambil 256 sampel baru, sehingga 6.000 langkah memakai ±1,5 juta sampel.")
+}, total=6 * 256 * 1000, catatan="Contoh keluaran data_asli(). Data asli tidak disimpan sebagai tabel; tiap langkah pelatihan mengambil 256 sampel baru, sehingga 6.000 langkah memakai ±1,5 juta sampel.")
 simpan("gan_baru", baru, {"tinggi_cm": "Nilai tinggi badan yang ingin dinilai Discriminator: wajar atau tidak."})

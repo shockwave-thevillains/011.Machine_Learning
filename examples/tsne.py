@@ -5,7 +5,8 @@ from sklearn.datasets import load_digits
 from sklearn.manifold import TSNE, trustworthiness
 from sklearn.decomposition import PCA
 
-X, y = load_digits(return_X_y=True)
+df = load_digits(as_frame=True).frame.rename(columns={"target": "digit"})   # 1797 gambar: 64 kolom piksel + digit
+X, y = df.drop(columns="digit").to_numpy(), df["digit"].to_numpy()
 
 t = time.perf_counter()
 tsne = TSNE(n_components=2, perplexity=30, init="pca", random_state=0)
@@ -46,9 +47,9 @@ ax.set(title="t-SNE: 1.797 digit tulisan tangan", xticks=[], yticks=[])
 save("tsne")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-from _sampel import KET_DIGITS, digits_df, simpan
-simpan("tsne", digits_df(X, y), KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel. t-SNE tidak memakai kolom digit; kolom ini hanya untuk mewarnai grafik.")
+from _sampel import KET_DIGITS, simpan
+simpan("tsne", df, KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel. t-SNE tidak memakai kolom digit; kolom ini hanya untuk mewarnai grafik.")
 import pandas as pd
 simpan("tsne_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
        {"nol, satu, tujuh": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
-       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti pixel_0_0 … pixel_7_7.", idx=range(8))

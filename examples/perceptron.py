@@ -1,9 +1,11 @@
 # Perceptron Rosenblatt (1958) ditulis dari nol dengan NumPy
 import numpy as np
+import pandas as pd
 from sklearn.datasets import make_blobs
 
 X, y = make_blobs(n_samples=100, centers=[(-1.5, -1.5), (1.5, 1.5)], cluster_std=0.9, random_state=0)
-y = np.where(y == 0, -1, 1)                      # label perceptron: -1 / +1
+df = pd.DataFrame({"x1": X[:, 0], "x2": X[:, 1], "label": np.where(y == 0, -1, 1)})   # label perceptron: -1 / +1
+X, y = df[["x1", "x2"]].to_numpy(), df["label"].to_numpy()
 
 w, b, lr = np.zeros(2), 0.0, 0.1
 for epoch in range(1, 51):
@@ -42,7 +44,7 @@ save("perceptron")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("perceptron", {"x1": X[:, 0], "x2": X[:, 1], "label": y}, {
+simpan("perceptron", df, {
     "x1, x2": "Dua koordinat titik (fitur input).",
     "label": "Target: −1 atau +1 (format label perceptron).",
 })

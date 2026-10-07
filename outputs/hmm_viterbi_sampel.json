@@ -1,7 +1,7 @@
 {
  "kolom": [
   "hari_ke",
-  "aktivitas_teramati",
+  "aktivitas",
   "cuaca_hasil_viterbi"
  ],
  "baris": [
@@ -43,7 +43,7 @@
  "tersembunyi": null,
  "keterangan": {
   "hari_ke": "Urutan hari.",
-  "aktivitas_teramati": "Data input: aktivitas teman yang bisa kita lihat.",
+  "aktivitas": "Data input: aktivitas teman yang bisa kita lihat.",
   "cuaca_hasil_viterbi": "HASIL: cuaca tersembunyi yang paling mungkin menurut algoritma Viterbi."
  },
  "catatan": "Parameter model (peluang awal π, transisi A, emisi B) ditulis langsung di kode, bukan dipelajari dari data."

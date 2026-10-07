@@ -3,7 +3,8 @@ import numpy as np
 from sklearn.datasets import load_digits
 from sklearn.decomposition import PCA
 
-X, y = load_digits(return_X_y=True)             # 1797 x 64
+df = load_digits(as_frame=True).frame.rename(columns={"target": "digit"})   # 1797 gambar: 64 kolom piksel + digit
+X, y = df.drop(columns="digit").to_numpy(), df["digit"].to_numpy()
 pca = PCA().fit(X)
 kum = np.cumsum(pca.explained_variance_ratio_)
 
@@ -48,9 +49,9 @@ axes[1].set(title="Proyeksi 2 komponen utama (warna = digit)", xticks=[], yticks
 save("pca")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-from _sampel import KET_DIGITS, digits_df, simpan
-simpan("pca", digits_df(X, y), KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel.")
+from _sampel import KET_DIGITS, simpan
+simpan("pca", df, KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel.")
 import pandas as pd
 simpan("pca_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
        {"nol, satu, tujuh, kotak-kotak": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
-       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti pixel_0_0 … pixel_7_7.", idx=range(8))

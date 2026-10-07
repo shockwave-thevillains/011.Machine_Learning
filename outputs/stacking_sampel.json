@@ -15,8 +15,8 @@
  ],
  "baris": [
   [
-   "17.990",
-   "10.380",
+   "18.0",
+   "10.4",
    "122.8",
    "1001",
    "0.118",
@@ -29,8 +29,8 @@
    "0"
   ],
   [
-   "20.570",
-   "17.770",
+   "20.6",
+   "17.8",
    "132.9",
    "1326",
    "0.085",
@@ -43,8 +43,8 @@
    "0"
   ],
   [
-   "19.690",
-   "21.250",
+   "19.7",
+   "21.2",
    "130",
    "1203",
    "0.110",
@@ -57,9 +57,9 @@
    "0"
   ],
   [
-   "11.420",
-   "20.380",
-   "77.580",
+   "11.4",
+   "20.4",
+   "77.6",
    "386.1",
    "0.142",
    "0.284",
@@ -71,8 +71,8 @@
    "0"
   ],
   [
-   "20.290",
-   "14.340",
+   "20.3",
+   "14.3",
    "135.1",
    "1297",
    "0.100",
@@ -85,9 +85,9 @@
    "0"
   ],
   [
-   "12.450",
-   "15.700",
-   "82.570",
+   "12.4",
+   "15.7",
+   "82.6",
    "477.1",
    "0.128",
    "0.170",
@@ -118,5 +118,5 @@
   "mean radius … worst fractal dimension": "30 ukuran inti sel dari citra biopsi jarum halus (FNA) jaringan payudara. Ada 10 ciri (radius, texture, perimeter, area, smoothness, compactness, concavity, concave points, symmetry, fractal dimension), masing-masing dalam 3 versi: mean (rata-rata), error (standar error), dan worst (nilai terburuk).",
   "diagnosis": "Target. 0 = ganas (malignant), 1 = jinak (benign)."
  },
- "catatan": "569 pasien: 212 ganas dan 357 jinak. Hanya 11 kolom pertama yang ditampilkan."
+ "catatan": "569 pasien: 212 ganas dan 357 jinak."
 }

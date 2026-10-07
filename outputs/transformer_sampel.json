@@ -44,5 +44,5 @@
   "input_deret": "8 digit acak (token 0–9). Input model.",
   "target_terurut": "Digit yang sama setelah diurutkan. Model memprediksi digit di setiap posisi."
  },
- "catatan": "Data dibangkitkan baru di setiap langkah: 1.500 langkah × 128 deret = 192.000 deret latih."
+ "catatan": "Contoh keluaran batch(). Data dibangkitkan baru di setiap langkah: 1.500 langkah × 128 deret = 192.000 deret latih."
 }

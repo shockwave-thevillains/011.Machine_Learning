@@ -1,10 +1,11 @@
 # Multi-Armed Bandit: A/B testing 3 desain tombol "Beli" — ε-greedy vs UCB1 vs Thompson Sampling
 import numpy as np
+import pandas as pd
 
 ctr_asli = np.array([0.040, 0.050, 0.065])      # tidak diketahui algoritma
 T, ulang = 20_000, 30
 
-def jalankan(strategi, rng):
+def jalankan(strategi, rng, log=None):
     n, s = np.zeros(3), np.zeros(3)              # jumlah tampil, jumlah klik
     regret = np.zeros(T)
     for t in range(T):
@@ -17,21 +18,23 @@ def jalankan(strategi, rng):
         klik = rng.random() < ctr_asli[a]
         n[a] += 1
         s[a] += klik
+        if log is not None:                      # catat data yang diterima algoritma
+            log.append((t + 1, "ABC"[a], int(klik)))
         regret[t] = ctr_asli.max() - ctr_asli[a]
     return np.cumsum(regret), n, s
 
-hasil = {}
+hasil, log = {}, []
 for st in ("eps-greedy", "UCB1", "Thompson"):
-    runs = [jalankan(st, np.random.default_rng(i)) for i in range(ulang)]
+    runs = [jalankan(st, np.random.default_rng(i), log if (st == "Thompson" and i == 0) else None) for i in range(ulang)]
     hasil[st] = np.mean([r for r, _, _ in runs], axis=0)
     porsi = np.mean([n / T for _, n, _ in runs], axis=0)
     print(f"{st:<10} | regret kumulatif = {hasil[st][-1]:6.1f} klik hilang | "
           f"porsi tampil desain A/B/C = {np.round(porsi * 100, 1).tolist()} %")
+df = pd.DataFrame(log, columns=["pengunjung_ke", "desain_ditampilkan", "klik"])   # log 1 kampanye Thompson
 print(f"(Uji A/B klasik 33/33/33 akan kehilangan ≈ {T * (ctr_asli.max() - ctr_asli.mean()):.0f} klik)")
 
 # === PREDIKSI DATA BARU ===
 print("\n--- prediksi data baru ---")
-import pandas as pd
 _, n_akhir, s_akhir = jalankan("Thompson", np.random.default_rng(100))    # satu kampanye 20.000 pengunjung
 baru = pd.DataFrame({"desain": list("ABC"), "tampil": n_akhir.astype(int), "klik": s_akhir.astype(int)})
 rng_p = np.random.default_rng(1)
@@ -53,17 +56,10 @@ save("bandit")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-rng_c, n_c, s_c, log = np.random.default_rng(0), np.zeros(3), np.zeros(3), []
-for t in range(8):
-    a = int(np.argmax(rng_c.beta(1 + s_c, 1 + n_c - s_c)))
-    klik = int(rng_c.random() < ctr_asli[a])
-    n_c[a] += 1
-    s_c[a] += klik
-    log.append((t + 1, "ABC"[a], klik))
-simpan("bandit", dict(zip(["pengunjung_ke", "desain_ditampilkan", "klik"], zip(*log))), {
+simpan("bandit", df, {
     "pengunjung_ke": "Urutan pengunjung halaman.",
     "desain_ditampilkan": "Desain tombol yang dipilih algoritma (Thompson Sampling) untuk pengunjung itu.",
     "klik": "1 jika pengunjung mengklik tombol, 0 jika tidak. Ini satu-satunya umpan balik yang diterima algoritma.",
-}, total=T, catatan="Contoh 8 pengunjung pertama. Klik dibangkitkan dari CTR asli A = 4,0%, B = 5,0%, C = 6,5%, yang tidak diketahui algoritma.")
+}, catatan="Log dari satu kampanye Thompson Sampling (20.000 pengunjung). Klik dibangkitkan dari CTR asli A = 4,0%, B = 5,0%, C = 6,5%, yang tidak diketahui algoritma.")
 simpan("bandit_baru", baru, {"tampil, klik": "Hasil satu kampanye: berapa kali tiap desain ditampilkan dan diklik.",
                              "desain": "Data inilah yang dipakai untuk memutuskan desain bagi pengunjung berikutnya."})

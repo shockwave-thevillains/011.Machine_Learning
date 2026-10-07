@@ -21,24 +21,13 @@ KET_BREAST_CANCER = {
 KET_IRIS = {
     "sepal_pjg_cm, sepal_lbr_cm": "Panjang dan lebar kelopak luar (sepal) bunga, dalam cm.",
     "petal_pjg_cm, petal_lbr_cm": "Panjang dan lebar mahkota bunga (petal), dalam cm.",
-    "spesies": "Target / label: setosa, versicolor, atau virginica.",
+    "spesies": "Target / label: 0 = setosa, 1 = versicolor, 2 = virginica.",
 }
 KET_DIGITS = {
-    "px_00 … px_63": "Kecerahan 64 piksel gambar angka 8×8, dibaca baris demi baris (px_00 kiri atas, px_63 kanan bawah). "
-    "Nilai 0 = putih sampai 16 = hitam.",
+    "pixel_0_0 … pixel_7_7": "Kecerahan 64 piksel gambar angka 8×8; pixel_i_j = baris i, kolom j "
+    "(pixel_0_0 kiri atas, pixel_7_7 kanan bawah). Nilai 0 = putih sampai 16 = hitam.",
     "digit": "Angka sebenarnya pada gambar (0–9).",
 }
-IRIS_KOLOM = ["sepal_pjg_cm", "sepal_lbr_cm", "petal_pjg_cm", "petal_lbr_cm"]
-
-
-def iris_df():
-    from sklearn.datasets import load_iris
-    iris = load_iris()
-    return pd.DataFrame(iris.data, columns=IRIS_KOLOM).assign(spesies=iris.target_names[iris.target])
-
-
-def digits_df(X, y):
-    return pd.DataFrame(X, columns=[f"px_{i:02d}" for i in range(X.shape[1])]).assign(digit=y)
 
 
 def _nilai(v):
@@ -49,7 +38,7 @@ def _nilai(v):
     if isinstance(v, (float, np.floating)):
         if float(v).is_integer() and abs(v) < 1e6:
             return str(int(v))
-        return f"{v:.1f}" if abs(v) >= 100 else f"{v:.3f}"
+        return f"{v:.1f}" if abs(v) >= 10 else f"{v:.3f}"
     return str(v)
 
 

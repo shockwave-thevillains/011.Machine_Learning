@@ -4,22 +4,22 @@
  ],
  "baris": [
   [
-   "157.6"
+   "169.6"
   ],
   [
-   "168.9"
+   "166.9"
   ],
   [
-   "174.2"
+   "165.4"
   ],
   [
-   "165.2"
+   "169.3"
   ],
   [
-   "175.4"
+   "161.8"
   ],
   [
-   "170.4"
+   "163.8"
   ]
  ],
  "nomor_baris": [
@@ -36,5 +36,5 @@
  "keterangan": {
   "tinggi_cm": "Tinggi badan dari distribusi asli N(165 cm, 7 cm). Discriminator melihat data ini (dinormalisasi) sebagai contoh \"asli\"."
  },
- "catatan": "Data asli tidak disimpan sebagai tabel; tiap langkah pelatihan mengambil 256 sampel baru, sehingga 6.000 langkah memakai ±1,5 juta sampel."
+ "catatan": "Contoh keluaran data_asli(). Data asli tidak disimpan sebagai tabel; tiap langkah pelatihan mengambil 256 sampel baru, sehingga 6.000 langkah memakai ±1,5 juta sampel."
 }

@@ -1,9 +1,12 @@
 # Spectral Clustering: clustering lewat eigenvector graf kemiripan
+import pandas as pd
 from sklearn.cluster import KMeans, SpectralClustering
 from sklearn.datasets import make_circles
 from sklearn.metrics import adjusted_rand_score
 
 X, y = make_circles(n_samples=500, factor=0.45, noise=0.05, random_state=0)  # 2 lingkaran sepusat
+df = pd.DataFrame({"x1": X[:, 0], "x2": X[:, 1], "lingkaran_asli": y})   # lingkaran_asli hanya untuk evaluasi
+X, y = df[["x1", "x2"]].to_numpy(), df["lingkaran_asli"].to_numpy()
 
 km = KMeans(n_clusters=2, n_init=10, random_state=0).fit_predict(X)
 sc = SpectralClustering(n_clusters=2, affinity="nearest_neighbors", n_neighbors=10,
@@ -41,7 +44,7 @@ save("spectral_clustering")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("spectral_clustering", {"x1": X[:, 0], "x2": X[:, 1], "lingkaran_asli": y, "cluster_spectral": sc}, {
+simpan("spectral_clustering", df.assign(cluster_spectral=sc), {
     "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
     "lingkaran_asli": "0 = lingkaran luar, 1 = lingkaran dalam. Hanya untuk evaluasi ARI.",
     "cluster_spectral": "HASIL Spectral Clustering. Nomor cluster boleh tertukar (0↔1); yang penting pengelompokannya sama.",

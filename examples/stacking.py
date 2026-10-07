@@ -8,7 +8,9 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
-X, y = load_breast_cancer(return_X_y=True)
+data = load_breast_cancer(as_frame=True)
+df = data.frame.rename(columns={"target": "diagnosis"})   # 569 baris: 30 kolom ukuran sel + diagnosis
+X, y = df.drop(columns="diagnosis").to_numpy(), df["diagnosis"].to_numpy()   # fitur (X) dan target (y)
 base = [
     ("rf", RandomForestClassifier(n_estimators=200, random_state=0)),
     ("svm", make_pipeline(StandardScaler(), SVC(random_state=0))),
@@ -27,12 +29,12 @@ print("Bobot meta-model (RF, SVM-skor, KNN):", stack.final_estimator_.coef_.roun
 # === PREDIKSI DATA BARU ===
 print("\n--- prediksi data baru ---")
 import numpy as np
-data = load_breast_cancer()                       # nama kolom & data asli untuk menyusun pasien baru
 import pandas as pd
-profil_ganas = np.median(data.data[data.target == 0], axis=0)
-profil_jinak = np.median(data.data[data.target == 1], axis=0)
+fitur = df.drop(columns="diagnosis")
+profil_ganas = fitur[df.diagnosis == 0].median()       # median tiap kolom pada pasien ganas
+profil_jinak = fitur[df.diagnosis == 1].median()
 baru = pd.DataFrame([profil_jinak, (profil_jinak + profil_ganas) / 2, profil_ganas],
-                    columns=data.feature_names, index=["pasien_A", "pasien_B", "pasien_C"])
+                    index=["pasien_A", "pasien_B", "pasien_C"])
 for nama, x in zip(baru.index, baru.to_numpy()):
     x = x.reshape(1, -1)
     rf_p = stack.named_estimators_["rf"].predict_proba(x)[0, 1]
@@ -42,10 +44,8 @@ for nama, x in zip(baru.index, baru.to_numpy()):
     print(f"{nama}: RF P(jinak)={rf_p:.2f} | SVM skor={svm_s:+.2f} | KNN P(jinak)={knn_p:.2f} -> STACKING P(jinak)={akhir:.3f}")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import pandas as pd
 from _sampel import KET_BREAST_CANCER, simpan
-simpan("stacking", pd.DataFrame(X, columns=load_breast_cancer().feature_names).assign(diagnosis=y), KET_BREAST_CANCER,
-       catatan="569 pasien: 212 ganas dan 357 jinak. Hanya 11 kolom pertama yang ditampilkan.")
+simpan("stacking", df, KET_BREAST_CANCER, catatan="569 pasien: 212 ganas dan 357 jinak.")
 simpan("stacking_baru", baru.reset_index(names="pasien"), {
     "pasien_A": "Ukuran sel setara median pasien jinak.",
     "pasien_B": "Tepat di tengah antara profil jinak dan ganas (kasus sulit).",

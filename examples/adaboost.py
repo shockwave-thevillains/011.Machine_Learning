@@ -1,10 +1,13 @@
 # AdaBoost: menggabungkan "weak learner" (stump 1 level) secara berurutan
+import pandas as pd
 from sklearn.datasets import make_hastie_10_2
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 
 # dataset klasik dari buku "Elements of Statistical Learning" (Hastie dkk.)
 X, y = make_hastie_10_2(n_samples=12000, random_state=1)
+df = pd.DataFrame(X, columns=[f"x{i:02d}" for i in range(1, 11)]).assign(y=y)   # 12.000 baris
+X, y = df.drop(columns="y").to_numpy(), df["y"].to_numpy()
 X_tr, y_tr, X_te, y_te = X[:2000], y[:2000], X[2000:], y[2000:]
 
 stump = DecisionTreeClassifier(max_depth=1).fit(X_tr, y_tr)
@@ -39,9 +42,8 @@ ax.legend()
 save("adaboost")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import pandas as pd
 from _sampel import simpan
-simpan("adaboost", pd.DataFrame(X, columns=[f"x{i:02d}" for i in range(1, 11)]).assign(y=y), {
+simpan("adaboost", df, {
     "x01 … x10": "10 fitur acak berdistribusi normal standar.",
     "y": "Target: +1 jika jumlah kuadrat ke-10 fitur > 9,34, selain itu −1.",
 }, catatan="2.000 baris pertama untuk latih, 10.000 sisanya untuk uji.")

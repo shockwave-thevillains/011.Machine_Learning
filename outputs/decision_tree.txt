@@ -1,25 +1,25 @@
 Akurasi test: 0.978
 Aturan yang dipelajari:
-|--- petal_pjg <= 2.45
+|--- petal_pjg_cm <= 2.45
 |   |--- class: setosa
-|--- petal_pjg >  2.45
-|   |--- petal_lbr <= 1.55
-|   |   |--- petal_pjg <= 4.95
+|--- petal_pjg_cm >  2.45
+|   |--- petal_lbr_cm <= 1.55
+|   |   |--- petal_pjg_cm <= 4.95
 |   |   |   |--- class: versicolor
-|   |   |--- petal_pjg >  4.95
+|   |   |--- petal_pjg_cm >  4.95
 |   |   |   |--- class: virginica
-|   |--- petal_lbr >  1.55
-|   |   |--- petal_lbr <= 1.70
+|   |--- petal_lbr_cm >  1.55
+|   |   |--- petal_lbr_cm <= 1.70
 |   |   |   |--- class: versicolor
-|   |   |--- petal_lbr >  1.70
+|   |   |--- petal_lbr_cm >  1.70
 |   |   |   |--- class: virginica
 
-importance sepal length (cm) : 0.000
-importance sepal width (cm)  : 0.000
-importance petal length (cm) : 0.551
-importance petal width (cm)  : 0.449
+importance sepal_pjg_cm      : 0.000
+importance sepal_lbr_cm      : 0.000
+importance petal_pjg_cm      : 0.551
+importance petal_lbr_cm      : 0.449
 
 --- prediksi data baru ---
-bunga_1: petal_pjg 1.4 ≤ 2.45 → setosa
-bunga_2: petal_pjg 4.4 > 2.45 → petal_lbr 1.3 ≤ 1.55 → petal_pjg 4.4 ≤ 4.95 → versicolor
-bunga_3: petal_pjg 5.6 > 2.45 → petal_lbr 2.2 > 1.55 → petal_lbr 2.2 > 1.70 → virginica
+bunga_1: petal_pjg_cm 1.4 ≤ 2.45 → setosa
+bunga_2: petal_pjg_cm 4.4 > 2.45 → petal_lbr_cm 1.3 ≤ 1.55 → petal_pjg_cm 4.4 ≤ 4.95 → versicolor
+bunga_3: petal_pjg_cm 5.6 > 2.45 → petal_lbr_cm 2.2 > 1.55 → petal_lbr_cm 2.2 > 1.70 → virginica

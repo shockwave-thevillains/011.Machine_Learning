@@ -5,8 +5,8 @@ from sklearn.datasets import load_digits
 from sklearn.decomposition import PCA
 
 torch.manual_seed(0)
-X, y = load_digits(return_X_y=True)
-X = torch.tensor(X / 16.0, dtype=torch.float32)
+df = load_digits(as_frame=True).frame.rename(columns={"target": "digit"})   # 1797 gambar: 64 kolom piksel + digit
+X = torch.tensor(df.drop(columns="digit").to_numpy() / 16.0, dtype=torch.float32)   # kolom digit tidak dipakai
 X_tr, X_te = X[:1400], X[1400:]
 
 encoder = nn.Sequential(nn.Linear(64, 32), nn.ReLU(), nn.Linear(32, 8))           # bottleneck 8
@@ -67,10 +67,9 @@ axes[1, 0].set_title("rekonstruksi", loc="left")
 save("autoencoder")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-from _sampel import KET_DIGITS, digits_df, simpan
-simpan("autoencoder", digits_df(X.numpy(), y), KET_DIGITS,
-       catatan="Nilai piksel sudah dibagi 16 (skala 0–1). Kolom digit TIDAK dipakai: autoencoder belajar tanpa label, targetnya adalah input itu sendiri.")
+from _sampel import KET_DIGITS, simpan
+simpan("autoencoder", df, KET_DIGITS, catatan="Di kode, nilai piksel dibagi 16 (skala 0–1). Kolom digit TIDAK dipakai: autoencoder belajar tanpa label, targetnya adalah input itu sendiri.")
 import pandas as pd
 simpan("autoencoder_baru", pd.DataFrame({n: [r.replace(" ", "·") for r in p] for n, p in GAMBAR.items()}),
        {"nol, satu, tujuh, kotak-kotak": "Gambar 8×8 baru yang digambar tangan, tidak ada di dataset. # = 16 (hitam), + = 8 (abu-abu), · = 0 (putih)."},
-       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti px_00 … px_63.", idx=range(8))
+       catatan="Tiap kolom adalah satu gambar; tiap baris tabel adalah satu baris piksel. Sebelum masuk model, gambar diratakan menjadi 64 angka seperti pixel_0_0 … pixel_7_7.", idx=range(8))

@@ -67,7 +67,7 @@
  "tersembunyi": null,
  "keterangan": {
   "pengguna": "Nama pengguna.",
-  "Laskar Pelangi … Habibie & Ainun": "Rating pengguna untuk film itu (1–5). Tanda – berarti belum menonton; nilai inilah yang diprediksi."
+  "Laskar Pelangi … Habibie & Ainun": "Rating pengguna untuk film itu (1–5). Di kode, 0 berarti belum menonton (ditampilkan sebagai –); nilai inilah yang diprediksi."
  },
  "catatan": "Matriks berisi 22 rating diketahui dan 8 sel kosong."
 }

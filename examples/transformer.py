@@ -17,9 +17,10 @@ class PengurutTransformer(nn.Module):
     def forward(self, x):
         return self.out(self.enc(self.tok(x) + self.pos))         # (batch, L, V)
 
-def batch(n):
-    x = torch.randint(0, V, (n, L))
-    return x, x.sort(dim=1).values
+def batch(n):                                     # data latih dibuat baru di setiap langkah
+    input_deret = torch.randint(0, V, (n, L))
+    target_terurut = input_deret.sort(dim=1).values
+    return input_deret, target_terurut
 
 model = PengurutTransformer()
 print(f"Parameter: {sum(p.numel() for p in model.parameters()):,}")
@@ -52,11 +53,12 @@ for d, o in zip(deret_baru, keluaran):
     print(f"{d} -> {o} {'benar' if o == sorted(d) else 'SALAH, seharusnya ' + str(sorted(d))}")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
 from _sampel import simpan
 xs, ys = batch(6)
-simpan("transformer", {"input_deret": [" ".join(map(str, r)) for r in xs.tolist()],
-                       "target_terurut": [" ".join(map(str, r)) for r in ys.tolist()]}, {
+simpan("transformer", pd.DataFrame({"input_deret": [" ".join(map(str, r)) for r in xs.tolist()],
+                                    "target_terurut": [" ".join(map(str, r)) for r in ys.tolist()]}), {
     "input_deret": "8 digit acak (token 0–9). Input model.",
     "target_terurut": "Digit yang sama setelah diurutkan. Model memprediksi digit di setiap posisi.",
-}, total=1500 * 128, catatan="Data dibangkitkan baru di setiap langkah: 1.500 langkah × 128 deret = 192.000 deret latih.")
+}, total=1500 * 128, catatan="Contoh keluaran batch(). Data dibangkitkan baru di setiap langkah: 1.500 langkah × 128 deret = 192.000 deret latih.")
 simpan("transformer_baru", baru, {"input_deret": "Deret khusus: terurut terbalik, sudah terurut, semua sama, pola berulang, banyak kembar."})

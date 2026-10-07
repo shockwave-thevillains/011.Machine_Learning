@@ -52,5 +52,5 @@
   "desain_ditampilkan": "Desain tombol yang dipilih algoritma (Thompson Sampling) untuk pengunjung itu.",
   "klik": "1 jika pengunjung mengklik tombol, 0 jika tidak. Ini satu-satunya umpan balik yang diterima algoritma."
  },
- "catatan": "Contoh 8 pengunjung pertama. Klik dibangkitkan dari CTR asli A = 4,0%, B = 5,0%, C = 6,5%, yang tidak diketahui algoritma."
+ "catatan": "Log dari satu kampanye Thompson Sampling (20.000 pengunjung). Klik dibangkitkan dari CTR asli A = 4,0%, B = 5,0%, C = 6,5%, yang tidak diketahui algoritma."
 }

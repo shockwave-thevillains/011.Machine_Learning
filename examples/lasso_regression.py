@@ -1,5 +1,6 @@
 # Lasso Regression: regularisasi L1 memilih fitur penting secara otomatis
 import numpy as np
+import pandas as pd
 from sklearn.datasets import make_regression
 from sklearn.linear_model import Lasso, LinearRegression
 from sklearn.metrics import r2_score
@@ -8,6 +9,8 @@ from sklearn.model_selection import train_test_split
 # 20 fitur, tetapi hanya 5 yang benar-benar berpengaruh
 X, y, coef_asli = make_regression(n_samples=200, n_features=20, n_informative=5,
                                   noise=10, coef=True, random_state=7)
+df = pd.DataFrame(X, columns=[f"fitur_{i:02d}" for i in range(20)]).assign(y=y)   # 200 baris x 21 kolom
+X, y = df.drop(columns="y").to_numpy(), df["y"].to_numpy()
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.3, random_state=7)
 
 ols = LinearRegression().fit(X_tr, y_tr)
@@ -42,9 +45,8 @@ ax.legend()
 save("lasso_regression")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import pandas as pd
 from _sampel import simpan
-simpan("lasso_regression", pd.DataFrame(X, columns=[f"fitur_{i:02d}" for i in range(20)]).assign(y=y), {
+simpan("lasso_regression", df, {
     "fitur_00 … fitur_19": "20 fitur numerik sintetis berdistribusi normal. Hanya fitur_03, 04, 10, 11, dan 12 yang benar-benar memengaruhi y.",
     "y": "Target numerik (kombinasi linear 5 fitur informatif + noise).",
 })

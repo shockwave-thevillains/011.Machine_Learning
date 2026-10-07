@@ -1,14 +1,14 @@
 langkah     1 | sampel generator: mean = 166.13 cm, std =  0.59 cm
-langkah   500 | sampel generator: mean = 164.00 cm, std =  9.13 cm
-langkah  2000 | sampel generator: mean = 164.03 cm, std =  7.60 cm
-langkah  6000 | sampel generator: mean = 164.02 cm, std =  6.19 cm
+langkah   500 | sampel generator: mean = 163.99 cm, std =  9.11 cm
+langkah  2000 | sampel generator: mean = 166.34 cm, std =  6.78 cm
+langkah  6000 | sampel generator: mean = 164.64 cm, std =  7.42 cm
 Target distribusi asli            : mean = 165.00 cm, std =  7.00 cm
-Loss akhir D = 1.386 (≈ 2·ln2 = 1.386 berarti D tak bisa membedakan) | G = 0.690
+Loss akhir D = 1.387 (≈ 2·ln2 = 1.386 berarti D tak bisa membedakan) | G = 0.696
 
 --- prediksi data baru ---
-8 tinggi badan baru dari generator (cm): [163.3, 162.9, 169.0, 158.5, 158.1, 160.1, 168.2, 171.1]
-Discriminator menilai 120 cm: P(asli) = 0.49
-Discriminator menilai 150 cm: P(asli) = 0.50
+8 tinggi badan baru dari generator (cm): [163.3, 162.4, 170.6, 157.3, 157.2, 159.5, 169.5, 174.2]
+Discriminator menilai 120 cm: P(asli) = 0.54
+Discriminator menilai 150 cm: P(asli) = 0.51
 Discriminator menilai 165 cm: P(asli) = 0.50
-Discriminator menilai 180 cm: P(asli) = 0.50
-Discriminator menilai 210 cm: P(asli) = 0.51
+Discriminator menilai 180 cm: P(asli) = 0.49
+Discriminator menilai 210 cm: P(asli) = 0.45

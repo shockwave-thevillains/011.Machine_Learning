@@ -1,4 +1,5 @@
 # Naive Bayes: filter SMS spam berbahasa Indonesia
+import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
@@ -21,8 +22,8 @@ sms = [
     ("Besok jemput adik di sekolah jam 12", "ham"),
     ("Terima kasih sudah datang ke acara kemarin", "ham"),
 ]
-teks, label = zip(*sms)
-model = make_pipeline(CountVectorizer(), MultinomialNB(alpha=1.0)).fit(teks, label)
+df = pd.DataFrame(sms, columns=["teks_sms", "label"])        # 16 baris: teks + label
+model = make_pipeline(CountVectorizer(), MultinomialNB(alpha=1.0)).fit(df["teks_sms"], df["label"])
 
 uji = ["Gratis hadiah pulsa, klik link sekarang",
        "Rapat besok pagi di kantor ya",
@@ -49,7 +50,7 @@ for t, p in zip(baru.teks_sms, model.predict_proba(baru.teks_sms)[:, 1]):
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("naive_bayes", {"teks_sms": teks, "label": label}, {
+simpan("naive_bayes", df, {
     "teks_sms": "Isi pesan SMS. CountVectorizer mengubahnya menjadi hitungan kata (satu kolom per kata unik).",
     "label": "Target: spam atau ham (bukan spam).",
 }, idx=[0, 1, 2, 8, 9, 10], catatan="Total 16 SMS: 8 spam dan 8 bukan spam.")

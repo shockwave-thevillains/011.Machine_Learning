@@ -1,15 +1,18 @@
 # Matrix Factorization (gaya Funk SVD, Netflix Prize): sistem rekomendasi film
 import numpy as np
+import pandas as pd
 
-film = ["Laskar Pelangi", "Dilan 1990", "Pengabdi Setan", "The Raid", "KKN Desa Penari", "Habibie & Ainun"]
-pengguna = ["Andi", "Budi", "Citra", "Dewi", "Eko"]
-R = np.array([                                   # rating 1-5, 0 = belum menonton
-    [5, 4, 0, 1, 0, 5],
-    [4, 0, 1, 2, 1, 0],
-    [1, 1, 5, 4, 5, 0],
-    [0, 1, 4, 5, 4, 1],
-    [5, 5, 0, 0, 1, 4],
-], dtype=float)
+df = pd.DataFrame({                              # rating 1-5, 0 = belum menonton
+    "pengguna":        ["Andi", "Budi", "Citra", "Dewi", "Eko"],
+    "Laskar Pelangi":  [5, 4, 1, 0, 5],
+    "Dilan 1990":      [4, 0, 1, 1, 5],
+    "Pengabdi Setan":  [0, 1, 5, 4, 0],
+    "The Raid":        [1, 2, 4, 5, 0],
+    "KKN Desa Penari": [0, 1, 5, 4, 1],
+    "Habibie & Ainun": [5, 0, 0, 1, 4],
+}).set_index("pengguna")
+film, pengguna = list(df.columns), list(df.index)
+R = df.to_numpy(dtype=float)
 ada = R > 0
 
 rng = np.random.default_rng(0)
@@ -35,7 +38,6 @@ for u in range(5):
 
 # === PREDIKSI DATA BARU ===
 print("\n--- prediksi data baru ---")
-import pandas as pd
 baru = pd.DataFrame({"film": ["Laskar Pelangi", "The Raid", "Pengabdi Setan"], "rating_fajar": [5, 1, 2]})
 Qf = Q[[film.index(f) for f in baru.film]]        # vektor film yang sudah dipelajari tetap dipakai
 p_fajar = np.linalg.solve(Qf.T @ Qf + 0.1 * np.eye(k), Qf.T @ (baru.rating_fajar.to_numpy() - mu))
@@ -45,12 +47,9 @@ for f, r in zip(film, prediksi_fajar):
     print(f"Fajar x {f:<16} -> {r:.1f} {tanda}")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
-import pandas as pd
 from _sampel import simpan
-tabel = pd.DataFrame(R.astype(int), columns=film).astype(object).where(R > 0, "–")
-tabel.insert(0, "pengguna", pengguna)
-simpan("matrix_factorization", tabel, {
+simpan("matrix_factorization", df.astype(object).where(df > 0, "–").reset_index(), {
     "pengguna": "Nama pengguna.",
-    "Laskar Pelangi … Habibie & Ainun": "Rating pengguna untuk film itu (1–5). Tanda – berarti belum menonton; nilai inilah yang diprediksi.",
+    "Laskar Pelangi … Habibie & Ainun": "Rating pengguna untuk film itu (1–5). Di kode, 0 berarti belum menonton (ditampilkan sebagai –); nilai inilah yang diprediksi.",
 }, catatan="Matriks berisi 22 rating diketahui dan 8 sel kosong.")
 simpan("matrix_factorization_baru", baru, {"film, rating_fajar": "Fajar adalah pengguna baru yang baru menilai 3 film."})

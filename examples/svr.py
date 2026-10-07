@@ -1,12 +1,14 @@
 # Support Vector Regression: regresi non-linear dengan "tabung" toleransi epsilon
 import numpy as np
+import pandas as pd
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVR
 
 rng = np.random.default_rng(1)
-X = np.sort(rng.uniform(0, 6, 150)).reshape(-1, 1)
-y = np.sin(X).ravel() + 0.3 * X.ravel() + rng.normal(0, .15, 150)
+df = pd.DataFrame({"x": np.sort(rng.uniform(0, 6, 150))})
+df["y"] = np.sin(df["x"]) + 0.3 * df["x"] + rng.normal(0, .15, 150)
+X, y = df[["x"]].to_numpy(), df["y"].to_numpy()
 X_tr, X_te, y_tr, y_te = train_test_split(X, y, test_size=0.3, random_state=1)
 
 for kernel in ("linear", "poly", "rbf"):
@@ -38,7 +40,7 @@ save("svr")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("svr", {"x": X.ravel(), "y": y}, {
+simpan("svr", df, {
     "x": "Fitur input, 0 sampai 6.",
     "y": "Target = sin(x) + 0,3·x + noise. Hubungannya melengkung sehingga butuh kernel non-linear.",
 })

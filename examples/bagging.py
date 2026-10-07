@@ -1,11 +1,14 @@
 # Bagging (Bootstrap Aggregating): rata-rata banyak model yang dilatih di sampel bootstrap
 import numpy as np
+import pandas as pd
 from sklearn.datasets import make_moons
 from sklearn.ensemble import BaggingClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 
 X, y = make_moons(n_samples=500, noise=0.35, random_state=0)
+df = pd.DataFrame({"x1": X[:, 0], "x2": X[:, 1], "kelas": y})   # 1 baris = 1 titik
+X, y = df[["x1", "x2"]].to_numpy(), df["kelas"].to_numpy()
 pohon = DecisionTreeClassifier(random_state=0)
 bag = BaggingClassifier(DecisionTreeClassifier(), n_estimators=200, max_samples=0.8,
                         bootstrap=True, oob_score=True, random_state=0)
@@ -40,7 +43,7 @@ save("bagging")
 
 # === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
 from _sampel import simpan
-simpan("bagging", {"x1": X[:, 0], "x2": X[:, 1], "kelas": y}, {
+simpan("bagging", df, {
     "x1, x2": "Koordinat titik.",
     "kelas": "Target 0/1 (dua bulan sabit dengan noise tinggi, sehingga sebagian titik tumpang tindih).",
 })

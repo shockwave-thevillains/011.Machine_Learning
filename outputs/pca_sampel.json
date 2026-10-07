@@ -1,16 +1,16 @@
 {
  "kolom": [
-  "px_00",
-  "px_01",
-  "px_02",
-  "px_03",
-  "px_04",
-  "px_05",
-  "px_06",
-  "px_07",
-  "px_08",
-  "px_09",
-  "px_10",
+  "pixel_0_0",
+  "pixel_0_1",
+  "pixel_0_2",
+  "pixel_0_3",
+  "pixel_0_4",
+  "pixel_0_5",
+  "pixel_0_6",
+  "pixel_0_7",
+  "pixel_1_0",
+  "pixel_1_1",
+  "pixel_1_2",
   "digit"
  ],
  "baris": [
@@ -110,12 +110,12 @@
  "total_baris": 1797,
  "total_kolom": 65,
  "tersembunyi": [
-  "px_11",
-  "px_63",
+  "pixel_1_3",
+  "pixel_7_7",
   53
  ],
  "keterangan": {
-  "px_00 … px_63": "Kecerahan 64 piksel gambar angka 8×8, dibaca baris demi baris (px_00 kiri atas, px_63 kanan bawah). Nilai 0 = putih sampai 16 = hitam.",
+  "pixel_0_0 … pixel_7_7": "Kecerahan 64 piksel gambar angka 8×8; pixel_i_j = baris i, kolom j (pixel_0_0 kiri atas, pixel_7_7 kanan bawah). Nilai 0 = putih sampai 16 = hitam.",
   "digit": "Angka sebenarnya pada gambar (0–9)."
  },
  "catatan": "Yang diolah adalah 64 kolom piksel."

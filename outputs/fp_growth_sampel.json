@@ -1,39 +1,102 @@
 {
  "kolom": [
-  "id_struk",
-  "produk",
-  "jumlah_produk"
+  "P00",
+  "P01",
+  "P02",
+  "P03",
+  "P04",
+  "P05",
+  "P06",
+  "P07",
+  "P08",
+  "P09",
+  "P10",
+  "P59"
  ],
  "baris": [
   [
-   "1",
-   "P23, P42, P44, P54",
-   "4"
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False"
   ],
   [
-   "2",
-   "P04, P11, P42, P44, P56",
-   "5"
+   "False",
+   "False",
+   "False",
+   "False",
+   "True",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False"
   ],
   [
-   "3",
-   "P05, P36",
-   "2"
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "True",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False"
   ],
   [
-   "4",
-   "P07, P10, P11, P12, P56",
-   "5"
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "True",
+   "False",
+   "False",
+   "True",
+   "False"
   ],
   [
-   "5",
-   "P19, P24, P44, P53, P58",
-   "5"
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False"
   ],
   [
-   "6",
-   "P16, P24, P33, P56, P58",
-   "5"
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False",
+   "False"
   ]
  ],
  "nomor_baris": [
@@ -45,12 +108,14 @@
   5
  ],
  "total_baris": 20000,
- "total_kolom": 3,
- "tersembunyi": null,
+ "total_kolom": 60,
+ "tersembunyi": [
+  "P11",
+  "P58",
+  48
+ ],
  "keterangan": {
-  "id_struk": "Nomor struk belanja.",
-  "produk": "Kode produk yang dibeli bersamaan (P00–P59).",
-  "jumlah_produk": "Banyaknya produk di struk itu."
+  "P00 … P59": "Satu kolom per produk. True = produk itu dibeli di struk tersebut."
  },
- "catatan": "Yang diolah algoritma adalah tabel True/False 20.000 baris × 60 kolom produk; di sini ditampilkan sebagai daftar agar mudah dibaca."
+ "catatan": "1 baris = 1 struk belanja. P01–P02, P10–P11–P12, dan P30–P31 adalah bundel yang sengaja ditanam."
 }
