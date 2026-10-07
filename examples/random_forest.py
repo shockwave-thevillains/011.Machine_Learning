@@ -30,3 +30,9 @@ ax.set_xscale("log")
 ax.set(xlabel="jumlah pohon", ylabel="akurasi test", title="Random Forest: makin banyak pohon, makin stabil")
 ax.legend()
 save("random_forest")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import KET_BREAST_CANCER, simpan
+simpan("random_forest", pd.DataFrame(data.data, columns=data.feature_names).assign(diagnosis=data.target), KET_BREAST_CANCER,
+       catatan="569 pasien: 212 ganas dan 357 jinak. Hanya 11 kolom pertama yang ditampilkan.")

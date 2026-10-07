@@ -45,3 +45,8 @@ for i in range(8):
 axes[0, 0].set_title("asli", loc="left")
 axes[1, 0].set_title("rekonstruksi", loc="left")
 save("autoencoder")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import KET_DIGITS, digits_df, simpan
+simpan("autoencoder", digits_df(X.numpy(), y), KET_DIGITS,
+       catatan="Nilai piksel sudah dibagi 16 (skala 0–1). Kolom digit TIDAK dipakai: autoencoder belajar tanpa label, targetnya adalah input itu sendiri.")

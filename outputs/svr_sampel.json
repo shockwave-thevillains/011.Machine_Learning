@@ -1,0 +1,48 @@
+{
+ "kolom": [
+  "x",
+  "y"
+ ],
+ "baris": [
+  [
+   "0.035",
+   "-0.128"
+  ],
+  [
+   "0.043",
+   "0.180"
+  ],
+  [
+   "0.147",
+   "0.102"
+  ],
+  [
+   "0.165",
+   "0.056"
+  ],
+  [
+   "0.238",
+   "0.172"
+  ],
+  [
+   "0.374",
+   "0.419"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 150,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "x": "Fitur input, 0 sampai 6.",
+  "y": "Target = sin(x) + 0,3·x + noise. Hubungannya melengkung sehingga butuh kernel non-linear."
+ },
+ "catatan": ""
+}

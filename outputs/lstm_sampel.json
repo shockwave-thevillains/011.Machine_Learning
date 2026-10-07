@@ -1,0 +1,48 @@
+{
+ "kolom": [
+  "jam_ke",
+  "beban_mw"
+ ],
+ "baris": [
+  [
+   "0",
+   "10.038"
+  ],
+  [
+   "1",
+   "10.793"
+  ],
+  [
+   "2",
+   "11.804"
+  ],
+  [
+   "3",
+   "12.321"
+  ],
+  [
+   "4",
+   "12.661"
+  ],
+  [
+   "5",
+   "13.285"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 1200,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "jam_ke": "Urutan jam sejak awal data.",
+  "beban_mw": "Beban listrik pada jam tersebut (MW)."
+ },
+ "catatan": "Model membaca 48 jam berturut-turut (jendela) untuk menebak jam ke-49. Jam 0–947 untuk latih, sisanya untuk uji."
+}

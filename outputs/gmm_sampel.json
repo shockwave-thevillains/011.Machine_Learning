@@ -1,0 +1,63 @@
+{
+ "kolom": [
+  "x1",
+  "x2",
+  "komponen_hasil",
+  "p_keanggotaan_maks"
+ ],
+ "baris": [
+  [
+   "0.791",
+   "-3.853",
+   "1",
+   "1.000"
+  ],
+  [
+   "0.366",
+   "-1.578",
+   "0",
+   "0.970"
+  ],
+  [
+   "2.850",
+   "-6.428",
+   "1",
+   "1.000"
+  ],
+  [
+   "0.034",
+   "-1.091",
+   "0",
+   "0.954"
+  ],
+  [
+   "1.130",
+   "-2.580",
+   "0",
+   "0.828"
+  ],
+  [
+   "1.626",
+   "-2.814",
+   "2",
+   "1.000"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 600,
+ "total_kolom": 4,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+  "komponen_hasil": "HASIL: komponen Gaussian yang paling mungkin.",
+  "p_keanggotaan_maks": "HASIL: seberapa yakin model (probabilitas komponen terpilih)."
+ },
+ "catatan": ""
+}

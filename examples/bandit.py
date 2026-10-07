@@ -37,3 +37,18 @@ for (st, r), c in zip(hasil.items(), (BLACK, BLUE, RED)):
 ax.set(xlabel="jumlah pengunjung", ylabel="regret kumulatif", title="Bandit: Thompson Sampling paling cepat fokus ke desain terbaik")
 ax.legend()
 save("bandit")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+rng_c, n_c, s_c, log = np.random.default_rng(0), np.zeros(3), np.zeros(3), []
+for t in range(8):
+    a = int(np.argmax(rng_c.beta(1 + s_c, 1 + n_c - s_c)))
+    klik = int(rng_c.random() < ctr_asli[a])
+    n_c[a] += 1
+    s_c[a] += klik
+    log.append((t + 1, "ABC"[a], klik))
+simpan("bandit", dict(zip(["pengunjung_ke", "desain_ditampilkan", "klik"], zip(*log))), {
+    "pengunjung_ke": "Urutan pengunjung halaman.",
+    "desain_ditampilkan": "Desain tombol yang dipilih algoritma (Thompson Sampling) untuk pengunjung itu.",
+    "klik": "1 jika pengunjung mengklik tombol, 0 jika tidak. Ini satu-satunya umpan balik yang diterima algoritma.",
+}, total=T, catatan="Contoh 8 pengunjung pertama. Klik dibangkitkan dari CTR asli A = 4,0%, B = 5,0%, C = 6,5%, yang tidak diketahui algoritma.")

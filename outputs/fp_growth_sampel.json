@@ -1,0 +1,56 @@
+{
+ "kolom": [
+  "id_struk",
+  "produk",
+  "jumlah_produk"
+ ],
+ "baris": [
+  [
+   "1",
+   "P23, P42, P44, P54",
+   "4"
+  ],
+  [
+   "2",
+   "P04, P11, P42, P44, P56",
+   "5"
+  ],
+  [
+   "3",
+   "P05, P36",
+   "2"
+  ],
+  [
+   "4",
+   "P07, P10, P11, P12, P56",
+   "5"
+  ],
+  [
+   "5",
+   "P19, P24, P44, P53, P58",
+   "5"
+  ],
+  [
+   "6",
+   "P16, P24, P33, P56, P58",
+   "5"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 20000,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "id_struk": "Nomor struk belanja.",
+  "produk": "Kode produk yang dibeli bersamaan (P00–P59).",
+  "jumlah_produk": "Banyaknya produk di struk itu."
+ },
+ "catatan": "Yang diolah algoritma adalah tabel True/False 20.000 baris × 60 kolom produk; di sini ditampilkan sebagai daftar agar mudah dibaca."
+}

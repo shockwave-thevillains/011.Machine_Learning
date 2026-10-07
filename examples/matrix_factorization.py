@@ -32,3 +32,13 @@ for u in range(5):
     terbaik = belum[pred[u, belum].argmax()]
     saran = film[terbaik] if pred[u, terbaik] >= 3.5 else "(tidak ada yang cocok, prediksi < 3.5)"
     print(f"Rekomendasi untuk {pengguna[u]:<6}: {saran}")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import simpan
+tabel = pd.DataFrame(R.astype(int), columns=film).astype(object).where(R > 0, "–")
+tabel.insert(0, "pengguna", pengguna)
+simpan("matrix_factorization", tabel, {
+    "pengguna": "Nama pengguna.",
+    "Laskar Pelangi … Habibie & Ainun": "Rating pengguna untuk film itu (1–5). Tanda – berarti belum menonton; nilai inilah yang diprediksi.",
+}, catatan="Matriks berisi 22 rating diketahui dan 8 sel kosong.")

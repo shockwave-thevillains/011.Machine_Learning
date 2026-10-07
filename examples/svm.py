@@ -29,3 +29,10 @@ ax.scatter(*m.support_vectors_.T, s=40, facecolors="none", edgecolors="black", l
 ax.set(title="SVM (RBF): batas keputusan & margin")
 ax.grid(False)
 save("svm")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("svm", {"x1": X[:, 0], "x2": X[:, 1], "kelas": y}, {
+    "x1, x2": "Koordinat titik pada bidang 2D.",
+    "kelas": "Target: 0 = bulan sabit atas, 1 = bulan sabit bawah. Kedua kelas saling mengait sehingga tidak bisa dipisah garis lurus.",
+})

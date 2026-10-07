@@ -1,0 +1,48 @@
+{
+ "kolom": [
+  "teks_sms",
+  "label"
+ ],
+ "baris": [
+  [
+   "Selamat! Anda menang undian mobil, hubungi nomor ini sekarang",
+   "spam"
+  ],
+  [
+   "PROMO pulsa gratis 100rb klik link berikut",
+   "spam"
+  ],
+  [
+   "Pinjaman dana cepat tanpa jaminan cair hari ini",
+   "spam"
+  ],
+  [
+   "Nanti sore jadi rapat jam 4 di kantor?",
+   "ham"
+  ],
+  [
+   "Bu, saya sudah sampai rumah",
+   "ham"
+  ],
+  [
+   "Jangan lupa beli telur dan beras ya",
+   "ham"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  8,
+  9,
+  10
+ ],
+ "total_baris": 16,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "teks_sms": "Isi pesan SMS. CountVectorizer mengubahnya menjadi hitungan kata (satu kolom per kata unik).",
+  "label": "Target: spam atau ham (bukan spam)."
+ },
+ "catatan": "Total 16 SMS: 8 spam dan 8 bukan spam."
+}

@@ -31,3 +31,10 @@ for ax, data, judul in zip(axes, (S, X, S_ica), ("Sumber asli", "Rekaman 3 mikro
         ax.plot(t[:700], data[:700, i] / np.abs(data[:, i]).max() + 2.4 * i, color=cols[i], lw=1)
     ax.set(title=judul, yticks=[])
 save("ica")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("ica", {"waktu": t, "mik_1": X[:, 0], "mik_2": X[:, 1], "mik_3": X[:, 2]}, {
+    "waktu": "Waktu sampel (detik simulasi).",
+    "mik_1, mik_2, mik_3": "Sinyal yang terekam tiap mikrofon, yaitu campuran ketiga sumber suara dengan proporsi berbeda.",
+}, idx=[0, 1, 2, 500, 1000, 1500], catatan="ICA hanya menerima kolom mik_1–mik_3. Sumber asli (sinus, kotak, gergaji) disimpan terpisah untuk menghitung korelasi.")

@@ -1,0 +1,48 @@
+{
+ "kolom": [
+  "luas_m2",
+  "harga_juta_rp"
+ ],
+ "baris": [
+  [
+   "161.6",
+   "2313.8"
+  ],
+  [
+   "104.6",
+   "1436.1"
+  ],
+  [
+   "176.0",
+   "2257.4"
+  ],
+  [
+   "148.6",
+   "2023.0"
+  ],
+  [
+   "46.010",
+   "744.9"
+  ],
+  [
+   "195.9",
+   "2720.5"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 120,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "luas_m2": "Luas bangunan dalam m². Fitur input (X).",
+  "harga_juta_rp": "Harga rumah dalam juta rupiah. Target (y) yang diprediksi."
+ },
+ "catatan": "75% baris dipakai untuk melatih model, 25% untuk menguji (train_test_split)."
+}

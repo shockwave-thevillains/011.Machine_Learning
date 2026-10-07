@@ -1,0 +1,55 @@
+{
+ "kolom": [
+  "x1",
+  "x2",
+  "label"
+ ],
+ "baris": [
+  [
+   "-1.361",
+   "-1.160",
+   "-1"
+  ],
+  [
+   "0.921",
+   "-0.501",
+   "1"
+  ],
+  [
+   "-1.440",
+   "-1.228",
+   "-1"
+  ],
+  [
+   "0.506",
+   "1.547",
+   "1"
+  ],
+  [
+   "1.090",
+   "1.516",
+   "1"
+  ],
+  [
+   "-0.120",
+   "-0.178",
+   "-1"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 100,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Dua koordinat titik (fitur input).",
+  "label": "Target: −1 atau +1 (format label perceptron)."
+ },
+ "catatan": ""
+}

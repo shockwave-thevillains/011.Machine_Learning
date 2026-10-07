@@ -29,3 +29,12 @@ ax.set_yscale("log")
 ax.set(xlabel="jumlah pohon", ylabel="MSE (log)", title="Gradient Boosting: error turun tiap tahap")
 ax.legend()
 save("gradient_boosting")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import simpan
+simpan("gradient_boosting", pd.DataFrame(X, columns=[f"x{i:02d}" for i in range(1, 11)]).assign(y=y), {
+    "x01 … x05": "Fitur yang dipakai rumus target, nilainya 0–1.",
+    "x06 … x10": "Fitur noise, tidak berpengaruh ke target.",
+    "y": "Target = 10·sin(π·x01·x02) + 20·(x03 − 0,5)² + 10·x04 + 5·x05 + noise.",
+})

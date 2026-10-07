@@ -27,3 +27,11 @@ ax.bar(idx + .2, lasso.coef_, .4, color=RED, label="Lasso")
 ax.set(xlabel="indeks fitur", ylabel="koefisien", title="Lasso membuat koefisien tak penting = 0", xticks=idx)
 ax.legend()
 save("lasso_regression")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import simpan
+simpan("lasso_regression", pd.DataFrame(X, columns=[f"fitur_{i:02d}" for i in range(20)]).assign(y=y), {
+    "fitur_00 … fitur_19": "20 fitur numerik sintetis berdistribusi normal. Hanya fitur_03, 04, 10, 11, dan 12 yang benar-benar memengaruhi y.",
+    "y": "Target numerik (kombinasi linear 5 fitur informatif + noise).",
+})

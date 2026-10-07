@@ -1,0 +1,56 @@
+{
+ "kolom": [
+  "pengunjung_ke",
+  "desain_ditampilkan",
+  "klik"
+ ],
+ "baris": [
+  [
+   "1",
+   "C",
+   "0"
+  ],
+  [
+   "2",
+   "B",
+   "0"
+  ],
+  [
+   "3",
+   "A",
+   "0"
+  ],
+  [
+   "4",
+   "A",
+   "0"
+  ],
+  [
+   "5",
+   "A",
+   "0"
+  ],
+  [
+   "6",
+   "A",
+   "0"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 20000,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "pengunjung_ke": "Urutan pengunjung halaman.",
+  "desain_ditampilkan": "Desain tombol yang dipilih algoritma (Thompson Sampling) untuk pengunjung itu.",
+  "klik": "1 jika pengunjung mengklik tombol, 0 jika tidak. Ini satu-satunya umpan balik yang diterima algoritma."
+ },
+ "catatan": "Contoh 8 pengunjung pertama. Klik dibangkitkan dari CTR asli A = 4,0%, B = 5,0%, C = 6,5%, yang tidak diketahui algoritma."
+}

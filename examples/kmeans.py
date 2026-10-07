@@ -27,3 +27,11 @@ for i in range(5):
 ax.scatter(*km.cluster_centers_.T, marker="X", s=140, color="white", edgecolors="black", lw=1.4)
 ax.set(xlabel="pendapatan (juta/thn)", ylabel="skor belanja", title="K-Means: 5 segmen pelanggan")
 save("kmeans")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("kmeans", {"pendapatan_juta_thn": X[:, 0], "skor_belanja": X[:, 1], "segmen_hasil": km.labels_}, {
+    "pendapatan_juta_thn": "Pendapatan pelanggan per tahun (juta Rp).",
+    "skor_belanja": "Skor perilaku belanja 1–100.",
+    "segmen_hasil": "HASIL K-Means (k=5): nomor segmen tiap pelanggan. Tidak ada di data awal.",
+}, catatan="Data unsupervised: tidak ada kolom target. Hanya dua kolom pertama yang diolah.")

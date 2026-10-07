@@ -29,3 +29,11 @@ for ax, l, t in zip(axes, (km, lab), ("K-Means (k=2)", "DBSCAN (eps=0.15)")):
     ax.set(title=t, xticks=[], yticks=[])
 axes[1].legend()
 save("dbscan")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("dbscan", {"x1": X[:, 0], "x2": X[:, 1], "label_asli": y, "cluster_dbscan": lab}, {
+    "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+    "label_asli": "Bulan sabit asal (0/1) atau −1 untuk 20 titik noise yang ditambahkan. Hanya untuk evaluasi.",
+    "cluster_dbscan": "HASIL DBSCAN: nomor cluster, atau −1 jika dianggap noise.",
+}, idx=[0, 1, 2, 400, 401, 402], catatan="Tiga baris terakhir adalah titik noise yang sengaja ditambahkan.")

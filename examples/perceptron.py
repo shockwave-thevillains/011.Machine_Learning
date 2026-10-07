@@ -31,3 +31,10 @@ ax.plot(xs, -(w[0] * xs + b) / w[1], color="black", lw=1.6, label="batas keputus
 ax.set(xlim=(-5, 5), ylim=(-5, 5), title="Perceptron: garis pemisah linear")
 ax.legend()
 save("perceptron")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("perceptron", {"x1": X[:, 0], "x2": X[:, 1], "label": y}, {
+    "x1, x2": "Dua koordinat titik (fitur input).",
+    "label": "Target: −1 atau +1 (format label perceptron).",
+})

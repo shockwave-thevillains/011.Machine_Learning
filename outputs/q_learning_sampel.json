@@ -1,0 +1,79 @@
+{
+ "kolom": [
+  "langkah",
+  "posisi",
+  "aksi",
+  "reward",
+  "posisi_berikut",
+  "selesai"
+ ],
+ "baris": [
+  [
+   "1",
+   "(0,0)",
+   "atas",
+   "0",
+   "(0,0)",
+   "False"
+  ],
+  [
+   "2",
+   "(0,0)",
+   "kanan",
+   "0",
+   "(0,1)",
+   "False"
+  ],
+  [
+   "3",
+   "(0,1)",
+   "atas",
+   "0",
+   "(0,1)",
+   "False"
+  ],
+  [
+   "4",
+   "(0,1)",
+   "kiri",
+   "0",
+   "(0,0)",
+   "False"
+  ],
+  [
+   "5",
+   "(0,0)",
+   "atas",
+   "0",
+   "(0,0)",
+   "False"
+  ],
+  [
+   "6",
+   "(0,0)",
+   "kiri",
+   "0",
+   "(0,0)",
+   "False"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 8,
+ "total_kolom": 6,
+ "tersembunyi": null,
+ "keterangan": {
+  "langkah": "Urutan langkah dalam satu episode.",
+  "posisi, posisi_berikut": "Petak (baris, kolom) sebelum dan sesudah bergerak. (0,0) = start, (3,3) = tujuan.",
+  "aksi": "Aksi yang dipilih agen. Karena es licin, 10% gerakan berubah acak.",
+  "reward": "1 jika mencapai tujuan, selain itu 0.",
+  "selesai": "True jika agen jatuh ke lubang atau sampai tujuan."
+ },
+ "catatan": "Q-learning tidak memakai dataset tetap. Datanya adalah transisi seperti ini, yang dikumpulkan sendiri oleh agen. Contoh di atas adalah satu episode dengan aksi acak, seperti yang dialami agen di awal pelatihan (ε = 1)."
+}

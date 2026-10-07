@@ -26,3 +26,13 @@ ax.scatter(*X[pred == 1].T, s=40, color=RED, marker="x", label="terdeteksi anoma
 ax.set(xlabel="nominal (ribu Rp)", ylabel="jam transaksi", title="Isolation Forest: deteksi fraud")
 ax.legend()
 save("isolation_forest")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("isolation_forest", {"nominal_ribu_rp": X[:, 0], "jam_transaksi": X[:, 1],
+                            "fraud_asli": y.astype(int), "terdeteksi_anomali": pred}, {
+    "nominal_ribu_rp": "Nilai transaksi dalam ribu rupiah.",
+    "jam_transaksi": "Jam terjadinya transaksi (0–24).",
+    "fraud_asli": "1 = transaksi fraud yang sengaja disisipkan. Hanya untuk evaluasi.",
+    "terdeteksi_anomali": "HASIL Isolation Forest: 1 = dianggap anomali.",
+}, idx=[0, 1, 2, 1000, 1001, 1002], catatan="Tiga baris terakhir adalah transaksi fraud.")

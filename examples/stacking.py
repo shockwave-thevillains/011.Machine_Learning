@@ -23,3 +23,9 @@ for nama, m in base + [("STACKING", stack)]:
 
 stack.fit(X, y)
 print("Bobot meta-model (RF, SVM-skor, KNN):", stack.final_estimator_.coef_.round(2).tolist()[0])
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import KET_BREAST_CANCER, simpan
+simpan("stacking", pd.DataFrame(X, columns=load_breast_cancer().feature_names).assign(diagnosis=y), KET_BREAST_CANCER,
+       catatan="569 pasien: 212 ganas dan 357 jinak. Hanya 11 kolom pertama yang ditampilkan.")

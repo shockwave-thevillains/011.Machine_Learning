@@ -1,0 +1,48 @@
+{
+ "kolom": [
+  "suhu_c",
+  "gelas_terjual"
+ ],
+ "baris": [
+  [
+   "19.617",
+   "29.699"
+  ],
+  [
+   "20.668",
+   "39.517"
+  ],
+  [
+   "21.491",
+   "10.287"
+  ],
+  [
+   "21.554",
+   "54.885"
+  ],
+  [
+   "22.475",
+   "43.342"
+  ],
+  [
+   "24.999",
+   "74.213"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 30,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "suhu_c": "Suhu harian (°C). Fitur input; di dalam pipeline diperluas menjadi suhu, suhu², suhu³, … sesuai derajat.",
+  "gelas_terjual": "Jumlah gelas es teh terjual hari itu. Target."
+ },
+ "catatan": "Baris sudah diurutkan berdasarkan suhu. 70% dipakai latih, 30% uji."
+}

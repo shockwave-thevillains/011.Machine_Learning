@@ -1,0 +1,63 @@
+{
+ "kolom": [
+  "x1",
+  "x2",
+  "lingkaran_asli",
+  "cluster_spectral"
+ ],
+ "baris": [
+  [
+   "-0.667",
+   "0.768",
+   "0",
+   "0"
+  ],
+  [
+   "0.351",
+   "0.055",
+   "1",
+   "1"
+  ],
+  [
+   "0.330",
+   "0.336",
+   "1",
+   "1"
+  ],
+  [
+   "0.069",
+   "-0.437",
+   "1",
+   "1"
+  ],
+  [
+   "0.271",
+   "-0.512",
+   "1",
+   "1"
+  ],
+  [
+   "1.028",
+   "0.388",
+   "0",
+   "0"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 500,
+ "total_kolom": 4,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+  "lingkaran_asli": "0 = lingkaran luar, 1 = lingkaran dalam. Hanya untuk evaluasi ARI.",
+  "cluster_spectral": "HASIL Spectral Clustering. Nomor cluster boleh tertukar (0↔1); yang penting pengelompokannya sama."
+ },
+ "catatan": ""
+}

@@ -42,3 +42,9 @@ ax.hist(s, bins=60, density=True, histtype="step", color=RED, lw=1.8, label="has
 ax.set(xlabel="tinggi badan (cm)", ylabel="kepadatan", title="GAN: distribusi palsu vs asli")
 ax.legend()
 save("gan")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("gan", {"tinggi_cm": (data_asli(6) * 10 + 165).numpy().ravel()}, {
+    "tinggi_cm": "Tinggi badan dari distribusi asli N(165 cm, 7 cm). Discriminator melihat data ini (dinormalisasi) sebagai contoh \"asli\".",
+}, total=6 * 256 * 1000, catatan="Data asli tidak disimpan sebagai tabel; tiap langkah pelatihan mengambil 256 sampel baru, sehingga 6.000 langkah memakai ±1,5 juta sampel.")

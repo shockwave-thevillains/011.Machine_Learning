@@ -1,0 +1,40 @@
+{
+ "kolom": [
+  "tinggi_cm"
+ ],
+ "baris": [
+  [
+   "173.1"
+  ],
+  [
+   "167.2"
+  ],
+  [
+   "166.8"
+  ],
+  [
+   "163.3"
+  ],
+  [
+   "167.2"
+  ],
+  [
+   "172.6"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 1536000,
+ "total_kolom": 1,
+ "tersembunyi": null,
+ "keterangan": {
+  "tinggi_cm": "Tinggi badan dari distribusi asli N(165 cm, 7 cm). Discriminator melihat data ini (dinormalisasi) sebagai contoh \"asli\"."
+ },
+ "catatan": "Data asli tidak disimpan sebagai tabel; tiap langkah pelatihan mengambil 256 sampel baru, sehingga 6.000 langkah memakai ±1,5 juta sampel."
+}

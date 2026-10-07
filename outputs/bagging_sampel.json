@@ -1,0 +1,55 @@
+{
+ "kolom": [
+  "x1",
+  "x2",
+  "kelas"
+ ],
+ "baris": [
+  [
+   "0.213",
+   "0.888",
+   "0"
+  ],
+  [
+   "-0.676",
+   "0.516",
+   "1"
+  ],
+  [
+   "0.269",
+   "0.127",
+   "1"
+  ],
+  [
+   "1.668",
+   "-0.096",
+   "1"
+  ],
+  [
+   "2.027",
+   "-0.932",
+   "1"
+  ],
+  [
+   "1.667",
+   "0.325",
+   "0"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 500,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Koordinat titik.",
+  "kelas": "Target 0/1 (dua bulan sabit dengan noise tinggi, sehingga sebagian titik tumpang tindih)."
+ },
+ "catatan": ""
+}

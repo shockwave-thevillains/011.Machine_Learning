@@ -1,0 +1,122 @@
+{
+ "kolom": [
+  "alcohol",
+  "malic_acid",
+  "ash",
+  "alcalinity_of_ash",
+  "magnesium",
+  "total_phenols",
+  "flavanoids",
+  "nonflavanoid_phenols",
+  "proanthocyanins",
+  "color_intensity",
+  "hue",
+  "kultivar"
+ ],
+ "baris": [
+  [
+   "14.230",
+   "1.710",
+   "2.430",
+   "15.600",
+   "127",
+   "2.800",
+   "3.060",
+   "0.280",
+   "2.290",
+   "5.640",
+   "1.040",
+   "0"
+  ],
+  [
+   "13.200",
+   "1.780",
+   "2.140",
+   "11.200",
+   "100",
+   "2.650",
+   "2.760",
+   "0.260",
+   "1.280",
+   "4.380",
+   "1.050",
+   "0"
+  ],
+  [
+   "12.370",
+   "0.940",
+   "1.360",
+   "10.600",
+   "88",
+   "1.980",
+   "0.570",
+   "0.280",
+   "0.420",
+   "1.950",
+   "1.050",
+   "1"
+  ],
+  [
+   "12.330",
+   "1.100",
+   "2.280",
+   "16",
+   "101",
+   "2.050",
+   "1.090",
+   "0.630",
+   "0.410",
+   "3.270",
+   "1.250",
+   "1"
+  ],
+  [
+   "12.860",
+   "1.350",
+   "2.320",
+   "18",
+   "122",
+   "1.510",
+   "1.250",
+   "0.210",
+   "0.940",
+   "4.100",
+   "0.760",
+   "2"
+  ],
+  [
+   "12.880",
+   "2.990",
+   "2.400",
+   "20",
+   "104",
+   "1.300",
+   "1.220",
+   "0.240",
+   "0.830",
+   "5.400",
+   "0.740",
+   "2"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  59,
+  60,
+  130,
+  131
+ ],
+ "total_baris": 178,
+ "total_kolom": 14,
+ "tersembunyi": [
+  "od280/od315_of_diluted_wines",
+  "proline",
+  2
+ ],
+ "keterangan": {
+  "alcohol … proline": "13 hasil analisis kimia anggur: kadar alkohol, asam malat, abu, magnesium, fenol, flavanoid, intensitas warna, prolin, dll.",
+  "kultivar": "Target: jenis kultivar anggur (0, 1, atau 2) dari satu daerah di Italia."
+ },
+ "catatan": "Baris contoh diambil dari ketiga kultivar."
+}

@@ -30,3 +30,8 @@ dendrogram(Z, truncate_mode="lastp", p=30, ax=ax, above_threshold_color="#888", 
 ax.set(title="Dendrogram Ward (30 cabang terakhir)", ylabel="jarak penggabungan")
 ax.grid(False)
 save("hierarchical_clustering")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import KET_IRIS, iris_df, simpan
+simpan("hierarchical_clustering", iris_df(), KET_IRIS, idx=[0, 1, 50, 51, 100, 101],
+       catatan="Dataset diurutkan per spesies (50 bunga per spesies), jadi baris contoh diambil dari ketiganya. Kolom spesies TIDAK dipakai untuk clustering; hanya untuk mengukur ARI. Keempat fitur distandarkan dulu.")

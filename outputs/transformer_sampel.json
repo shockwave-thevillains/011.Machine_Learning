@@ -1,0 +1,48 @@
+{
+ "kolom": [
+  "input_deret",
+  "target_terurut"
+ ],
+ "baris": [
+  [
+   "9 1 1 8 8 5 3 1",
+   "1 1 1 3 5 8 8 9"
+  ],
+  [
+   "6 0 0 1 3 1 1 8",
+   "0 0 1 1 1 3 6 8"
+  ],
+  [
+   "6 9 4 6 0 0 4 5",
+   "0 0 4 4 5 6 6 9"
+  ],
+  [
+   "8 7 5 6 1 1 5 4",
+   "1 1 4 5 5 6 7 8"
+  ],
+  [
+   "3 5 2 6 9 5 8 8",
+   "2 3 5 5 6 8 8 9"
+  ],
+  [
+   "6 4 9 4 9 0 5 8",
+   "0 4 4 5 6 8 9 9"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 192000,
+ "total_kolom": 2,
+ "tersembunyi": null,
+ "keterangan": {
+  "input_deret": "8 digit acak (token 0–9). Input model.",
+  "target_terurut": "Digit yang sama setelah diurutkan. Model memprediksi digit di setiap posisi."
+ },
+ "catatan": "Data dibangkitkan baru di setiap langkah: 1.500 langkah × 128 deret = 192.000 deret latih."
+}

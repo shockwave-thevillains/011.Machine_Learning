@@ -1,0 +1,122 @@
+{
+ "kolom": [
+  "px_00",
+  "px_01",
+  "px_02",
+  "px_03",
+  "px_04",
+  "px_05",
+  "px_06",
+  "px_07",
+  "px_08",
+  "px_09",
+  "px_10",
+  "digit"
+ ],
+ "baris": [
+  [
+   "0",
+   "0",
+   "5",
+   "13",
+   "9",
+   "1",
+   "0",
+   "0",
+   "0",
+   "0",
+   "13",
+   "0"
+  ],
+  [
+   "0",
+   "0",
+   "0",
+   "12",
+   "13",
+   "5",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "1"
+  ],
+  [
+   "0",
+   "0",
+   "0",
+   "4",
+   "15",
+   "12",
+   "0",
+   "0",
+   "0",
+   "0",
+   "3",
+   "2"
+  ],
+  [
+   "0",
+   "0",
+   "7",
+   "15",
+   "13",
+   "1",
+   "0",
+   "0",
+   "0",
+   "8",
+   "13",
+   "3"
+  ],
+  [
+   "0",
+   "0",
+   "0",
+   "1",
+   "11",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "4"
+  ],
+  [
+   "0",
+   "0",
+   "12",
+   "10",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "0",
+   "14",
+   "5"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 1797,
+ "total_kolom": 65,
+ "tersembunyi": [
+  "px_11",
+  "px_63",
+  53
+ ],
+ "keterangan": {
+  "px_00 … px_63": "Kecerahan 64 piksel gambar angka 8×8, dibaca baris demi baris (px_00 kiri atas, px_63 kanan bawah). Nilai 0 = putih sampai 16 = hitam.",
+  "digit": "Angka sebenarnya pada gambar (0–9)."
+ },
+ "catatan": "Yang diolah adalah 64 kolom piksel. UMAP tidak memakai kolom digit; kolom ini hanya untuk mewarnai grafik."
+}

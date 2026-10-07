@@ -27,3 +27,11 @@ ax.axhline(1 - pohon.score(X_te, y_te), color=BLACK, ls=":", label="pohon kedala
 ax.set(xlabel="jumlah iterasi boosting", ylabel="error test", title="AdaBoost: weak learner menjadi strong learner")
 ax.legend()
 save("adaboost")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import simpan
+simpan("adaboost", pd.DataFrame(X, columns=[f"x{i:02d}" for i in range(1, 11)]).assign(y=y), {
+    "x01 … x10": "10 fitur acak berdistribusi normal standar.",
+    "y": "Target: +1 jika jumlah kuadrat ke-10 fitur > 9,34, selain itu −1.",
+}, catatan="2.000 baris pertama untuk latih, 10.000 sisanya untuk uji.")

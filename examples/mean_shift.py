@@ -27,3 +27,10 @@ for k in range(len(ms.cluster_centers_)):
 ax.scatter(*ms.cluster_centers_.T, marker="X", s=140, color="white", edgecolors="black", lw=1.4)
 ax.set(title=f"Mean Shift: {len(ms.cluster_centers_)} puncak kepadatan (bandwidth {bw:.2f})")
 save("mean_shift")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("mean_shift", {"x1": X[:, 0], "x2": X[:, 1], "cluster_hasil": ms.labels_}, {
+    "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+    "cluster_hasil": "HASIL Mean Shift: puncak kepadatan tempat titik berakhir.",
+})

@@ -31,3 +31,14 @@ ax.axvline(100, color=RED, ls="--", lw=1.2)
 ax.set_xscale("log")
 ax.set(xlabel="alpha (kekuatan regularisasi)", ylabel="nilai koefisien", title="Ridge: koefisien menyusut saat alpha naik")
 save("ridge_regression")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import simpan
+simpan("ridge_regression", pd.DataFrame(X, columns=load_diabetes().feature_names).assign(progresi_penyakit=y), {
+    "age, sex": "Usia dan jenis kelamin pasien.",
+    "bmi, bp": "Indeks massa tubuh dan tekanan darah rata-rata.",
+    "s1 … s6": "Enam hasil tes darah: kolesterol total, LDL, HDL, rasio kolesterol/HDL, log trigliserida, gula darah.",
+    "progresi_penyakit": "Target. Ukuran perkembangan diabetes satu tahun setelah pemeriksaan awal (angka lebih besar = lebih parah).",
+}, catatan="Sepuluh fitur sudah dinormalisasi oleh scikit-learn (dikurangi rata-rata lalu diskalakan), "
+           "jadi nilainya kecil dan bisa negatif. Di pipeline, 10 fitur ini diperluas menjadi 65 fitur polinomial.")

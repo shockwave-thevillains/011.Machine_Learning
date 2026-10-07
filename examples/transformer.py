@@ -39,3 +39,12 @@ contoh = torch.tensor([[7, 2, 9, 2, 0, 5, 1, 8]])
 with torch.no_grad():
     print("Input :", contoh[0].tolist())
     print("Output:", model(contoh).argmax(-1)[0].tolist())
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+xs, ys = batch(6)
+simpan("transformer", {"input_deret": [" ".join(map(str, r)) for r in xs.tolist()],
+                       "target_terurut": [" ".join(map(str, r)) for r in ys.tolist()]}, {
+    "input_deret": "8 digit acak (token 0–9). Input model.",
+    "target_terurut": "Digit yang sama setelah diurutkan. Model memprediksi digit di setiap posisi.",
+}, total=1500 * 128, catatan="Data dibangkitkan baru di setiap langkah: 1.500 langkah × 128 deret = 192.000 deret latih.")

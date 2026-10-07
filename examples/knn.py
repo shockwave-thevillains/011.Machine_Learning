@@ -32,3 +32,8 @@ ax.scatter([k_best], [hasil[k_best]], color=RED, s=60, zorder=3, label=f"terbaik
 ax.set(xlabel="k (jumlah tetangga)", ylabel="akurasi CV", title="KNN: memilih k")
 ax.legend()
 save("knn")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import KET_IRIS, iris_df, simpan
+simpan("knn", iris_df(), KET_IRIS, idx=[0, 1, 50, 51, 100, 101],
+       catatan="Dataset diurutkan per spesies (50 bunga per spesies), jadi baris contoh diambil dari ketiganya. Fitur distandarkan (StandardScaler) sebelum jarak dihitung.")

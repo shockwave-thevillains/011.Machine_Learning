@@ -27,3 +27,10 @@ ax.plot(xs, model.predict(xs), color=RED, lw=2, label="garis regresi")
 ax.set(xlabel="Luas bangunan (m²)", ylabel="Harga (juta Rp)", title="Linear Regression")
 ax.legend()
 save("linear_regression")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("linear_regression", {"luas_m2": luas.ravel(), "harga_juta_rp": harga}, {
+    "luas_m2": "Luas bangunan dalam m². Fitur input (X).",
+    "harga_juta_rp": "Harga rumah dalam juta rupiah. Target (y) yang diprediksi.",
+}, catatan="75% baris dipakai untuk melatih model, 25% untuk menguji (train_test_split).")

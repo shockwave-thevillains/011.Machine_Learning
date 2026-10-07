@@ -24,3 +24,8 @@ ax.grid(False)
 plot_tree(tree, feature_names=["sepal_pjg", "sepal_lbr", "petal_pjg", "petal_lbr"],
           class_names=list(iris.target_names), filled=False, fontsize=7, ax=ax, impurity=False)
 save("decision_tree")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import KET_IRIS, iris_df, simpan
+simpan("decision_tree", iris_df(), KET_IRIS, idx=[0, 1, 50, 51, 100, 101],
+       catatan="Dataset diurutkan per spesies (50 bunga per spesies), jadi baris contoh diambil dari ketiganya. Di kode, nama kolom dipendekkan menjadi sepal_pjg, petal_lbr, dst.")

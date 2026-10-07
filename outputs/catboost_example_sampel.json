@@ -1,0 +1,80 @@
+{
+ "kolom": [
+  "kota",
+  "paket",
+  "metode_bayar",
+  "lama_langganan_bln",
+  "keluhan_3bln",
+  "churn"
+ ],
+ "baris": [
+  [
+   "Makassar",
+   "Standard",
+   "e-wallet",
+   "11",
+   "1",
+   "1"
+  ],
+  [
+   "Medan",
+   "Basic",
+   "transfer",
+   "27",
+   "1",
+   "0"
+  ],
+  [
+   "Surabaya",
+   "Premium",
+   "transfer",
+   "23",
+   "2",
+   "1"
+  ],
+  [
+   "Bandung",
+   "Standard",
+   "transfer",
+   "46",
+   "1",
+   "0"
+  ],
+  [
+   "Bandung",
+   "Standard",
+   "kartu kredit",
+   "21",
+   "0",
+   "0"
+  ],
+  [
+   "Jakarta",
+   "Basic",
+   "e-wallet",
+   "37",
+   "1",
+   "0"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 5000,
+ "total_kolom": 6,
+ "tersembunyi": null,
+ "keterangan": {
+  "kota": "Kota pelanggan (kategorikal, 5 nilai).",
+  "paket": "Paket langganan: Basic, Standard, Premium (kategorikal).",
+  "metode_bayar": "e-wallet, transfer, atau kartu kredit (kategorikal).",
+  "lama_langganan_bln": "Sudah berapa bulan berlangganan.",
+  "keluhan_3bln": "Jumlah keluhan dalam 3 bulan terakhir.",
+  "churn": "Target: 1 = berhenti berlangganan, 0 = tetap."
+ },
+ "catatan": "Tiga kolom teks diberikan apa adanya ke CatBoost lewat cat_features, tanpa one-hot encoding."
+}

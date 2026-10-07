@@ -30,3 +30,10 @@ for d, c, ls in ((1, BLUE, "--"), (2, RED, "-"), (15, BLUE, ":")):
 ax.set(xlabel="Suhu (°C)", ylabel="Gelas terjual", title="Polynomial Regression", ylim=(0, 520))
 ax.legend()
 save("polynomial_regression")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("polynomial_regression", {"suhu_c": suhu.ravel(), "gelas_terjual": gelas}, {
+    "suhu_c": "Suhu harian (°C). Fitur input; di dalam pipeline diperluas menjadi suhu, suhu², suhu³, … sesuai derajat.",
+    "gelas_terjual": "Jumlah gelas es teh terjual hari itu. Target.",
+}, catatan="Baris sudah diurutkan berdasarkan suhu. 70% dipakai latih, 30% uji.")

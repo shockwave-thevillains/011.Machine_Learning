@@ -1,0 +1,55 @@
+{
+ "kolom": [
+  "x1",
+  "x2",
+  "cluster_hasil"
+ ],
+ "baris": [
+  [
+   "1.116",
+   "-0.835",
+   "0"
+  ],
+  [
+   "0.956",
+   "1.408",
+   "2"
+  ],
+  [
+   "-2.621",
+   "1.025",
+   "3"
+  ],
+  [
+   "-1.271",
+   "-0.481",
+   "1"
+  ],
+  [
+   "1.108",
+   "-1.321",
+   "0"
+  ],
+  [
+   "0.625",
+   "-0.827",
+   "0"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 800,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+  "cluster_hasil": "HASIL Mean Shift: puncak kepadatan tempat titik berakhir."
+ },
+ "catatan": ""
+}

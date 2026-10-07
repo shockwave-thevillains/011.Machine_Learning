@@ -1,0 +1,56 @@
+{
+ "kolom": [
+  "id_struk",
+  "barang",
+  "jumlah_barang"
+ ],
+ "baris": [
+  [
+   "1",
+   "beras, telur, minyak goreng",
+   "3"
+  ],
+  [
+   "2",
+   "kopi, gula, susu kental manis",
+   "3"
+  ],
+  [
+   "3",
+   "mie instan, telur, kopi",
+   "3"
+  ],
+  [
+   "4",
+   "beras, telur, minyak goreng, kecap",
+   "4"
+  ],
+  [
+   "5",
+   "kopi, gula, roti",
+   "3"
+  ],
+  [
+   "6",
+   "mie instan, telur, saus sambal",
+   "3"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 12,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "id_struk": "Nomor struk belanja.",
+  "barang": "Barang yang dibeli bersamaan dalam satu struk.",
+  "jumlah_barang": "Banyaknya barang di struk itu."
+ },
+ "catatan": "Sebelum diolah, TransactionEncoder mengubah tiap struk menjadi satu baris True/False dengan 10 kolom (satu per jenis barang)."
+}

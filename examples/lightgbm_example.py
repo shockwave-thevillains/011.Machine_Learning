@@ -24,3 +24,11 @@ print(f"Data latih: {X_tr.shape[0]:,} baris x {X_tr.shape[1]} fitur")
 print(f"LightGBM (300 pohon, 80.000 baris)       : {t_lgb:5.1f} detik | AUC = {roc_auc_score(y_te, lgbm.predict_proba(X_te)[:, 1]):.4f}")
 print(f"sklearn GBM (100 pohon, hanya 20.000 baris): {t_gb:5.1f} detik | AUC = {roc_auc_score(y_te, gb.predict_proba(X_te)[:, 1]):.4f}")
 print(f"Jumlah daun per pohon LightGBM (maks)    : {lgbm.get_params()['num_leaves']}")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import simpan
+simpan("lightgbm_example", pd.DataFrame(X, columns=[f"f{i:02d}" for i in range(40)]).assign(kelas=y), {
+    "f00 … f39": "40 fitur numerik sintetis: 15 informatif, 2 kombinasi linear dari fitur informatif, sisanya noise.",
+    "kelas": "Target biner 0/1.",
+})

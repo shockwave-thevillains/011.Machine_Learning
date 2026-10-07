@@ -27,3 +27,7 @@ axes[0].set(xlabel="jumlah komponen", ylabel="varians kumulatif", title="Scree k
 sc = axes[1].scatter(*Z.T, c=y, cmap="bwr", s=5)
 axes[1].set(title="Proyeksi 2 komponen utama (warna = digit)", xticks=[], yticks=[])
 save("pca")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import KET_DIGITS, digits_df, simpan
+simpan("pca", digits_df(X, y), KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel.")

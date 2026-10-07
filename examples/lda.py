@@ -22,3 +22,11 @@ for k, c in zip(range(3), (BLUE, RED, BLACK)):
 ax.set(xlabel="LD1", ylabel="LD2", title="LDA: 13 fitur kimia diproyeksikan ke 2D")
 ax.legend()
 save("lda")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import simpan
+simpan("lda", pd.DataFrame(X, columns=wine.feature_names).assign(kultivar=y), {
+    "alcohol … proline": "13 hasil analisis kimia anggur: kadar alkohol, asam malat, abu, magnesium, fenol, flavanoid, intensitas warna, prolin, dll.",
+    "kultivar": "Target: jenis kultivar anggur (0, 1, atau 2) dari satu daerah di Italia.",
+}, idx=[0, 1, 59, 60, 130, 131], catatan="Baris contoh diambil dari ketiga kultivar.")

@@ -1,0 +1,55 @@
+{
+ "kolom": [
+  "x1",
+  "x2",
+  "kelas"
+ ],
+ "baris": [
+  [
+   "0.804",
+   "-0.291",
+   "1"
+  ],
+  [
+   "2.314",
+   "-0.122",
+   "1"
+  ],
+  [
+   "-0.280",
+   "0.451",
+   "1"
+  ],
+  [
+   "0.789",
+   "0.384",
+   "0"
+  ],
+  [
+   "1.187",
+   "-0.511",
+   "1"
+  ],
+  [
+   "1.007",
+   "-0.351",
+   "1"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 300,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Koordinat titik pada bidang 2D.",
+  "kelas": "Target: 0 = bulan sabit atas, 1 = bulan sabit bawah. Kedua kelas saling mengait sehingga tidak bisa dipisah garis lurus."
+ },
+ "catatan": ""
+}

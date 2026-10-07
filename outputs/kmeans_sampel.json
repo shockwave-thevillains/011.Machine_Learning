@@ -1,0 +1,56 @@
+{
+ "kolom": [
+  "pendapatan_juta_thn",
+  "skor_belanja",
+  "segmen_hasil"
+ ],
+ "baris": [
+  [
+   "97.369",
+   "17.093",
+   "2"
+  ],
+  [
+   "56.850",
+   "54.360",
+   "0"
+  ],
+  [
+   "91.341",
+   "87.343",
+   "3"
+  ],
+  [
+   "95.198",
+   "80.208",
+   "3"
+  ],
+  [
+   "88.073",
+   "19.119",
+   "2"
+  ],
+  [
+   "94.737",
+   "87.723",
+   "3"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 400,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "pendapatan_juta_thn": "Pendapatan pelanggan per tahun (juta Rp).",
+  "skor_belanja": "Skor perilaku belanja 1–100.",
+  "segmen_hasil": "HASIL K-Means (k=5): nomor segmen tiap pelanggan. Tidak ada di data awal."
+ },
+ "catatan": "Data unsupervised: tidak ada kolom target. Hanya dua kolom pertama yang diolah."
+}

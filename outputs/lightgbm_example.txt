@@ -1,4 +1,4 @@
 Data latih: 80,000 baris x 40 fitur
-LightGBM (300 pohon, 80.000 baris)       :   3.0 detik | AUC = 0.9942
-sklearn GBM (100 pohon, hanya 20.000 baris):  23.3 detik | AUC = 0.9611
+LightGBM (300 pohon, 80.000 baris)       :   2.9 detik | AUC = 0.9942
+sklearn GBM (100 pohon, hanya 20.000 baris):  20.2 detik | AUC = 0.9611
 Jumlah daun per pohon LightGBM (maks)    : 63

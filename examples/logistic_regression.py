@@ -34,3 +34,9 @@ ax.axhline(.5, ls="--", color="grey", lw=.8)
 ax.set(xlabel="z = w·x + b", ylabel="P(jinak)", title="Logistic Regression: skor linear -> probabilitas", xlim=(-15, 15))
 ax.legend()
 save("logistic_regression")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import KET_BREAST_CANCER, simpan
+simpan("logistic_regression", pd.DataFrame(data.data, columns=data.feature_names).assign(diagnosis=data.target), KET_BREAST_CANCER,
+       catatan="569 pasien: 212 ganas dan 357 jinak. Hanya 11 kolom pertama yang ditampilkan.")

@@ -29,3 +29,11 @@ for ax, l, t in zip(axes, (km, sc), ("K-Means", "Spectral Clustering")):
     ax.scatter(*X[l == 1].T, s=7, color=RED)
     ax.set(title=t, xticks=[], yticks=[], aspect="equal")
 save("spectral_clustering")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("spectral_clustering", {"x1": X[:, 0], "x2": X[:, 1], "lingkaran_asli": y, "cluster_spectral": sc}, {
+    "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+    "lingkaran_asli": "0 = lingkaran luar, 1 = lingkaran dalam. Hanya untuk evaluasi ARI.",
+    "cluster_spectral": "HASIL Spectral Clustering. Nomor cluster boleh tertukar (0↔1); yang penting pengelompokannya sama.",
+})

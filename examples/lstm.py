@@ -52,3 +52,10 @@ ax.plot(pred[:168], color=RED, lw=1.2, ls="--", label="prediksi LSTM")
 ax.set(xlabel="jam ke-", ylabel="beban (MW)", title="LSTM: prediksi 1 jam ke depan (1 minggu data test)")
 ax.legend()
 save("lstm")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("lstm", {"jam_ke": t, "beban_mw": seri}, {
+    "jam_ke": "Urutan jam sejak awal data.",
+    "beban_mw": "Beban listrik pada jam tersebut (MW).",
+}, catatan="Model membaca 48 jam berturut-turut (jendela) untuk menebak jam ke-49. Jam 0–947 untuk latih, sisanya untuk uji.")

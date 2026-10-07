@@ -28,3 +28,10 @@ ax.fill_between(xs.ravel(), p - .1, p + .1, color=BLUE, alpha=.12, label="tabung
 ax.set(title="Support Vector Regression", xlabel="x", ylabel="y")
 ax.legend(ncol=2)
 save("svr")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("svr", {"x": X.ravel(), "y": y}, {
+    "x": "Fitur input, 0 sampai 6.",
+    "y": "Target = sin(x) + 0,3·x + noise. Hubungannya melengkung sehingga butuh kernel non-linear.",
+})

@@ -28,3 +28,7 @@ ax.scatter([len(mlp.loss_curve_) - 1], [mlp.loss_curve_[-1]], color=RED, zorder=
 ax.set_yscale("log")
 ax.set(xlabel="iterasi (epoch)", ylabel="cross-entropy loss (log)", title="MLP: kurva loss selama backpropagation")
 save("mlp")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import KET_DIGITS, digits_df, simpan
+simpan("mlp", digits_df(X, y), KET_DIGITS, catatan="Sebelum masuk jaringan, tiap kolom piksel distandarkan (StandardScaler).")

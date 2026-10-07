@@ -29,3 +29,15 @@ ax.scatter(*X[pred_lof == -1].T, s=40 * s[pred_lof == -1], facecolors="none", ed
 ax.set(title="Local Outlier Factor", aspect="equal")
 ax.legend()
 save("lof")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import numpy as np
+from _sampel import simpan
+kelompok = np.array(["padat"] * 200 + ["renggang"] * 200 + ["outlier lokal"] * 3)
+simpan("lof", {"x1": X[:, 0], "x2": X[:, 1], "kelompok": kelompok,
+               "skor_lof": -lof.negative_outlier_factor_, "outlier_lof": (pred_lof == -1).astype(int)}, {
+    "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+    "kelompok": "Asal titik: cluster padat, cluster renggang, atau outlier lokal. Hanya untuk evaluasi.",
+    "skor_lof": "HASIL: skor LOF. Sekitar 1 = normal, makin besar makin janggal.",
+    "outlier_lof": "HASIL: 1 = ditandai outlier.",
+}, idx=[0, 1, 200, 201, 400, 401, 402])

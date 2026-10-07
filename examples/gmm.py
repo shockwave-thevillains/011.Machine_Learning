@@ -32,3 +32,12 @@ for k in range(3):
                              fill=False, color=cols[k], lw=1.2))
 ax.set(title="GMM: tiap cluster adalah distribusi Gaussian (elips 1σ, 2σ)")
 save("gmm")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("gmm", {"x1": X[:, 0], "x2": X[:, 1], "komponen_hasil": gmm.predict(X),
+               "p_keanggotaan_maks": gmm.predict_proba(X).max(1)}, {
+    "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+    "komponen_hasil": "HASIL: komponen Gaussian yang paling mungkin.",
+    "p_keanggotaan_maks": "HASIL: seberapa yakin model (probabilitas komponen terpilih).",
+})

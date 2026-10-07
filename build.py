@@ -22,11 +22,11 @@ from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import PythonLexer
 
-from algorithms import ALGORITMA, KATEGORI
+from algorithms import ALGORITMA, CEK, KATEGORI
 
 ROOT = Path(__file__).resolve().parent
 EX, OUT = ROOT / "examples", ROOT / "outputs"
-MARKER = "# === VISUALISASI ==="
+MARKER = "\n# === "  # bagian setelah penanda ini (sampel data, visualisasi) tidak ditampilkan
 PAKET = ["scikit-learn", "torch", "xgboost", "lightgbm", "catboost", "umap-learn", "mlxtend", "numpy"]
 
 
@@ -60,8 +60,32 @@ def esc(s):
 
 def kode_tampil(slug):
     src = (EX / f"{slug}.py").read_text()
-    punya_plot = MARKER in src
+    punya_plot = "# === VISUALISASI" in src
     return src.split(MARKER)[0].rstrip() + "\n", punya_plot
+
+
+def ribuan(n):
+    return f"{n:,}".replace(",", ".")
+
+
+def tabel_sampel(slug):
+    p = OUT / f"{slug}_sampel.json"
+    if not p.exists():
+        return ""
+    d = json.loads(p.read_text())
+    head = "<th class=\"rn\">baris</th>" + "".join(f"<th>{esc(k)}</th>" for k in d["kolom"])
+    rows = "".join(
+        f"<tr><td class=\"rn\">{n}</td>" + "".join(f"<td>{esc(v)}</td>" for v in r) + "</tr>"
+        for n, r in zip(d["nomor_baris"], d["baris"]))
+    meta = f"{ribuan(d['total_baris'])} baris × {d['total_kolom']} kolom · ditampilkan {len(d['baris'])} baris"
+    if d["tersembunyi"]:
+        a, b, n = d["tersembunyi"]
+        meta += f" · {n} kolom ({esc(a)} … {esc(b)}) disembunyikan agar muat"
+    ket = "".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in d["keterangan"].items())
+    cat = f'<p class="data-note">{esc(d["catatan"])}</p>' if d["catatan"] else ""
+    return (f'<section class="data"><h3>Data yang diolah</h3><p class="data-meta">{meta}</p>'
+            f'<div class="sample-wrap"><table class="sample"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></div>'
+            f'<dl class="kolom">{ket}</dl>{cat}</section>')
 
 
 def ambil_kpi(a, teks):
@@ -124,7 +148,8 @@ def render(fragment_only=False):
         if punya_plot and (OUT / f"{slug}.png").exists():
             fig = (f'<figure><img src="outputs/{slug}.png" alt="Grafik hasil {esc(a["nama"])}" loading="lazy">'
                    f'<figcaption>Grafik dibuat oleh bagian visualisasi di <code>examples/{slug}.py</code>.</figcaption></figure>')
-        catatan = f'<p class="note"><b>Membaca hasil:</b> {esc(a["catatan"])}</p>' if a.get("catatan") else ""
+        cek = "".join(f"<li>{esc(x)}</li>" for x in CEK[slug])
+        cek_html = f'<section class="cek"><h3>Yang bisa Anda cek dari hasil ini</h3><ul>{cek}</ul></section>'
         artikel.append(f"""
 <article class="algo" id="{slug}" data-kat="{a['kat']}" data-q="{cari}">
   <header class="algo-head">
@@ -145,6 +170,7 @@ def render(fragment_only=False):
     <section><h4>Kelebihan</h4><ul class="plus">{daftar(a['plus'])}</ul></section>
     <section><h4>Kekurangan</h4><ul class="minus">{daftar(a['minus'])}</ul></section>
   </div>
+  {tabel_sampel(slug)}
   <section class="run">
     <div class="run-head">
       <h3>Contoh running</h3>
@@ -157,7 +183,7 @@ def render(fragment_only=False):
       <pre><samp>{esc(teks)}</samp></pre>
     </div>
     {fig}
-    {catatan}
+    {cek_html}
   </section>
 </article>""")
 
@@ -307,7 +333,7 @@ td a:hover{color:var(--blue);text-decoration:underline}
 .tokoh span{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--red);margin-right:.4rem}
 .cols{display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem 3rem;margin-top:1.8rem}
 @media (min-width:900px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.cols h3,.run h3{font-family:var(--f-display);font-stretch:85%;font-weight:700;font-size:var(--s2);margin:0 0 .5rem}
+.cols h3,.run h3,.data h3,.cek h3{font-family:var(--f-display);font-stretch:85%;font-weight:700;font-size:var(--s2);margin:0 0 .5rem}
 .cols p{margin:0 0 .8rem;max-width:65ch}
 .rumus{display:flex;flex-direction:column;gap:.4rem;margin-top:.9rem}
 .rumus code{display:block;background:var(--wash);padding:.55rem .75rem;font-size:.86rem;overflow-x:auto;white-space:pre-wrap}
@@ -337,8 +363,23 @@ pre{margin:0;overflow-x:auto;font-size:.82rem;line-height:1.55}
 figure{margin:1rem 0 0;max-width:760px}
 figure img{display:block;border:1px solid var(--line)}
 figcaption{font-size:var(--s-1);color:var(--muted);margin-top:.35rem}
-.note{margin:1rem 0 0;padding:.7rem .9rem;background:var(--wash-red);font-size:.93rem;max-width:80ch}
-.note b{color:var(--red)}
+.data{margin-top:2rem}
+.data-meta{font-family:var(--f-mono);font-size:var(--s-1);color:var(--muted);margin:0 0 .6rem}
+.sample-wrap{overflow-x:auto;border-top:2px solid var(--ink)}
+table.sample{min-width:0;width:auto;font-family:var(--f-mono);font-size:.8rem;font-variant-numeric:tabular-nums}
+.sample th{text-transform:none;letter-spacing:0;font-size:.78rem;color:var(--blue);font-weight:600;white-space:nowrap;padding:.45rem .7rem}
+.sample td{white-space:nowrap;padding:.35rem .7rem}
+.sample .rn{color:var(--muted);font-weight:400}
+.kolom{display:grid;grid-template-columns:minmax(0,1fr);gap:.15rem 1.2rem;margin:1rem 0 0;font-size:.9rem;max-width:90ch}
+@media (min-width:720px){.kolom{grid-template-columns:minmax(9rem,max-content) minmax(0,1fr)}}
+.kolom dt{font-family:var(--f-mono);font-size:.8rem;color:var(--blue);padding-top:.15rem}
+.kolom dd{margin:0 0 .45rem}
+.data-note{font-size:.88rem;color:var(--muted);margin:.4rem 0 0;max-width:80ch}
+.cek{margin-top:1.4rem;padding:1rem 1.2rem;background:var(--wash-red);max-width:90ch}
+.cek h3{color:var(--red)}
+.cek ul{list-style:none;margin:0;padding:0;font-size:.94rem}
+.cek li{position:relative;padding-left:1.4rem;margin-bottom:.45rem}
+.cek li::before{content:"→";position:absolute;left:0;color:var(--red);font-weight:700}
 
 .howto ol{padding-left:1.2rem;max-width:72ch}
 .howto li{margin-bottom:.6rem}
@@ -355,9 +396,9 @@ TEMPLATE = """<title>Atlas Algoritma Machine Learning</title>
 <!--/head-->
 <header class="masthead">
   <div class="wrap">
-    <p class="kicker">Katalog · sejarah · fungsi · kode · hasil asli</p>
+    <p class="kicker">Katalog · sejarah · fungsi · data · kode · hasil asli</p>
     <h1>Atlas Algoritma <em>Machine Learning</em><span class="dot">.</span></h1>
-    <p class="lede">{n} algoritma machine learning populer, dari kuadrat terkecil Legendre (1805) sampai Transformer (2017). Setiap lembar berisi sejarah singkat, cara kerja, kegunaan, contoh kode Python, dan output yang benar-benar keluar saat kode itu dijalankan.</p>
+    <p class="lede">{n} algoritma machine learning populer, dari kuadrat terkecil Legendre (1805) sampai Transformer (2017). Setiap lembar berisi sejarah singkat, cara kerja, kegunaan, contoh data yang diolah beserta arti kolomnya, kode Python, output yang benar-benar keluar saat kode itu dijalankan, dan panduan apa yang bisa Anda cek dari hasilnya.</p>
     <ul class="stats">
       <li><b class="num">{n}</b><span>algoritma</span></li>
       <li><b class="num">{nkat}</b><span>kategori</span></li>

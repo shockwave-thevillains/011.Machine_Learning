@@ -27,3 +27,7 @@ for d in range(10):
             bbox=dict(boxstyle="circle,pad=0.2", fc="white", ec="black", lw=.6))
 ax.set(title="UMAP: digit tulisan tangan", xticks=[], yticks=[])
 save("umap_example")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import KET_DIGITS, digits_df, simpan
+simpan("umap_example", digits_df(X, y), KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel. UMAP tidak memakai kolom digit; kolom ini hanya untuk mewarnai grafik.")

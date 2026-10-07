@@ -1,0 +1,50 @@
+{
+ "kolom": [
+  "hari_ke",
+  "aktivitas_teramati",
+  "cuaca_hasil_viterbi"
+ ],
+ "baris": [
+  [
+   "1",
+   "jalan-jalan",
+   "Cerah"
+  ],
+  [
+   "2",
+   "belanja",
+   "Hujan"
+  ],
+  [
+   "3",
+   "bersih-bersih",
+   "Hujan"
+  ],
+  [
+   "4",
+   "bersih-bersih",
+   "Hujan"
+  ],
+  [
+   "5",
+   "jalan-jalan",
+   "Cerah"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "total_baris": 5,
+ "total_kolom": 3,
+ "tersembunyi": null,
+ "keterangan": {
+  "hari_ke": "Urutan hari.",
+  "aktivitas_teramati": "Data input: aktivitas teman yang bisa kita lihat.",
+  "cuaca_hasil_viterbi": "HASIL: cuaca tersembunyi yang paling mungkin menurut algoritma Viterbi."
+ },
+ "catatan": "Parameter model (peluang awal π, transisi A, emisi B) ditulis langsung di kode, bukan dipelajari dari data."
+}

@@ -1,0 +1,63 @@
+{
+ "kolom": [
+  "x1",
+  "x2",
+  "label_asli",
+  "cluster_dbscan"
+ ],
+ "baris": [
+  [
+   "-0.492",
+   "0.898",
+   "0",
+   "0"
+  ],
+  [
+   "1.308",
+   "-0.492",
+   "1",
+   "1"
+  ],
+  [
+   "1.542",
+   "-0.317",
+   "1",
+   "1"
+  ],
+  [
+   "1.048",
+   "-0.326",
+   "-1",
+   "1"
+  ],
+  [
+   "-1.336",
+   "-0.959",
+   "-1",
+   "-1"
+  ],
+  [
+   "1.753",
+   "1.282",
+   "-1",
+   "-1"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  400,
+  401,
+  402
+ ],
+ "total_baris": 420,
+ "total_kolom": 4,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+  "label_asli": "Bulan sabit asal (0/1) atau −1 untuk 20 titik noise yang ditambahkan. Hanya untuk evaluasi.",
+  "cluster_dbscan": "HASIL DBSCAN: nomor cluster, atau −1 jika dianggap noise."
+ },
+ "catatan": "Tiga baris terakhir adalah titik noise yang sengaja ditambahkan."
+}

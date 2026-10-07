@@ -1,0 +1,113 @@
+{
+ "kolom": [
+  "age",
+  "sex",
+  "bmi",
+  "bp",
+  "s1",
+  "s2",
+  "s3",
+  "s4",
+  "s5",
+  "s6",
+  "progresi_penyakit"
+ ],
+ "baris": [
+  [
+   "0.038",
+   "0.051",
+   "0.062",
+   "0.022",
+   "-0.044",
+   "-0.035",
+   "-0.043",
+   "-0.003",
+   "0.020",
+   "-0.018",
+   "151"
+  ],
+  [
+   "-0.002",
+   "-0.045",
+   "-0.051",
+   "-0.026",
+   "-0.008",
+   "-0.019",
+   "0.074",
+   "-0.039",
+   "-0.068",
+   "-0.092",
+   "75"
+  ],
+  [
+   "0.085",
+   "0.051",
+   "0.044",
+   "-0.006",
+   "-0.046",
+   "-0.034",
+   "-0.032",
+   "-0.003",
+   "0.003",
+   "-0.026",
+   "141"
+  ],
+  [
+   "-0.089",
+   "-0.045",
+   "-0.012",
+   "-0.037",
+   "0.012",
+   "0.025",
+   "-0.036",
+   "0.034",
+   "0.023",
+   "-0.009",
+   "206"
+  ],
+  [
+   "0.005",
+   "-0.045",
+   "-0.036",
+   "0.022",
+   "0.004",
+   "0.016",
+   "0.008",
+   "-0.003",
+   "-0.032",
+   "-0.047",
+   "135"
+  ],
+  [
+   "-0.093",
+   "-0.045",
+   "-0.041",
+   "-0.019",
+   "-0.069",
+   "-0.079",
+   "0.041",
+   "-0.076",
+   "-0.041",
+   "-0.096",
+   "97"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "total_baris": 442,
+ "total_kolom": 11,
+ "tersembunyi": null,
+ "keterangan": {
+  "age, sex": "Usia dan jenis kelamin pasien.",
+  "bmi, bp": "Indeks massa tubuh dan tekanan darah rata-rata.",
+  "s1 … s6": "Enam hasil tes darah: kolesterol total, LDL, HDL, rasio kolesterol/HDL, log trigliserida, gula darah.",
+  "progresi_penyakit": "Target. Ukuran perkembangan diabetes satu tahun setelah pemeriksaan awal (angka lebih besar = lebih parah)."
+ },
+ "catatan": "Sepuluh fitur sudah dinormalisasi oleh scikit-learn (dikurangi rata-rata lalu diskalakan), jadi nilainya kecil dan bisa negatif. Di pipeline, 10 fitur ini diperluas menjadi 65 fitur polinomial."
+}

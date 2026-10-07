@@ -52,3 +52,8 @@ for i, ax in enumerate(axes[1:]):
 for ax in axes:
     ax.axis("off")
 save("cnn")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import KET_DIGITS, digits_df, simpan
+simpan("cnn", digits_df(X.reshape(len(X), 64).numpy(), y.numpy()), KET_DIGITS,
+       catatan="Nilai piksel sudah dibagi 16 (skala 0–1). Untuk CNN, 64 kolom ini dibentuk ulang menjadi gambar 1 × 8 × 8.")

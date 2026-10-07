@@ -35,3 +35,10 @@ nb, vocab = model[-1], model[0].get_feature_names_out()
 skor = nb.feature_log_prob_[1] - nb.feature_log_prob_[0]
 print("Kata paling 'spam' :", list(vocab[skor.argsort()[-6:][::-1]]))
 print("Kata paling 'ham'  :", list(vocab[skor.argsort()[:6]]))
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("naive_bayes", {"teks_sms": teks, "label": label}, {
+    "teks_sms": "Isi pesan SMS. CountVectorizer mengubahnya menjadi hitungan kata (satu kolom per kata unik).",
+    "label": "Target: spam atau ham (bukan spam).",
+}, idx=[0, 1, 2, 8, 9, 10], catatan="Total 16 SMS: 8 spam dan 8 bukan spam.")

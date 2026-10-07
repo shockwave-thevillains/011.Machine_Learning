@@ -59,3 +59,23 @@ ax.axhline(sukses / 1000, color=RED, ls="--", label="kebijakan akhir (greedy)")
 ax.set(xlabel="episode", ylabel="tingkat sukses (rata-rata 100 ep.)", title="Q-Learning: agen makin sering mencapai tujuan")
 ax.legend()
 save("q_learning")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+nama_aksi = ["kiri", "bawah", "kanan", "atas"]
+contoh, rng_c, s = [], np.random.default_rng(7), 0
+for i in range(8):
+    a = int(rng_c.integers(4))
+    s2, r, selesai = langkah(s, a, rng_c)
+    contoh.append((i + 1, f"({s // n},{s % n})", nama_aksi[a], r, f"({s2 // n},{s2 % n})", selesai))
+    s = s2
+    if selesai:
+        break
+simpan("q_learning", dict(zip(["langkah", "posisi", "aksi", "reward", "posisi_berikut", "selesai"], zip(*contoh))), {
+    "langkah": "Urutan langkah dalam satu episode.",
+    "posisi, posisi_berikut": "Petak (baris, kolom) sebelum dan sesudah bergerak. (0,0) = start, (3,3) = tujuan.",
+    "aksi": "Aksi yang dipilih agen. Karena es licin, 10% gerakan berubah acak.",
+    "reward": "1 jika mencapai tujuan, selain itu 0.",
+    "selesai": "True jika agen jatuh ke lubang atau sampai tujuan.",
+}, total=len(contoh), catatan="Q-learning tidak memakai dataset tetap. Datanya adalah transisi seperti ini, yang dikumpulkan sendiri oleh agen. "
+                              "Contoh di atas adalah satu episode dengan aksi acak, seperti yang dialami agen di awal pelatihan (ε = 1).")

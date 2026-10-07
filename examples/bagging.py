@@ -30,3 +30,10 @@ for ax, m, t in zip(axes, (pohon.fit(X, y), bag), ("1 Decision Tree", "Bagging 2
     ax.scatter(*X[y == 1].T, s=6, color=RED)
     ax.set(title=t, xticks=[], yticks=[])
 save("bagging")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("bagging", {"x1": X[:, 0], "x2": X[:, 1], "kelas": y}, {
+    "x1, x2": "Koordinat titik.",
+    "kelas": "Target 0/1 (dua bulan sabit dengan noise tinggi, sehingga sebagian titik tumpang tindih).",
+})

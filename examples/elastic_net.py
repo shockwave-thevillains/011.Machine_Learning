@@ -33,3 +33,13 @@ ax.axvspan(-.5, 11.5, color="#eef", zorder=0)
 ax.set(xlabel="indeks fitur (area biru = 3 grup fitur kembar)", ylabel="koefisien", title="Elastic Net membagi bobot ke fitur yang berkorelasi")
 ax.legend()
 save("elastic_net")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import simpan
+nama_kolom = [f"{g}{i}" for g in "ABC" for i in range(1, 5)] + [f"noise_{i:02d}" for i in range(1, 19)]
+simpan("elastic_net", pd.DataFrame(X, columns=nama_kolom).assign(y=y), {
+    "A1 … A4": "Empat fitur \"kembar\" yang hampir identik (berasal dari faktor dasar A). Begitu juga B1 … B4 dan C1 … C4.",
+    "noise_01 … noise_18": "18 fitur acak yang sama sekali tidak berhubungan dengan y.",
+    "y": "Target = 3·A − 2·B + 1,5·C + noise.",
+})

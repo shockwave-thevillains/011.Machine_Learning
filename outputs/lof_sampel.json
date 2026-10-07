@@ -1,0 +1,79 @@
+{
+ "kolom": [
+  "x1",
+  "x2",
+  "kelompok",
+  "skor_lof",
+  "outlier_lof"
+ ],
+ "baris": [
+  [
+   "0.104",
+   "0.246",
+   "padat",
+   "0.995",
+   "0"
+  ],
+  [
+   "0.099",
+   "-0.391",
+   "padat",
+   "1.065",
+   "0"
+  ],
+  [
+   "2.941",
+   "4.172",
+   "renggang",
+   "1.041",
+   "0"
+  ],
+  [
+   "4.287",
+   "7.981",
+   "renggang",
+   "1.206",
+   "0"
+  ],
+  [
+   "1.400",
+   "1.400",
+   "outlier lokal",
+   "6.994",
+   "1"
+  ],
+  [
+   "-1.200",
+   "1.300",
+   "outlier lokal",
+   "4.722",
+   "1"
+  ],
+  [
+   "0",
+   "-1.600",
+   "outlier lokal",
+   "4.765",
+   "1"
+  ]
+ ],
+ "nomor_baris": [
+  0,
+  1,
+  200,
+  201,
+  400,
+  401,
+  402
+ ],
+ "total_baris": 403,
+ "total_kolom": 5,
+ "tersembunyi": null,
+ "keterangan": {
+  "x1, x2": "Koordinat titik (hanya dua kolom ini yang diolah).",
+  "kelompok": "Asal titik: cluster padat, cluster renggang, atau outlier lokal. Hanya untuk evaluasi.",
+  "skor_lof": "HASIL: skor LOF. Sekitar 1 = normal, makin besar makin janggal.",
+  "outlier_lof": "HASIL: 1 = ditandai outlier."
+ },
+ "catatan": ""
+}

@@ -31,3 +31,12 @@ print("\nAturan asosiasi (confidence ≥ 70%):")
 for _, r in rules.iterrows():
     print(f"  {sorted(r.antecedents)} -> {sorted(r.consequents)}  "
           f"support={r.support:.2f} conf={r.confidence:.2f} lift={r.lift:.2f}")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("apriori", {"id_struk": range(1, len(transaksi) + 1), "barang": [", ".join(t) for t in transaksi],
+                   "jumlah_barang": [len(t) for t in transaksi]}, {
+    "id_struk": "Nomor struk belanja.",
+    "barang": "Barang yang dibeli bersamaan dalam satu struk.",
+    "jumlah_barang": "Banyaknya barang di struk itu.",
+}, catatan=f"Sebelum diolah, TransactionEncoder mengubah tiap struk menjadi satu baris True/False dengan {df.shape[1]} kolom (satu per jenis barang).")

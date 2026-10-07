@@ -35,3 +35,14 @@ for nama, imp in sorted(zip(X.columns, model.get_feature_importance()), key=lamb
 baru = pd.DataFrame([{"kota": "Bandung", "paket": "Basic", "metode_bayar": "e-wallet",
                       "lama_langganan_bln": 3, "keluhan_3bln": 4}])
 print(f"Pelanggan baru (Basic, 3 bln, 4 keluhan): P(churn) = {model.predict_proba(baru)[0, 1]:.2f}")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("catboost_example", df, {
+    "kota": "Kota pelanggan (kategorikal, 5 nilai).",
+    "paket": "Paket langganan: Basic, Standard, Premium (kategorikal).",
+    "metode_bayar": "e-wallet, transfer, atau kartu kredit (kategorikal).",
+    "lama_langganan_bln": "Sudah berapa bulan berlangganan.",
+    "keluhan_3bln": "Jumlah keluhan dalam 3 bulan terakhir.",
+    "churn": "Target: 1 = berhenti berlangganan, 0 = tetap.",
+}, catatan="Tiga kolom teks diberikan apa adanya ke CatBoost lewat cat_features, tanpa one-hot encoding.")

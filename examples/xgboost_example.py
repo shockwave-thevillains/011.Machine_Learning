@@ -32,3 +32,9 @@ ax.axvline(model.best_iteration, color=RED, ls="--", label=f"best iteration = {m
 ax.set(xlabel="iterasi", ylabel="logloss", title="XGBoost dengan early stopping")
 ax.legend()
 save("xgboost_example")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+import pandas as pd
+from _sampel import KET_BREAST_CANCER, simpan
+simpan("xgboost_example", pd.DataFrame(data.data, columns=data.feature_names).assign(diagnosis=data.target), KET_BREAST_CANCER,
+       catatan="569 pasien: 212 ganas dan 357 jinak. Hanya 11 kolom pertama yang ditampilkan.")

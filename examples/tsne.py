@@ -25,3 +25,7 @@ for d in range(10):
             bbox=dict(boxstyle="circle,pad=0.2", fc="white", ec="black", lw=.6))
 ax.set(title="t-SNE: 1.797 digit tulisan tangan", xticks=[], yticks=[])
 save("tsne")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import KET_DIGITS, digits_df, simpan
+simpan("tsne", digits_df(X, y), KET_DIGITS, catatan="Yang diolah adalah 64 kolom piksel. t-SNE tidak memakai kolom digit; kolom ini hanya untuk mewarnai grafik.")

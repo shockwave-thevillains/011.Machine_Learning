@@ -32,3 +32,12 @@ print("Aktivitas teman      :", [obs_nama[o] for o in amatan])
 print(f"P(urutan aktivitas)  : {forward(amatan):.6f}  (algoritma Forward)")
 jalur, p = viterbi(amatan)
 print("Cuaca paling mungkin :", [state[s] for s in jalur], f" (P jalur = {p:.6f}, algoritma Viterbi)")
+
+# === SAMPEL DATA (disimpan ke outputs/ untuk halaman) ===
+from _sampel import simpan
+simpan("hmm_viterbi", {"hari_ke": range(1, len(amatan) + 1), "aktivitas_teramati": [obs_nama[o] for o in amatan],
+                       "cuaca_hasil_viterbi": [state[s] for s in jalur]}, {
+    "hari_ke": "Urutan hari.",
+    "aktivitas_teramati": "Data input: aktivitas teman yang bisa kita lihat.",
+    "cuaca_hasil_viterbi": "HASIL: cuaca tersembunyi yang paling mungkin menurut algoritma Viterbi.",
+}, catatan="Parameter model (peluang awal π, transisi A, emisi B) ditulis langsung di kode, bukan dipelajari dari data.")
